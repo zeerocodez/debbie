@@ -19,7 +19,7 @@ Debbie's Collection is a premium, mobile-first e-commerce boutique website built
 - **Self-Contained & Fast**: Fully self-contained single-page experience with zero external stock image dependencies.
 - **Multi-Currency Support**: Instant currency switching between NGN (₦), USD ($), and GBP (£).
 - **Tanimawo Built-in Engine**:
-  - Direct Bank Transfer (Zenith Bank details)
+  - Direct Bank Transfer (UBA: 2127888264)
   - Card payment simulation with 3D Secure OTP verification
   - Cash on Delivery for Uyo doorstep deliveries
   - Printable and downloadable digital receipts

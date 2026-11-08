@@ -920,9 +920,9 @@ def get_app_js():
   }
 
   function copyAccountNumber() {
-    const accNum = document.getElementById('zenith-acc-num')?.textContent || '1018492041';
+    const accNum = document.getElementById('uba-acc-num')?.textContent || '2127888264';
     navigator.clipboard?.writeText(accNum);
-    showToast(`Copied Zenith Bank account: ${accNum}`);
+    showToast(`Copied UBA account: ${accNum}`);
   }
 
   function processTanimawoPayment() {

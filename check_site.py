@@ -38,7 +38,7 @@ requirements = {
     "Uyo Map": "UDOUMANA STREET" in text,
     "WhatsApp Integrations": "https://wa.me/2347085222212" in text,
     "Currency Switcher (NGN, USD, GBP)": "currency-select" in text,
-    "Zenith Bank Transfer details": "Zenith Bank" in text and "1018492041" in text,
+    "UBA Bank Transfer details": "UBA" in text and "2127888264" in text,
     "Printable Digital Receipt": "digital-receipt-card" in text,
     "3D Secure OTP Simulation": "otp-modal" in text,
     "Zero External Stock Images": len(urls) == 0,

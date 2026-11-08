@@ -546,7 +546,7 @@ def get_faq_html():
           <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="faq-answer">
-          <p>Tanimawo's built-in backend provides bank-grade SSL encrypted checkout supporting instant Nigerian cards with 3D Secure verification, direct verified bank transfers to our Debbie's Collection Zenith Bank account, and pay-on-pickup at 164 Udoumana Street, Uyo. Every confirmed order generates an instant printable digital invoice and WhatsApp tracking link.</p>
+          <p>Tanimawo's built-in backend provides bank-grade SSL encrypted checkout supporting instant Nigerian cards with 3D Secure verification, direct verified bank transfers to our Debbie's Collection UBA account, and pay-on-pickup at 164 Udoumana Street, Uyo. Every confirmed order generates an instant printable digital invoice and WhatsApp tracking link.</p>
         </div>
       </div>
 
@@ -638,7 +638,7 @@ def get_footer_html():
       <div style="display:flex; align-items:center; gap:16px;">
         <span>Tanimawo Instant Gateway</span>
         <span>•</span>
-        <span>Zenith Bank Verified</span>
+        <span>UBA Verified</span>
         <span>•</span>
         <span>SSL 256-Bit Encryption</span>
       </div>
@@ -921,12 +921,12 @@ def get_modals_html():
           </div>
         </label>
 
-        <!-- Option B: Direct Bank Transfer to Zenith Bank -->
+        <!-- Option B: Direct Bank Transfer to UBA -->
         <label class="payment-method-card" onclick="window.DC_APP.selectPaymentMethod('transfer')">
           <input type="radio" name="pay_opt" value="transfer">
           <div>
-            <strong>Direct Bank Transfer to Zenith Bank Account</strong>
-            <span style="font-size:0.78rem; color:var(--text-muted); display:block;">Transfer directly to Debbie's Collection Ltd Zenith Bank account</span>
+            <strong>Direct Bank Transfer to UBA Account</strong>
+            <span style="font-size:0.78rem; color:var(--text-muted); display:block;">Transfer directly to Debbie's Collection UBA account</span>
           </div>
         </label>
 
@@ -966,12 +966,12 @@ def get_modals_html():
       <div class="bank-transfer-panel" id="payment-panel-transfer" style="display:none;">
         <span style="font-size:0.78rem; font-weight:700; color:var(--accent-rose);">Atelier Official Bank Account Details:</span>
         <div style="background:#FFFFFF; padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border-light); font-size:0.86rem; display:flex; flex-direction:column; gap:4px;">
-          <div>Bank Name: <strong>Zenith Bank Plc</strong></div>
+          <div>Bank Name: <strong>United Bank for Africa (UBA)</strong></div>
           <div style="display:flex; align-items:center; justify-content:space-between;">
-            <span>Account Number: <strong id="zenith-acc-num">1018492041</strong></span>
+            <span>Account Number: <strong id="uba-acc-num">2127888264</strong></span>
             <button style="font-size:0.72rem; background:var(--accent-rose-light); color:var(--accent-rose); padding:2px 8px; border-radius:var(--radius-full); font-weight:700;" onclick="window.DC_APP.copyAccountNumber()">Copy</button>
           </div>
-          <div>Account Name: <strong>Debbie's Collection Ltd</strong></div>
+          <div>Account Name: <strong>Debbie's Collection</strong></div>
         </div>
         <div class="form-group" style="margin-top:6px;">
           <label class="form-label">Upload Proof of Payment (Simulated):</label>
