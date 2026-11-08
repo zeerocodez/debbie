@@ -19,7 +19,7 @@ Debbie's Collection is a premium, mobile-first e-commerce boutique website built
 - **Self-Contained & Fast**: Fully self-contained single-page experience with zero external stock image dependencies.
 - **Multi-Currency Support**: Instant currency switching between NGN (₦), USD ($), and GBP (£).
 - **Built-in Checkout Engine**:
-  - Direct Bank Transfer (UBA: 2127888264)
+  - Direct Bank Transfer (UBA: 2127888264 • Johnson Deborah Uwem)
   - Card payment simulation with 3D Secure OTP verification
   - Cash on Delivery for Uyo doorstep deliveries
   - Printable and downloadable digital receipts
