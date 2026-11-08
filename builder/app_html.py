@@ -542,11 +542,11 @@ def get_faq_html():
 
       <div class="faq-item" onclick="window.DC_APP.toggleFaq(this)">
         <button class="faq-question-btn">
-          <span>How does Tanimawo's built-in secure checkout work?</span>
+          <span>How does the boutique online checkout work?</span>
           <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="faq-answer">
-          <p>Tanimawo's built-in backend provides bank-grade SSL encrypted checkout supporting instant Nigerian cards with 3D Secure verification, direct verified bank transfers to our Debbie's Collection UBA account, and pay-on-pickup at 164 Udoumana Street, Uyo. Every confirmed order generates an instant printable digital invoice and WhatsApp tracking link.</p>
+          <p>Our online boutique provides bank-grade 256-bit SSL encrypted checkout supporting instant cards with 3D Secure verification, direct verified bank transfers to our Debbie's Collection UBA account, and pay-on-pickup at 164 Udoumana Street, Uyo. Every confirmed order generates an instant printable digital invoice and WhatsApp tracking link.</p>
         </div>
       </div>
 
@@ -580,7 +580,7 @@ def get_footer_html():
         </p>
         <div style="display:flex; align-items:center; gap:8px; color:var(--accent-gold-light); font-size:0.82rem; font-weight:600;">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span>Powered by Tanimawo Secure Engine</span>
+          <span>Verified 256-Bit SSL Checkout</span>
         </div>
       </div>
 
@@ -636,7 +636,7 @@ def get_footer_html():
         © 2026 Debbie's Collection Ltd. 164 Udoumana Street, Uyo, Akwa Ibom State. All Rights Reserved.
       </div>
       <div style="display:flex; align-items:center; gap:16px;">
-        <span>Tanimawo Instant Gateway</span>
+        <span>Direct Atelier Gateway</span>
         <span>•</span>
         <span>UBA Verified</span>
         <span>•</span>
@@ -752,7 +752,7 @@ def get_modals_html():
         <span class="brand-crest-box" style="width:32px; height:32px; overflow:hidden;">
           <img src="images/brand-logo.jpeg" alt="DC" style="width:100%; height:100%; object-fit:cover;">
         </span>
-        <h3 class="modal-title">Tanimawo Secure Checkout</h3>
+        <h3 class="modal-title">Debbie's Secure Checkout</h3>
       </div>
       <button class="drawer-close-btn" onclick="window.DC_APP.closeCheckoutModal()">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -897,7 +897,7 @@ def get_modals_html():
       </div>
     </div>
 
-    <!-- Step 3: Tanimawo Payment Gateway -->
+    <!-- Step 3: Payment Gateway -->
     <div class="modal-body-content" id="checkout-step-3" style="display:none;">
       <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:12px; border-bottom:1px solid var(--border-light);">
         <div>
@@ -906,7 +906,7 @@ def get_modals_html():
         </div>
         <div style="display:flex; align-items:center; gap:6px; font-size:0.75rem; color:var(--accent-sage); font-weight:700;">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span>Tanimawo 256-Bit SSL Secured</span>
+          <span>256-Bit SSL Secured</span>
         </div>
       </div>
 
@@ -916,7 +916,7 @@ def get_modals_html():
         <label class="payment-method-card active" onclick="window.DC_APP.selectPaymentMethod('card')">
           <input type="radio" name="pay_opt" value="card" checked>
           <div>
-            <strong>Instant Card & USSD Payment (Tanimawo Gateway)</strong>
+            <strong>Instant Card & USSD Payment (Bank Verified)</strong>
             <span style="font-size:0.78rem; color:var(--text-muted); display:block;">Mastercard, Visa, Verve & Bank USSD with instant 3D Secure verification</span>
           </div>
         </label>
@@ -981,7 +981,7 @@ def get_modals_html():
 
       <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
         <button class="btn-secondary" onclick="window.DC_APP.goToCheckoutStep(2)">Back</button>
-        <button class="btn-primary" id="btn-pay-now" onclick="window.DC_APP.processTanimawoPayment()">
+        <button class="btn-primary" id="btn-pay-now" onclick="window.DC_APP.processOrderPayment()">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           <span id="btn-pay-now-text">Authorize & Pay Now</span>
         </button>
@@ -1079,7 +1079,7 @@ def get_modals_html():
     </div>
     <h3 style="font-family:var(--font-serif); font-size:1.25rem;">Bank 3D Secure Verification</h3>
     <p style="font-size:0.84rem; color:var(--text-secondary); margin-top:8px;">
-      Tanimawo has sent a 6-digit One-Time PIN to your registered phone number (+234 803 ••• 7890).
+      Your bank has sent a 6-digit One-Time PIN to your registered phone number (+234 803 ••• 7890).
     </p>
     <div style="margin:20px 0;">
       <input type="text" id="otp-input" class="form-input" style="text-align:center; font-size:1.4rem; letter-spacing:0.3em; font-weight:700;" maxlength="6" value="849201">

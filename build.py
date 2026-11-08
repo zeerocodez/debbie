@@ -45,10 +45,40 @@ def build():
   <meta name="author" content="Debbie's Collection">
   <meta name="theme-color" content="#211815">
 
-  <!-- Open Graph -->
+  <!-- Favicon & PWA Icons -->
+  <link rel="icon" type="image/jpeg" href="images/brand-logo.jpeg">
+  <link rel="apple-touch-icon" href="images/brand-logo.jpeg">
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <!-- Open Graph / Meta -->
   <meta property="og:title" content="Debbie's Collection | Luxury Children's Wear & Bespoke Lounge">
-  <meta property="og:description" content="Handcrafted elegance in Uyo, Akwa Ibom State. Made-to-measure heirloom children's fashion & bespoke loungewear.">
+  <meta property="og:description" content="Handcrafted elegance at 164 Udoumana Street, Uyo, Akwa Ibom State. Made-to-measure heirloom children's fashion & bespoke loungewear.">
+  <meta property="og:image" content="images/couture-pink-rosette-gown-storefront.jpeg">
   <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Debbie's Collection | Children's Fashion & Bespoke Loungewear">
+  <meta name="twitter:description" content="164 Udoumana Street, Uyo, Akwa Ibom State. Heirloom children's gowns & bespoke plaid loungewear.">
+
+  <!-- JSON-LD LocalBusiness & Boutique Schema -->
+  <script type="application/ld+json">
+  {{
+    "@context": "https://schema.org",
+    "@type": "ClothingStore",
+    "name": "Debbie's Collection",
+    "image": "images/brand-logo.jpeg",
+    "telephone": "+2347085222212",
+    "address": {{
+      "@type": "PostalAddress",
+      "streetAddress": "164 Udoumana Street",
+      "addressLocality": "Uyo",
+      "addressRegion": "Akwa Ibom State",
+      "addressCountry": "NG"
+    }},
+    "currenciesAccepted": "NGN, USD, GBP",
+    "paymentAccepted": "Cash, Credit Card, Bank Transfer",
+    "openingHours": "Mo-Sa 09:00-19:00"
+  }}
+  </script>
 
   <!-- Fonts: Google Fonts with robust high-fashion fallbacks -->
   <link rel="preconnect" href="https://fonts.googleapis.com">

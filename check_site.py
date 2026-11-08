@@ -17,8 +17,8 @@ urls = re.findall(r'url\(["\']?(https?://[^)"\']+\.(?:png|jpg|jpeg|webp|gif|svg)
 print('Found external image URLs in CSS (must be 0):', len(urls))
 
 # Check unwanted elements
-unwanted = ["Monogram Studio", "Personalized Monograms", "Family & Duo", "Boys’ Sartorial", "Boys Sartorial"]
-present_unwanted = [u for u in unwanted if u in text]
+unwanted = ["Monogram Studio", "Personalized Monograms", "Family & Duo", "Boys’ Sartorial", "Boys Sartorial", "Tanimawo", "tanimawo"]
+present_unwanted = [u for u in unwanted if u.lower() in text.lower()]
 print('Unwanted elements present (must be empty):', present_unwanted)
 
 # Check all button onclick handlers and IDs
@@ -30,7 +30,7 @@ requirements = {
     "164 Udoumana Street, Uyo": "164 Udoumana Street" in text and "Uyo" in text,
     "Children's Wear Category": "Children's Wear" in text,
     "Bespoke Lounge Wear Category": "Bespoke Lounge Wear" in text,
-    "Tanimawo Backend / Gateway": "Tanimawo" in text,
+    "Debbie's Secure Checkout Modal": "Debbie's Secure Checkout" in text,
     "Customer Accounts": "account-modal" in text,
     "Shopping Bag / Cart": "cart-drawer" in text,
     "Checkout Flow": "checkout-modal" in text,
@@ -43,7 +43,7 @@ requirements = {
     "3D Secure OTP Simulation": "otp-modal" in text,
     "Zero External Stock Images": len(urls) == 0,
     "All Local Images Valid": len(missing_images) == 0,
-    "Monograms & Family Sets Removed": len(present_unwanted) == 0,
+    "Unwanted Elements Removed": len(present_unwanted) == 0,
 }
 
 print("\n--- Requirements Verification ---")

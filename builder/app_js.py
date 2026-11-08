@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Client-side JavaScript Application Engine for Debbie's Collection.
-Includes TanimawoDB persistent state, interactive bespoke studio,
+Includes persistent client-side state,
 product discovery, multi-step checkout, measurement book, and WhatsApp integration.
 """
 
@@ -925,7 +925,7 @@ def get_app_js():
     showToast(`Copied UBA account: ${accNum}`);
   }
 
-  function processTanimawoPayment() {
+  function processOrderPayment() {
     const btn = document.getElementById('btn-pay-now');
     if (btn) btn.disabled = true;
 
@@ -943,7 +943,7 @@ def get_app_js():
 
   function confirmOtp() {
     closeOtpModal();
-    finalizeOrder('Tanimawo Card Gateway (3D Secure Authenticated)');
+    finalizeOrder('Card Payment (3D Secure Authenticated)');
   }
 
   function closeOtpModal() {
@@ -1389,7 +1389,7 @@ def get_app_js():
     selectPaymentMethod,
     autofillTestCard,
     copyAccountNumber,
-    processTanimawoPayment,
+    processOrderPayment,
     confirmOtp,
     closeOtpModal,
     notifyWhatsAppOrder,

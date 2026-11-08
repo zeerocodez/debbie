@@ -8,7 +8,7 @@
 
 ## Overview
 
-Debbie's Collection is a premium, mobile-first e-commerce boutique website built with pure editorial elegance, modern luxury aesthetics, and Tanimawo's built-in secure ordering engine.
+Debbie's Collection is a premium, mobile-first e-commerce boutique website built with pure editorial elegance, modern luxury aesthetics, and a built-in secure ordering engine.
 
 ### Key Pillars
 - **Children's Gala & Party Gowns**: Cascading tulle ballgowns, handcrafted rosette gala pieces, smocked dresses, and heirloom lace gowns.
@@ -18,7 +18,7 @@ Debbie's Collection is a premium, mobile-first e-commerce boutique website built
 ### Features
 - **Self-Contained & Fast**: Fully self-contained single-page experience with zero external stock image dependencies.
 - **Multi-Currency Support**: Instant currency switching between NGN (₦), USD ($), and GBP (£).
-- **Tanimawo Built-in Engine**:
+- **Built-in Checkout Engine**:
   - Direct Bank Transfer (UBA: 2127888264)
   - Card payment simulation with 3D Secure OTP verification
   - Cash on Delivery for Uyo doorstep deliveries
@@ -63,7 +63,7 @@ debbie/
 ├── builder/              # Source modules
 │   ├── products_data.py  # Curated catalog and boutique reviews
 │   ├── app_html.py       # Semantic HTML layout and modals
-│   ├── app_js.py         # TanimawoDB engine, checkout, state management
+│   ├── app_js.py         # Checkout engine, state management, and cart
 │   ├── styles.css        # Responsive luxury typography and styling
 │   └── svg_assets.py     # Custom vector illustrations and Uyo map
 ├── images/               # High-resolution boutique garment photography
@@ -72,5 +72,5 @@ debbie/
 
 ---
 
-© Debbie's Collection. 164 Udoumana Street, Uyo, Akwa Ibom State. Powered by Tanimawo Secure Engine.
+© Debbie's Collection. 164 Udoumana Street, Uyo, Akwa Ibom State. All Rights Reserved.
 

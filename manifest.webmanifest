@@ -1,0 +1,19 @@
+{
+  "name": "Debbie's Collection",
+  "short_name": "Debbie's",
+  "description": "Luxury children's wear and bespoke loungewear atelier at 164 Udoumana Street, Uyo, Akwa Ibom State.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FAF6F0",
+  "theme_color": "#211815",
+  "icons": [
+    {
+      "src": "images/brand-logo.jpeg",
+      "sizes": "192x192 512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
