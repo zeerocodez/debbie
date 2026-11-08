@@ -2,7 +2,7 @@
 
 > **Luxury Children's Wear & Bespoke Loungewear Atelier**  
 > 164 Udoumana Street, Uyo, Akwa Ibom State, Nigeria  
-> WhatsApp / Atelier Tel: [+234 814 900 8821](https://wa.me/2348149008821)
+> WhatsApp / Atelier Tel: [+234 708 522 2212](https://wa.me/2347085222212)
 
 ---
 
@@ -73,3 +73,4 @@ debbie/
 ---
 
 © Debbie's Collection. 164 Udoumana Street, Uyo, Akwa Ibom State. Powered by Tanimawo Secure Engine.
+

@@ -36,7 +36,7 @@ requirements = {
     "Checkout Flow": "checkout-modal" in text,
     "Bespoke Measurement Book": "Bespoke Measurement Book" in text,
     "Uyo Map": "UDOUMANA STREET" in text,
-    "WhatsApp Integrations": "https://wa.me/2348149008821" in text,
+    "WhatsApp Integrations": "https://wa.me/2347085222212" in text,
     "Currency Switcher (NGN, USD, GBP)": "currency-select" in text,
     "Zenith Bank Transfer details": "Zenith Bank" in text and "1018492041" in text,
     "Printable Digital Receipt": "digital-receipt-card" in text,

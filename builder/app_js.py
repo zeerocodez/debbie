@@ -431,7 +431,7 @@ def get_app_js():
 
     const total = formatMoney(getCartTotal());
     const message = `Hello Debbie's Collection Atelier Uyo! 👑%0AI would like to place an order:%0A%0A${lines}%0A%0A*Total: ${total}*%0A%0APlease confirm tailoring and delivery details to 164 Udoumana Street, Uyo. Thank you!`;
-    window.open(`https://wa.me/2348149008821?text=${message}`, '_blank');
+    window.open(`https://wa.me/2347085222212?text=${message}`, '_blank');
   }
 
   // --- Wishlist Management ---
@@ -1023,7 +1023,7 @@ def get_app_js():
     const order = DB.orders[0];
     if (!order) return;
     const text = `Hello Debbie's Collection Atelier! 👑%0AI just placed Order *#${order.orderId}* for ${formatMoney(order.total)}.%0ADelivery to: ${order.customer}.%0APlease confirm tailoring timeline at 164 Udoumana Street, Uyo. Thank you!`;
-    window.open(`https://wa.me/2348149008821?text=${text}`, '_blank');
+    window.open(`https://wa.me/2347085222212?text=${text}`, '_blank');
   }
 
   function closeCheckoutModal() {
@@ -1164,7 +1164,7 @@ def get_app_js():
                 </div>
                 <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed var(--border-light); padding-top:10px;">
                   <strong>Total: ${formatMoney(o.total)}</strong>
-                  <a href="https://wa.me/2348149008821?text=Hello%20Debbie's%20Collection,%20inquiry%20on%20Order%20%23${o.orderId}" target="_blank" rel="noopener" style="font-size:0.78rem; color:#25D366; font-weight:700;">
+                  <a href="https://wa.me/2347085222212?text=Hello%20Debbie's%20Collection,%20inquiry%20on%20Order%20%23${o.orderId}" target="_blank" rel="noopener" style="font-size:0.78rem; color:#25D366; font-weight:700;">
                     Track via WhatsApp →
                   </a>
                 </div>
@@ -1276,7 +1276,7 @@ def get_app_js():
     showToast(`Fitting booked for ${date} (${time}) at 164 Udoumana St!`);
 
     const msg = `Hello Debbie's Collection! 👑%0AI have booked a Private Atelier Fitting:%0AName: ${name}%0APhone: ${phone}%0ADate: ${date} at ${time}%0AService: ${service}%0ALocation: 164 Udoumana Street, Uyo.`;
-    window.open(`https://wa.me/2348149008821?text=${msg}`, '_blank');
+    window.open(`https://wa.me/2347085222212?text=${msg}`, '_blank');
   }
 
   // --- Review Submission Modal ---
