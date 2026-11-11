@@ -1250,7 +1250,7 @@ def get_modals_html():
     <form onsubmit="window.DC_APP.verifyAdminPin(event)">
       <div class="form-group">
         <input type="password" id="admin-pin-input" class="form-input" style="text-align:center; font-size:1.5rem; letter-spacing:0.35em; font-weight:700;" placeholder="••••" maxlength="6" autofocus required>
-        <span style="font-size:0.74rem; color:var(--text-muted); display:block; margin-top:6px;">Default Master Passcode: <strong>1640</strong></span>
+        <span style="font-size:0.74rem; color:var(--text-muted); display:block; margin-top:6px;">Authorized Boutique Personnel Only</span>
       </div>
       <div style="display:flex; gap:10px; margin-top:16px;">
         <button type="button" class="btn-secondary" style="flex:1;" onclick="window.DC_APP.closeAdminPinModal()">Cancel</button>

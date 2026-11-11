@@ -1381,7 +1381,7 @@ def get_app_js():
   });
 
   // --- Admin Dashboard & Inventory Suite Engine ---
-  const ADMIN_PASSCODE = '1640';
+  const ADMIN_PASSCODE = '2026';
   let adminActiveTab = 'overview';
   let adminEditingProductId = null;
   let adminShowNewProductForm = false;
@@ -1412,13 +1412,13 @@ def get_app_js():
   function verifyAdminPin(e) {
     if (e) e.preventDefault();
     const pin = document.getElementById('admin-pin-input')?.value.trim();
-    if (pin === ADMIN_PASSCODE || pin === '164' || pin === 'admin') {
+    if (pin === ADMIN_PASSCODE) {
       sessionStorage.setItem('debbie_admin_auth', 'true');
       closeAdminPinModal();
       showToast('✦ Welcome, Debbie! Atelier Admin unlocked.');
       openAdminModal();
     } else {
-      showToast('Incorrect passcode. Hint: 1640');
+      showToast('Incorrect passcode. Access denied.');
     }
   }
 

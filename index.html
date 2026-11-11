@@ -4288,7 +4288,7 @@ ul {
     <form onsubmit="window.DC_APP.verifyAdminPin(event)">
       <div class="form-group">
         <input type="password" id="admin-pin-input" class="form-input" style="text-align:center; font-size:1.5rem; letter-spacing:0.35em; font-weight:700;" placeholder="••••" maxlength="6" autofocus required>
-        <span style="font-size:0.74rem; color:var(--text-muted); display:block; margin-top:6px;">Default Master Passcode: <strong>1640</strong></span>
+        <span style="font-size:0.74rem; color:var(--text-muted); display:block; margin-top:6px;">Authorized Boutique Personnel Only</span>
       </div>
       <div style="display:flex; gap:10px; margin-top:16px;">
         <button type="button" class="btn-secondary" style="flex:1;" onclick="window.DC_APP.closeAdminPinModal()">Cancel</button>
@@ -5733,7 +5733,7 @@ ul {
   });
 
   // --- Admin Dashboard & Inventory Suite Engine ---
-  const ADMIN_PASSCODE = '1640';
+  const ADMIN_PASSCODE = '2026';
   let adminActiveTab = 'overview';
   let adminEditingProductId = null;
   let adminShowNewProductForm = false;
@@ -5764,13 +5764,13 @@ ul {
   function verifyAdminPin(e) {
     if (e) e.preventDefault();
     const pin = document.getElementById('admin-pin-input')?.value.trim();
-    if (pin === ADMIN_PASSCODE || pin === '164' || pin === 'admin') {
+    if (pin === ADMIN_PASSCODE) {
       sessionStorage.setItem('debbie_admin_auth', 'true');
       closeAdminPinModal();
       showToast('✦ Welcome, Debbie! Atelier Admin unlocked.');
       openAdminModal();
     } else {
-      showToast('Incorrect passcode. Hint: 1640');
+      showToast('Incorrect passcode. Access denied.');
     }
   }
 
