@@ -1587,24 +1587,6 @@ ul {
   box-shadow: 0 0 0 2px var(--accent-rose);
 }
 
-.monogram-input-field {
-  padding: 10px 16px;
-  background: var(--bg-warm);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-sm);
-  font-family: var(--font-serif);
-  font-size: 1.15rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  outline: none;
-}
-
-.monogram-input-field:focus {
-  border-color: var(--accent-rose);
-  background: #FFFFFF;
-}
-
 .thread-select-row {
   display: flex;
   align-items: center;
@@ -2654,13 +2636,321 @@ ul {
   }
 }
 
+/* ==========================================================================
+   ATELIER ADMIN DASHBOARD & INVENTORY SUITE
+   ========================================================================== */
+.admin-badge-btn {
+  background: rgba(170, 124, 17, 0.08) !important;
+  color: var(--accent-gold) !important;
+  border: 1px solid rgba(170, 124, 17, 0.35) !important;
+  border-radius: var(--radius-full) !important;
+  padding: 6px 12px !important;
+  font-size: 0.74rem !important;
+  font-weight: 700 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  transition: all var(--transition-fast) !important;
+  cursor: pointer;
+}
+
+.admin-badge-btn:hover {
+  background: var(--accent-gold) !important;
+  color: #FFFFFF !important;
+  transform: translateY(-1px);
+}
+
+.admin-modal-card {
+  max-width: 1120px !important;
+  width: 96vw !important;
+  max-height: 92vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.admin-header-bar {
+  background: var(--bg-espresso);
+  color: var(--text-light);
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-tabs-nav {
+  display: flex;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-light);
+  overflow-x: auto;
+  padding: 0 16px;
+  gap: 6px;
+  scrollbar-width: none;
+}
+
+.admin-tabs-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.admin-tab-btn {
+  padding: 14px 18px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-tab-btn:hover {
+  color: var(--text-primary);
+}
+
+.admin-tab-btn.active {
+  color: var(--accent-rose);
+  border-bottom-color: var(--accent-rose);
+}
+
+.admin-tab-content-area {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+  background: var(--bg-warm);
+}
+
+.admin-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 860px) {
+  .admin-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-kpi-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: var(--shadow-sm);
+}
+
+.admin-kpi-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.admin-kpi-value {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.admin-kpi-sub {
+  font-size: 0.75rem;
+  color: var(--accent-rose);
+}
+
+.admin-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.admin-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.admin-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.admin-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
+  background: var(--bg-surface);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.82rem;
+}
+
+.admin-table th {
+  background: var(--bg-warm);
+  padding: 12px 14px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-light);
+  white-space: nowrap;
+}
+
+.admin-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-light);
+  vertical-align: middle;
+}
+
+.admin-table tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table tr:hover td {
+  background: rgba(196, 130, 117, 0.04);
+}
+
+.admin-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  border: 1px solid var(--border-light);
+  background: var(--bg-warm);
+  display: block;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.status-badge.in-stock {
+  background: #E8F5E9;
+  color: #2E7D32;
+}
+
+.status-badge.low-stock {
+  background: #FFF8E1;
+  color: #F57F17;
+}
+
+.status-badge.out-of-stock {
+  background: #FFEBEE;
+  color: #C62828;
+}
+
+.status-badge.tailoring {
+  background: #F3E5F5;
+  color: #7B1FA2;
+}
+
+.status-badge.pickup {
+  background: #E3F2FD;
+  color: #1565C0;
+}
+
+.status-badge.delivered {
+  background: #E8F5E9;
+  color: #2E7D32;
+}
+
+.status-badge.dispatched {
+  background: #FFF3E0;
+  color: #E65100;
+}
+
+.admin-btn-action {
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid var(--border-light);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all var(--transition-fast);
+}
+
+.admin-btn-action:hover {
+  border-color: var(--accent-rose);
+  color: var(--accent-rose);
+}
+
+.admin-btn-action.btn-danger:hover {
+  background: #FFEBEE;
+  border-color: #C62828;
+  color: #C62828;
+}
+
+.admin-btn-action.btn-success {
+  background: #E8F5E9;
+  border-color: #81C784;
+  color: #2E7D32;
+}
+
+.admin-btn-action.btn-success:hover {
+  background: #2E7D32;
+  color: #FFFFFF;
+}
+
+.admin-inline-input {
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  background: #FFFFFF;
+  width: 90px;
+}
+
+
 
   </style>
 
   <script>
     // Embedded Data Models
-    window.DC_PRODUCTS = [{"id": "PROD-01", "name": "The Udoumana Storefront Rosette Gala Gown", "category": "Children's Wear", "subcategory": "Couture Gala & Ballgowns", "price": 58000, "originalPrice": 68000, "rating": 5.0, "reviewsCount": 48, "badge": "Atelier Signature", "isBespoke": true, "sizes": ["1-2Y", "3-4Y", "5-6Y", "7-8Y", "9-11Y", "Custom Bespoke"], "colors": ["Radiant Hot Pink", "Crimson Red", "Blush Rose"], "fabric": "Six-Tier French Pleated Tulle with Handcrafted 3D Rosettes & Pure Cotton Lining", "leadTime": "3-5 days made-to-measure", "description": "Our atelier's showstopper, photographed proudly outside our Debbie's Collection boutique at 164 Udoumana Street, Uyo. Features cascading pleated rosette ruffles in radiant hot pink, adorned with delicate black contrast bows and breathable cotton inner lining.", "editorialQuote": "Pure fairytale grandeur crafted by master hands in the heart of Uyo.", "tags": ["couture", "gown", "rosette", "pink", "birthday", "kids"], "careInstructions": "Professional dry clean or steam clean only. Store in complimentary boutique garment bag.", "image": "images/couture-pink-rosette-gown-storefront.jpeg", "gallery": ["images/couture-pink-rosette-gown-storefront.jpeg", "images/couture-hotpink-ruffle-black-bows.jpeg", "images/couture-hotpink-tartan-ruffle-dress.jpeg"], "svgId": "svg-tulle-ballgown"}, {"id": "PROD-02", "name": "Princess Idara Tiered White Organza Ballgown", "category": "Children's Wear", "subcategory": "Couture Gala & Ballgowns", "price": 64000, "originalPrice": 75000, "rating": 5.0, "reviewsCount": 52, "badge": "Bestseller", "isBespoke": true, "sizes": ["1-2Y", "3-4Y", "5-6Y", "7-8Y", "9-12Y", "Custom Bespoke"], "colors": ["Pearl White & Ruby Sash", "Pure White & Gold Sash"], "fabric": "Multi-Tiered Shimmer Organza, Sequin Bodice, Silk Duchess Sash", "leadTime": "4-6 days bespoke tailoring", "description": "Fit for royalty. Breathtaking tiered white ballgown with delicate floral tiara styling, sparkling sequined bodice, and bold ruby red satin bow at the waist. Handcrafted for flower girls, Thanksgiving services, and milestone birthdays.", "editorialQuote": "An heirloom gala gown made for once-in-a-lifetime childhood memories.", "tags": ["ballgown", "white", "organza", "flower-girl", "dedication", "ceremonial"], "careInstructions": "Dry clean only. Steam softly before the big celebration.", "image": "images/couture-white-tulle-ballgown-flowercrown.jpeg", "gallery": ["images/couture-white-tulle-ballgown-flowercrown.jpeg", "images/couture-white-tiered-organza-gown-boutique.jpeg"], "svgId": "svg-tulle-ballgown"}, {"id": "PROD-03", "name": "Ruby Minnie Polka-Dot Tulle Couture Ballgown", "category": "Children's Wear", "subcategory": "Couture Gala & Ballgowns", "price": 48000, "originalPrice": 56000, "rating": 4.9, "reviewsCount": 41, "badge": "Showstopper", "isBespoke": true, "sizes": ["1-2Y", "3-4Y", "5-6Y", "7-8Y", "Custom Bespoke"], "colors": ["Scarlet Red & Polka Dots", "Ruby Crimson"], "fabric": "Multi-Layer Extra Fluffy Scarlet Tulle with Matching Bow Headband & Purse", "leadTime": "3-4 days custom tailoring", "description": "The ultimate party sensation. Vibrant scarlet red ultra-fluffy ballerina puff skirt paired with polka-dot embroidered bodice, matching statement oversized Minnie headband, and coordinating mini shoulder purse.", "editorialQuote": "Joyful, vibrant elegance guaranteed to steal hearts at every party.", "tags": ["red", "tutu", "polkadot", "birthday", "kids", "party"], "careInstructions": "Hand wash delicate in cool water or gentle steam clean.", "image": "images/couture-red-polkadot-tulle-dress.jpeg", "gallery": ["images/couture-red-polkadot-tulle-dress.jpeg", "images/couture-red-tutu-ballgown-minnie.jpeg", "images/couture-red-butterfly-tulle-dress.jpeg"], "svgId": "svg-linen-dress"}, {"id": "PROD-04", "name": "Lavender Rosette Fairy Tulle Gala Gown", "category": "Children's Wear", "subcategory": "Couture Gala & Ballgowns", "price": 52000, "originalPrice": 60000, "rating": 5.0, "reviewsCount": 33, "badge": "Made-to-Measure", "isBespoke": true, "sizes": ["1-2Y", "3-4Y", "5-6Y", "7-8Y", "Custom Bespoke"], "colors": ["Frosted Lavender", "Lilac Pastel", "Soft Violet"], "fabric": "Hand-Sculpted 3D Rose Petals, Multi-Tiered Lavender Tulle & Pure Silk Bodice", "leadTime": "4-5 days handcrafted tailoring", "description": "Straight from our studio mannequin at 164 Udoumana Street. Romantic lavender tiered tulle gown crowned with hand-stitched 3D floral rosettes along the neckline and skirt. Truly a fairytale piece for pageant and gala entries.", "editorialQuote": "Enchanting pastel wonder crafted for little princesses.", "tags": ["lavender", "tulle", "rosettes", "pageant", "fairytale"], "careInstructions": "Specialist dry cleaning or steam only.", "image": "images/couture-lavender-rosette-tulle-gown.jpeg", "gallery": ["images/couture-lavender-rosette-tulle-gown.jpeg", "images/couture-lilac-puff-sleeve-lace-dress.jpeg"], "svgId": "svg-velvet-coat"}, {"id": "PROD-05", "name": "Little Lady Pleated Tartan Skirt & Tee Set", "category": "Children's Wear", "subcategory": "Playwear & Casuals", "price": 28000, "originalPrice": 34000, "rating": 4.9, "reviewsCount": 67, "badge": "Bestseller", "isBespoke": false, "sizes": ["1-2Y", "3-4Y", "5-6Y", "7-8Y", "9-11Y"], "colors": ["Royal Red Tartan & White Tee", "Monochrome Black Tartan & White Tee", "Red Plaid & Black Tee"], "fabric": "100% Breathable Combed Cotton Tee & Heavyweight Tailored Tartan Flannel", "leadTime": "Ready to ship (24-48 hours)", "description": "Our most popular daywear ensemble! Knife-pleated high-waist tartan skirt complete with oversized matching bow tie, paired with our bespoke graphic cotton tee. Designed with comfortable elastic waistband and durable deep side pockets.", "editorialQuote": "Modern prep meets lively children's street chic.", "tags": ["tartan", "skirt", "pleated", "casual", "kids", "red"], "careInstructions": "Machine wash cold inside out with like colors. Warm iron on pleats.", "image": "images/tartan-white-tee-red-skirt.jpeg", "gallery": ["images/tartan-white-tee-red-skirt.jpeg", "images/tartan-matching-mannequin-duo.jpeg", "images/tartan-chase-goals-red-skirt.jpeg", "images/tartan-white-tee-black-skirt.jpeg"], "svgId": "svg-linen-dress"}, {"id": "PROD-06", "name": "Heirloom Tartan Pinafore Dress & Crossbody Bag", "category": "Children's Wear", "subcategory": "Dresses & Gowns", "price": 34000, "originalPrice": 40000, "rating": 4.9, "reviewsCount": 29, "badge": "Includes Handbag", "isBespoke": true, "sizes": ["1-2Y", "3-4Y", "5-6Y", "7-8Y", "Custom Bespoke"], "colors": ["Heritage Red & Black Tartan", "Vintage Monochrome Plaid", "Lilac Plaid Trench"], "fabric": "Rich Brushed Tartan Weave with Gold Button Fixtures & Quilted Pocket", "leadTime": "2-3 days tailoring", "description": "Timeless pinafore apron dress tailored with statement patch pocket, horn/gold buttons, and a matching handcrafted tartan pouch crossbody bag. Perfect for school concerts, Sunday outings, and festive holiday celebrations.", "editorialQuote": "Classic vintage charm reimagined with playful African tailoring.", "tags": ["pinafore", "tartan", "plaid", "bag", "dress"], "careInstructions": "Machine wash delicate or hand wash. Warm iron damp.", "image": "images/tartan-red-pinafore-matching-bag.jpeg", "gallery": ["images/tartan-red-pinafore-matching-bag.jpeg", "images/plaid-heirloom-pinafore-gold-buttons.jpeg", "images/tartan-lilac-hooded-belted-dress.jpeg"], "svgId": "svg-linen-dress"}, {"id": "PROD-07", "name": "Lilac Puff-Sleeve Heirloom Lace Dress", "category": "Children's Wear", "subcategory": "Dresses & Gowns", "price": 36000, "originalPrice": 42000, "rating": 4.9, "reviewsCount": 26, "badge": "Heirloom Edition", "isBespoke": true, "sizes": ["1-2Y", "3-4Y", "5-6Y", "7-8Y", "Custom Bespoke"], "colors": ["Lilac & White Lace", "Soft Lavender"], "fabric": "Pastel Lilac Cotton with Hand-Stitched French Lace Collar & Puff Sleeves", "leadTime": "3-4 days bespoke tailoring", "description": "Photographed on our wooden boutique mannequin in Uyo. Whimsical puff-sleeve heirloom dress featuring intricate white floral lace trim, Peter Pan neckline, and gathered flared hemline. Perfect for milestone dedications and Sunday services.", "editorialQuote": "Gentle vintage nostalgia tailored for cherished childhood moments.", "tags": ["lilac", "dress", "lace", "puffsleeve", "sundaybest", "kids"], "careInstructions": "Hand wash delicate in cool water. Hang dry.", "image": "images/couture-lilac-puff-sleeve-lace-dress.jpeg", "gallery": ["images/couture-lilac-puff-sleeve-lace-dress.jpeg"], "svgId": "svg-linen-dress"}, {"id": "PROD-08", "name": "Hot Pink Ruffle Gala Dress with Bow Accents", "category": "Children's Wear", "subcategory": "Couture Gala & Ballgowns", "price": 46000, "originalPrice": 54000, "rating": 5.0, "reviewsCount": 34, "badge": "Atelier Statement", "isBespoke": true, "sizes": ["1-2Y", "3-4Y", "5-6Y", "7-8Y", "Custom Bespoke"], "colors": ["Radiant Magenta Pink", "Hot Pink & Black Bows"], "fabric": "Tiered Ruffle Flounce with Black Velvet Bows & 100% Cotton Lining", "leadTime": "3-5 days made-to-measure", "description": "Dramatic flounce tiered ruffles in striking hot pink, accentuated with jet black contrast ribbon bows and floral appliqués. Breathable inner lining ensures comfort during long birthday celebrations.", "editorialQuote": "A celebration of youthful vivacity and high-fashion glamour.", "tags": ["pink", "ruffle", "bows", "party", "birthday", "kids"], "careInstructions": "Professional dry clean or steam only.", "image": "images/couture-hotpink-ruffle-black-bows.jpeg", "gallery": ["images/couture-hotpink-ruffle-black-bows.jpeg", "images/couture-hotpink-tartan-ruffle-dress.jpeg"], "svgId": "svg-tulle-ballgown"}, {"id": "PROD-09", "name": "Bespoke Tartan Lounge Pants - Buffalo Red", "category": "Bespoke Lounge Wear", "subcategory": "Lounge Trousers & Sets", "price": 32000, "originalPrice": 38000, "rating": 5.0, "reviewsCount": 59, "badge": "Lounge Favorite", "isBespoke": true, "sizes": ["Custom Bespoke", "XS", "S", "M", "L", "XL", "XXL"], "colors": ["Red & Black Buffalo Plaid"], "fabric": "Brushed Cotton Flannel with Elastic Drawstring Waist & French Seams", "leadTime": "2-3 days tailored to your inseam", "description": "The quintessential Debbie's Collection loungewear staple. Flawlessly cut from heavyweight brushed cotton flannel, tailored with roomy hip fit, deep slash pockets, and cotton twill drawstring for supreme relaxation.", "editorialQuote": "Relaxed fireside luxury tailored for cozy tropical nights.", "tags": ["lounge", "plaid", "tartan", "pants", "bespoke", "red"], "careInstructions": "Machine wash cold, air dry or tumble dry low. Low iron if desired.", "image": "images/lounge-tartan-pants-red-buffalo.jpeg", "gallery": ["images/lounge-tartan-pants-red-buffalo.jpeg", "images/lounge-mannequin-polo-tartan-pants.jpeg", "images/lounge-tartan-pants-monochrome.jpeg"], "svgId": "svg-satin-pj"}, {"id": "PROD-10", "name": "Bespoke Tartan Lounge Pants - Monochrome Check", "category": "Bespoke Lounge Wear", "subcategory": "Lounge Trousers & Sets", "price": 32000, "originalPrice": 38000, "rating": 4.9, "reviewsCount": 47, "badge": "Editor's Pick", "isBespoke": true, "sizes": ["Custom Bespoke", "XS", "S", "M", "L", "XL", "XXL"], "colors": ["Monochrome Black & White Tartan"], "fabric": "100% Breathable Cotton Tartan with Reinforced Pockets", "leadTime": "2-3 days custom tailoring", "description": "Striking architectural black and white plaid trousers. A versatile bridge between cozy home loungewear and effortless urban streetwear. Styled with contrasting white drawstring cord.", "editorialQuote": "Minimalist monochrome attitude meets atelier lounging comfort.", "tags": ["monochrome", "plaid", "trousers", "streetwear", "lounge"], "careInstructions": "Machine wash cold with like colors. Hang dry.", "image": "images/lounge-tartan-pants-monochrome.jpeg", "gallery": ["images/lounge-tartan-pants-monochrome.jpeg", "images/lounge-mannequin-polo-tartan-pants.jpeg"], "svgId": "svg-waffle-robe"}, {"id": "PROD-11", "name": "Bespoke Tartan Lounge Pants - Royal Sapphire Blue", "category": "Bespoke Lounge Wear", "subcategory": "Lounge Trousers & Sets", "price": 32000, "originalPrice": 38000, "rating": 4.9, "reviewsCount": 36, "badge": "Atelier Exclusive", "isBespoke": true, "sizes": ["Custom Bespoke", "XS", "S", "M", "L", "XL", "XXL"], "colors": ["Royal Blue & Midnight Black Tartan"], "fabric": "Premium Soft-Hand Turkish Tartan Cotton Blend", "leadTime": "2-3 days bespoke tailoring", "description": "Rich cobalt and midnight blue weave crafted at 164 Udoumana Street. Features generous side pockets, reinforced crotch gusset, and customizable leg length for both men and women.", "editorialQuote": "Regal deep blue tones spun into everyday restorative loungewear.", "tags": ["blue", "tartan", "plaid", "pants", "lounge"], "careInstructions": "Machine wash delicate in cold water. Iron on medium.", "image": "images/lounge-tartan-pants-royal-blue.jpeg", "gallery": ["images/lounge-tartan-pants-royal-blue.jpeg"], "svgId": "svg-satin-pj"}, {"id": "PROD-12", "name": "Atelier Polo & Plaid Lounge Trousers Ensemble", "category": "Bespoke Lounge Wear", "subcategory": "Lounge Trousers & Sets", "price": 45000, "originalPrice": 52000, "rating": 5.0, "reviewsCount": 28, "badge": "Complete Set", "isBespoke": true, "sizes": ["Custom Bespoke", "S", "M", "L", "XL", "XXL"], "colors": ["Black Pique Polo & B/W Plaid Trousers"], "fabric": "Heavyweight Pique Cotton & Matching Flannel Tartan Breast Pocket", "leadTime": "3-4 days custom tailoring", "description": "As styled in our Uyo boutique window display! A sharp jet-black polo shirt accented with an authentic tartan chest pocket, accompanied by coordinated monochrome plaid lounge trousers.", "editorialQuote": "Effortlessly poised whether hosting at home or relaxing on weekends.", "tags": ["polo", "set", "plaid", "loungewear", "matching"], "careInstructions": "Gentle wash cold. Warm iron.", "image": "images/lounge-mannequin-polo-tartan-pants.jpeg", "gallery": ["images/lounge-mannequin-polo-tartan-pants.jpeg", "images/lounge-tartan-pants-monochrome.jpeg"], "svgId": "svg-silk-kimono"}, {"id": "PROD-13", "name": "Bespoke Ochre Yellow Cargo Lounge Trousers", "category": "Bespoke Lounge Wear", "subcategory": "Lounge Trousers & Sets", "price": 36000, "originalPrice": 42000, "rating": 5.0, "reviewsCount": 31, "badge": "Street Luxury", "isBespoke": true, "sizes": ["Custom Bespoke", "S", "M", "L", "XL", "XXL"], "colors": ["Ochre Yellow & Navy Check"], "fabric": "Structured Tartan Twill with Twin Utility Flap Cargo Pockets", "leadTime": "3-4 days bespoke crafting", "description": "A vibrant boutique signature! Photographed live right on Udoumana Street, Uyo. Bold mustard ochre plaid cargo lounge pants with spacious side utility pockets, tailored waist, and elastic cuffs.", "editorialQuote": "Vibrant Uyo streetwear energy harmonized with atelier bespoke craftsmanship.", "tags": ["cargo", "yellow", "plaid", "streetwear", "lounge"], "careInstructions": "Hand wash or gentle machine wash. Hang dry.", "image": "images/lounge-yellow-tartan-cargo-lifestyle.jpeg", "gallery": ["images/lounge-yellow-tartan-cargo-lifestyle.jpeg"], "svgId": "svg-waffle-robe"}, {"id": "PROD-14", "name": "Vintage Plaid Apron Pinafore with Gold Buttons", "category": "Children's Wear", "subcategory": "Dresses & Gowns", "price": 35000, "originalPrice": 42000, "rating": 5.0, "reviewsCount": 43, "badge": "Vintage Classic", "isBespoke": true, "sizes": ["1-2Y", "3-4Y", "5-6Y", "7-8Y", "Custom Bespoke"], "colors": ["Black & White Tartan", "Heritage Plaid"], "fabric": "Structured Brushed Flannel with Embossed Gold Crest Buttons", "leadTime": "3-4 days bespoke tailoring", "description": "Timeless silhouette tailored with long fitted sleeves, pointed collar, gathered skirt, and ornate embossed gold buttons down the front bodice. Impeccable Sunday best attire.", "editorialQuote": "Understated aristocracy and sweet traditional styling.", "tags": ["plaid", "vintage", "goldbuttons", "dress", "sundaybest"], "careInstructions": "Machine wash delicate or dry clean. Low iron.", "image": "images/plaid-heirloom-pinafore-gold-buttons.jpeg", "gallery": ["images/plaid-heirloom-pinafore-gold-buttons.jpeg"], "svgId": "svg-linen-dress"}, {"id": "PROD-15", "name": "Sweetheart Tulle Holiday Party Dress", "category": "Children's Wear", "subcategory": "Dresses & Gowns", "price": 38000, "originalPrice": 45000, "rating": 4.9, "reviewsCount": 37, "badge": "Holiday Special", "isBespoke": true, "sizes": ["1-2Y", "3-4Y", "5-6Y", "7-8Y", "Custom Bespoke"], "colors": ["Ivory & Ruby Hearts", "Pure White"], "fabric": "Embroidered Heart Tulle Overlay, Silk Waist Ribbon & Cotton Underlining", "leadTime": "3-4 days bespoke tailoring", "description": "Pure sweetness and delight. Flared silhouette adorned with playful red embroidered hearts, puff sleeves, and a ruby satin tie belt. The ideal ensemble for festive church celebrations and holiday parties.", "editorialQuote": "A joyful burst of childhood sweetness tailored with tender care.", "tags": ["hearts", "dress", "tulle", "party", "holiday"], "careInstructions": "Hand wash gently in cool water. Air dry.", "image": "images/couture-heart-tulle-party-dress.jpeg", "gallery": ["images/couture-heart-tulle-party-dress.jpeg"], "svgId": "svg-linen-dress"}];
-    window.DC_SVGS = {"svg-tulle-ballgown": "<svg viewBox=\"0 0 320 320\" width=\"100%\" height=\"100%\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"tulle-blush\" x1=\"120\" y1=\"60\" x2=\"200\" y2=\"280\" gradientUnits=\"userSpaceOnUse\">\n      <stop offset=\"0%\" stop-color=\"#FFF5F2\"/>\n      <stop offset=\"50%\" stop-color=\"#F9DED8\"/>\n      <stop offset=\"100%\" stop-color=\"#EBBAB1\"/>\n    </linearGradient>\n    <linearGradient id=\"gold-shimmer\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\n      <stop offset=\"0%\" stop-color=\"#FFF0C2\"/>\n      <stop offset=\"100%\" stop-color=\"#D4AF37\"/>\n    </linearGradient>\n  </defs>\n  <ellipse cx=\"160\" cy=\"295\" rx=\"95\" ry=\"12\" fill=\"rgba(33,24,21,0.06)\"/>\n\n  <!-- Satin Duchess Bodice -->\n  <path d=\"M130 75 Q160 82 190 75 L196 130 Q160 136 124 130 Z\" fill=\"url(#tulle-blush)\" stroke=\"#DBADA4\" stroke-width=\"1.5\"/>\n\n  <!-- Hand-sewn 3D Floral Appliqués on Bodice -->\n  <circle cx=\"145\" cy=\"95\" r=\"5\" fill=\"#FFFFFF\" stroke=\"#C48275\" stroke-width=\"1\"/>\n  <circle cx=\"145\" cy=\"95\" r=\"2\" fill=\"url(#gold-shimmer)\"/>\n  <circle cx=\"160\" cy=\"90\" r=\"6\" fill=\"#FFFFFF\" stroke=\"#C48275\" stroke-width=\"1\"/>\n  <circle cx=\"160\" cy=\"90\" r=\"2.5\" fill=\"url(#gold-shimmer)\"/>\n  <circle cx=\"175\" cy=\"96\" r=\"5\" fill=\"#FFFFFF\" stroke=\"#C48275\" stroke-width=\"1\"/>\n  <circle cx=\"175\" cy=\"96\" r=\"2\" fill=\"url(#gold-shimmer)\"/>\n\n  <!-- Sweetheart Illusion Neckline with Pearls -->\n  <path d=\"M136 78 Q160 92 184 78\" stroke=\"url(#gold-shimmer)\" stroke-width=\"1.5\" stroke-dasharray=\"2 3\"/>\n\n  <!-- Waist Satin Sash -->\n  <rect x=\"122\" y=\"127\" width=\"76\" height=\"8\" rx=\"2\" fill=\"#C48275\"/>\n\n  <!-- Tier 1 Tulle Skirt -->\n  <path d=\"M122 133 Q160 140 198 133 L216 180 Q160 195 104 180 Z\" fill=\"rgba(249, 222, 216, 0.7)\" stroke=\"#E8BDB4\" stroke-width=\"1.2\"/>\n  <!-- Tier 2 Tulle Skirt -->\n  <path d=\"M108 175 Q160 192 212 175 L234 230 Q160 248 86 230 Z\" fill=\"rgba(242, 196, 187, 0.75)\" stroke=\"#DEABA0\" stroke-width=\"1.2\"/>\n  <!-- Tier 3 Tulle Skirt (Bottom Grand Flare) -->\n  <path d=\"M88 225 Q160 245 232 225 L258 285 Q160 305 62 285 Z\" fill=\"rgba(235, 186, 177, 0.85)\" stroke=\"#D4998E\" stroke-width=\"1.5\"/>\n\n  <!-- Sparkle Stars on Tulle -->\n  <path d=\"M110 245 L113 250 L118 251 L114 255 L115 260 L110 257 L105 260 L106 255 L102 251 L107 250 Z\" fill=\"#FFFFFF\"/>\n  <path d=\"M210 255 L212 259 L216 260 L213 263 L214 267 L210 265 L206 267 L207 263 L204 260 L208 259 Z\" fill=\"#FFFFFF\"/>\n  <path d=\"M160 270 L162 274 L166 275 L163 278 L164 282 L160 280 L156 282 L157 278 L154 275 L158 274 Z\" fill=\"url(#gold-shimmer)\"/>\n</svg>", "svg-linen-dress": "<svg viewBox=\"0 0 320 320\" width=\"100%\" height=\"100%\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"dress-rose\" x1=\"100\" y1=\"60\" x2=\"220\" y2=\"280\" gradientUnits=\"userSpaceOnUse\">\n      <stop offset=\"0%\" stop-color=\"#FCEEEB\"/>\n      <stop offset=\"50%\" stop-color=\"#F2D7D1\"/>\n      <stop offset=\"100%\" stop-color=\"#E2B7AE\"/>\n    </linearGradient>\n    <linearGradient id=\"smock-gold\" x1=\"130\" y1=\"100\" x2=\"190\" y2=\"135\" gradientUnits=\"userSpaceOnUse\">\n      <stop offset=\"0%\" stop-color=\"#D4AF37\"/>\n      <stop offset=\"100%\" stop-color=\"#AA7C11\"/>\n    </linearGradient>\n  </defs>\n  <ellipse cx=\"160\" cy=\"290\" rx=\"85\" ry=\"12\" fill=\"rgba(33,24,21,0.06)\"/>\n  \n  <!-- Puffed Cap Sleeves -->\n  <ellipse cx=\"106\" cy=\"100\" rx=\"20\" ry=\"15\" transform=\"rotate(-20 106 100)\" fill=\"#F5DAD4\" stroke=\"#D9AFA6\" stroke-width=\"1.5\"/>\n  <ellipse cx=\"214\" cy=\"100\" rx=\"20\" ry=\"15\" transform=\"rotate(20 214 100)\" fill=\"#F5DAD4\" stroke=\"#D9AFA6\" stroke-width=\"1.5\"/>\n  <path d=\"M88 108 Q96 114 104 110\" stroke=\"#FFFFFF\" stroke-width=\"2\"/>\n  <path d=\"M216 110 Q224 114 232 108\" stroke=\"#FFFFFF\" stroke-width=\"2\"/>\n\n  <!-- Bodice -->\n  <path d=\"M125 78 Q160 84 195 78 L202 135 Q160 142 118 135 Z\" fill=\"url(#dress-rose)\" stroke=\"#D9AFA6\" stroke-width=\"1.5\"/>\n  \n  <!-- Hand-Smocked Geometric Embroidery Details -->\n  <path d=\"M128 98 Q160 102 192 98\" stroke=\"#AA7C11\" stroke-width=\"1.5\" stroke-dasharray=\"3 2\"/>\n  <path d=\"M126 107 Q160 112 194 107\" stroke=\"#C48275\" stroke-width=\"1.5\" stroke-dasharray=\"4 2\"/>\n  <path d=\"M124 116 Q160 122 196 116\" stroke=\"#AA7C11\" stroke-width=\"1.5\" stroke-dasharray=\"3 2\"/>\n  <path d=\"M122 125 Q160 131 198 125\" stroke=\"#C48275\" stroke-width=\"1.5\" stroke-dasharray=\"4 2\"/>\n  <!-- Tiny embroidered rosebuds -->\n  <circle cx=\"145\" cy=\"107\" r=\"2.5\" fill=\"#C48275\"/>\n  <circle cx=\"160\" cy=\"107\" r=\"2.5\" fill=\"#AA7C11\"/>\n  <circle cx=\"175\" cy=\"107\" r=\"2.5\" fill=\"#C48275\"/>\n\n  <!-- Scalloped Peter Pan Collar -->\n  <path d=\"M160 85 C146 85 130 76 128 66 C144 64 158 75 160 85 Z\" fill=\"#FFFFFF\" stroke=\"#D9AFA6\" stroke-width=\"1.2\"/>\n  <path d=\"M160 85 C174 85 190 76 192 66 C176 64 162 75 160 85 Z\" fill=\"#FFFFFF\" stroke=\"#D9AFA6\" stroke-width=\"1.2\"/>\n  <circle cx=\"160\" cy=\"85\" r=\"3\" fill=\"#C48275\"/>\n\n  <!-- Gathered Flared A-Line Skirt -->\n  <path d=\"M118 135 Q160 142 202 135 L242 265 Q160 282 78 265 Z\" fill=\"url(#dress-rose)\" stroke=\"#D9AFA6\" stroke-width=\"1.5\"/>\n  \n  <!-- Skirt Folds -->\n  <path d=\"M135 140 Q130 200 120 268\" stroke=\"rgba(196,130,117,0.3)\" stroke-width=\"1.5\"/>\n  <path d=\"M160 142 Q160 200 160 272\" stroke=\"rgba(196,130,117,0.4)\" stroke-width=\"1.8\"/>\n  <path d=\"M185 140 Q190 200 200 268\" stroke=\"rgba(196,130,117,0.3)\" stroke-width=\"1.5\"/>\n\n  <!-- Scalloped French Lace Hem -->\n  <path d=\"M78 265 Q94 274 110 266 Q126 276 142 268 Q160 278 178 268 Q194 276 210 266 Q226 274 242 265 L242 272 Q226 281 210 273 Q194 283 178 275 Q160 285 142 275 Q126 283 110 273 Q94 281 78 272 Z\" fill=\"#FFFFFF\" stroke=\"#D9C0B9\" stroke-width=\"1\"/>\n  <!-- Velvet Sash & Back Bow Ribbon Tails -->\n  <path d=\"M120 135 L200 135 L202 140 L118 140 Z\" fill=\"#C48275\"/>\n  <path d=\"M198 140 Q215 165 224 195 Q218 196 210 175 Q205 155 198 140 Z\" fill=\"#AF6E61\"/>\n</svg>", "svg-velvet-coat": "<svg viewBox=\"0 0 320 320\" width=\"100%\" height=\"100%\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"plum-velvet\" x1=\"100\" y1=\"40\" x2=\"220\" y2=\"280\" gradientUnits=\"userSpaceOnUse\">\n      <stop offset=\"0%\" stop-color=\"#5E1F3B\"/>\n      <stop offset=\"50%\" stop-color=\"#46132A\"/>\n      <stop offset=\"100%\" stop-color=\"#2D0A1A\"/>\n    </linearGradient>\n    <linearGradient id=\"gold-filigree\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\n      <stop offset=\"0%\" stop-color=\"#FFEBB0\"/>\n      <stop offset=\"100%\" stop-color=\"#C29B38\"/>\n    </linearGradient>\n  </defs>\n  <ellipse cx=\"160\" cy=\"295\" rx=\"88\" ry=\"12\" fill=\"rgba(33,24,21,0.06)\"/>\n\n  <!-- Velvet Flared Coat Silhouette -->\n  <path d=\"M125 65 L80 135 L106 148 L114 110 L102 275 Q160 286 218 275 L206 110 L214 148 L240 135 L195 65 Q160 55 125 65 Z\" fill=\"url(#plum-velvet)\" stroke=\"#220613\" stroke-width=\"1.8\"/>\n\n  <!-- Quilted Satin Hem Border -->\n  <path d=\"M102 265 Q160 276 218 265 L218 275 Q160 286 102 275 Z\" fill=\"url(#gold-filigree)\"/>\n\n  <!-- Mandarin Collar with Gold Trim -->\n  <path d=\"M136 60 Q160 66 184 60 L188 74 Q160 78 132 74 Z\" fill=\"#380F22\" stroke=\"url(#gold-filigree)\" stroke-width=\"1.5\"/>\n\n  <!-- Ornate Frogged Gold Filigree Braiding Closures -->\n  <g transform=\"translate(160, 95)\">\n    <circle cx=\"0\" cy=\"0\" r=\"4\" fill=\"url(#gold-filigree)\"/>\n    <path d=\"M-24 -4 Q-12 -12 0 0 Q12 -12 24 -4 Q12 8 0 0 Q-12 8 -24 -4 Z\" stroke=\"url(#gold-filigree)\" stroke-width=\"1.5\" fill=\"none\"/>\n  </g>\n  <g transform=\"translate(160, 125)\">\n    <circle cx=\"0\" cy=\"0\" r=\"4\" fill=\"url(#gold-filigree)\"/>\n    <path d=\"M-24 -4 Q-12 -12 0 0 Q12 -12 24 -4 Q12 8 0 0 Q-12 8 -24 -4 Z\" stroke=\"url(#gold-filigree)\" stroke-width=\"1.5\" fill=\"none\"/>\n  </g>\n  <g transform=\"translate(160, 155)\">\n    <circle cx=\"0\" cy=\"0\" r=\"4\" fill=\"url(#gold-filigree)\"/>\n    <path d=\"M-24 -4 Q-12 -12 0 0 Q12 -12 24 -4 Q12 8 0 0 Q-12 8 -24 -4 Z\" stroke=\"url(#gold-filigree)\" stroke-width=\"1.5\" fill=\"none\"/>\n  </g>\n</svg>", "svg-satin-pj": "<svg viewBox=\"0 0 320 320\" width=\"100%\" height=\"100%\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"pj-rose\" x1=\"80\" y1=\"50\" x2=\"240\" y2=\"280\" gradientUnits=\"userSpaceOnUse\">\n      <stop offset=\"0%\" stop-color=\"#F2D5CE\"/>\n      <stop offset=\"45%\" stop-color=\"#E2B8AF\"/>\n      <stop offset=\"100%\" stop-color=\"#C59388\"/>\n    </linearGradient>\n    <linearGradient id=\"gold-pipe\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\n      <stop offset=\"0%\" stop-color=\"#FCEAB8\"/>\n      <stop offset=\"100%\" stop-color=\"#C29B38\"/>\n    </linearGradient>\n  </defs>\n  <ellipse cx=\"160\" cy=\"295\" rx=\"88\" ry=\"12\" fill=\"rgba(33,24,21,0.06)\"/>\n\n  <!-- Trousers -->\n  <path d=\"M112 175 L106 285 Q106 288 112 288 L148 288 L156 210 L164 288 L200 288 Q206 288 206 285 L200 175 Z\" fill=\"url(#pj-rose)\" stroke=\"#B78277\" stroke-width=\"1.5\"/>\n  <path d=\"M106 284 L148 284\" stroke=\"url(#gold-pipe)\" stroke-width=\"2.5\"/>\n  <path d=\"M164 284 L206 284\" stroke=\"url(#gold-pipe)\" stroke-width=\"2.5\"/>\n\n  <!-- PJ Top Body -->\n  <path d=\"M100 68 L64 125 L90 135 L108 98 L108 190 Q160 196 212 190 L212 98 L230 135 L256 125 L220 68 Q160 55 100 68 Z\" fill=\"url(#pj-rose)\" stroke=\"#B78277\" stroke-width=\"1.5\"/>\n\n  <!-- Notch Lapel Collar with Gold Piping -->\n  <path d=\"M130 62 L112 96 L134 104 L122 135 L160 162 L198 135 L186 104 L208 96 L190 62 Q160 58 130 62 Z\" fill=\"#F8E5E1\" stroke=\"url(#gold-pipe)\" stroke-width=\"1.8\"/>\n\n  <!-- Center Placket & Mother of Pearl Buttons -->\n  <line x1=\"160\" y1=\"162\" x2=\"160\" y2=\"192\" stroke=\"url(#gold-pipe)\" stroke-width=\"1.5\"/>\n  <circle cx=\"160\" cy=\"145\" r=\"3\" fill=\"#FFFFFF\" stroke=\"#C29B38\" stroke-width=\"0.8\"/>\n  <circle cx=\"160\" cy=\"162\" r=\"3\" fill=\"#FFFFFF\" stroke=\"#C29B38\" stroke-width=\"0.8\"/>\n  <circle cx=\"160\" cy=\"178\" r=\"3\" fill=\"#FFFFFF\" stroke=\"#C29B38\" stroke-width=\"0.8\"/>\n\n  <!-- Chest Pocket with Gold Monogram DC -->\n  <rect x=\"120\" y=\"115\" width=\"24\" height=\"24\" rx=\"2\" fill=\"#E8BDB4\" stroke=\"url(#gold-pipe)\" stroke-width=\"1.2\"/>\n  <line x1=\"120\" y1=\"118\" x2=\"144\" y2=\"118\" stroke=\"url(#gold-pipe)\" stroke-width=\"1.5\"/>\n  <text x=\"132\" y=\"132\" font-family=\"'Playfair Display', serif\" font-size=\"8\" font-weight=\"700\" fill=\"#AA7C11\" text-anchor=\"middle\">DC</text>\n\n  <!-- Sleeve Cuffs -->\n  <path d=\"M64 125 L90 135\" stroke=\"url(#gold-pipe)\" stroke-width=\"3\"/>\n  <path d=\"M256 125 L230 135\" stroke=\"url(#gold-pipe)\" stroke-width=\"3\"/>\n\n  <!-- Silk Sheen Highlights -->\n  <path d=\"M180 110 Q192 140 196 175\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-linecap=\"round\" opacity=\"0.6\"/>\n</svg>", "svg-waffle-robe": "<svg viewBox=\"0 0 320 320\" width=\"100%\" height=\"100%\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"waffle-grad\" x1=\"100\" y1=\"50\" x2=\"220\" y2=\"280\" gradientUnits=\"userSpaceOnUse\">\n      <stop offset=\"0%\" stop-color=\"#F2EDE6\"/>\n      <stop offset=\"50%\" stop-color=\"#E2D7CC\"/>\n      <stop offset=\"100%\" stop-color=\"#C9BCB0\"/>\n    </linearGradient>\n    <pattern id=\"waffle-pattern\" width=\"6\" height=\"6\" patternUnits=\"userSpaceOnUse\">\n      <rect width=\"6\" height=\"6\" fill=\"transparent\"/>\n      <rect x=\"0.5\" y=\"0.5\" width=\"5\" height=\"5\" stroke=\"rgba(33,24,21,0.08)\" stroke-width=\"0.8\" fill=\"rgba(255,255,255,0.4)\"/>\n    </pattern>\n  </defs>\n  <ellipse cx=\"160\" cy=\"295\" rx=\"85\" ry=\"12\" fill=\"rgba(33,24,21,0.06)\"/>\n\n  <!-- Lounge Joggers -->\n  <path d=\"M112 175 L106 285 Q106 288 112 288 L148 288 L156 215 L164 288 L200 288 Q206 288 206 285 L200 175 Z\" fill=\"url(#waffle-grad)\" stroke=\"#B5A597\" stroke-width=\"1.5\"/>\n  <rect x=\"106\" y=\"278\" width=\"42\" height=\"10\" rx=\"3\" fill=\"#D3C5B7\"/>\n  <rect x=\"164\" y=\"278\" width=\"42\" height=\"10\" rx=\"3\" fill=\"#D3C5B7\"/>\n\n  <!-- Wrap Cardigan Robe -->\n  <path d=\"M96 68 L60 120 L86 132 L106 95 L104 210 Q160 218 214 210 L212 95 L232 132 L258 120 L222 68 Q160 55 96 68 Z\" fill=\"url(#waffle-grad)\" stroke=\"#B5A597\" stroke-width=\"1.5\"/>\n  \n  <!-- Overlay Waffle Texture Pattern -->\n  <path d=\"M104 95 L104 210 Q160 218 214 210 L212 95 Z\" fill=\"url(#waffle-pattern)\"/>\n\n  <!-- Cozy Shawl Collar with Espresso Piping -->\n  <path d=\"M130 62 Q145 105 178 155 L160 155 Q135 105 120 62 Z\" fill=\"#D8CCC0\" stroke=\"#8E7D73\" stroke-width=\"1.2\"/>\n  <path d=\"M190 62 Q175 105 142 155 L160 155 Q185 105 200 62 Z\" fill=\"#E4D9CE\" stroke=\"#8E7D73\" stroke-width=\"1.2\"/>\n\n  <!-- Waist Tie Belt -->\n  <rect x=\"100\" y=\"148\" width=\"120\" height=\"14\" rx=\"3\" fill=\"#A89688\"/>\n  <path d=\"M152 158 L146 220 L156 220 L160 160 Z\" fill=\"#938173\"/>\n\n  <!-- Slouchy Deep Pockets -->\n  <rect x=\"110\" y=\"172\" width=\"28\" height=\"26\" rx=\"4\" fill=\"#DDD1C4\" stroke=\"#B5A597\" stroke-width=\"1.2\"/>\n  <rect x=\"180\" y=\"172\" width=\"28\" height=\"26\" rx=\"4\" fill=\"#DDD1C4\" stroke=\"#B5A597\" stroke-width=\"1.2\"/>\n</svg>", "svg-silk-kimono": "<svg viewBox=\"0 0 320 320\" width=\"100%\" height=\"100%\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"silk-grad-1\" x1=\"60\" y1=\"40\" x2=\"260\" y2=\"300\" gradientUnits=\"userSpaceOnUse\">\n      <stop offset=\"0%\" stop-color=\"#FFFDF9\"/>\n      <stop offset=\"40%\" stop-color=\"#F5ECE4\"/>\n      <stop offset=\"100%\" stop-color=\"#E5D3C5\"/>\n    </linearGradient>\n    <linearGradient id=\"silk-shadow\" x1=\"160\" y1=\"40\" x2=\"160\" y2=\"300\" gradientUnits=\"userSpaceOnUse\">\n      <stop offset=\"0%\" stop-color=\"rgba(196,130,117,0.1)\"/>\n      <stop offset=\"100%\" stop-color=\"rgba(33,24,21,0.18)\"/>\n    </linearGradient>\n    <linearGradient id=\"rose-piping\" x1=\"100\" y1=\"50\" x2=\"220\" y2=\"280\" gradientUnits=\"userSpaceOnUse\">\n      <stop offset=\"0%\" stop-color=\"#C48275\"/>\n      <stop offset=\"100%\" stop-color=\"#A5675B\"/>\n    </linearGradient>\n  </defs>\n  <!-- Background gentle shadow -->\n  <ellipse cx=\"160\" cy=\"295\" rx=\"90\" ry=\"14\" fill=\"rgba(33,24,21,0.06)\"/>\n  \n  <!-- Kimono Trousers -->\n  <path d=\"M110 180 L100 285 Q100 288 105 288 L146 288 Q150 288 152 284 L160 215 L168 284 Q170 288 174 288 L215 288 Q220 288 220 285 L210 180 Z\" fill=\"url(#silk-grad-1)\" stroke=\"#D8C3B3\" stroke-width=\"1.5\"/>\n  <path d=\"M160 215 L160 286\" stroke=\"#C8B3A3\" stroke-width=\"1.2\" stroke-dasharray=\"3 3\"/>\n  <path d=\"M102 283 L144 283\" stroke=\"url(#rose-piping)\" stroke-width=\"2\"/>\n  <path d=\"M176 283 L218 283\" stroke=\"url(#rose-piping)\" stroke-width=\"2\"/>\n  \n  <!-- Kimono Robe Body -->\n  <path d=\"M90 70 L60 120 L88 135 L108 96 L108 200 Q160 210 212 200 L212 96 L232 135 L260 120 L230 70 Q160 54 90 70 Z\" fill=\"url(#silk-grad-1)\" stroke=\"#D8C3B3\" stroke-width=\"1.5\"/>\n  <!-- Kimono Collar / Lapel Wrap -->\n  <path d=\"M125 58 L185 150 L185 202 L165 202 L115 60 Z\" fill=\"#FAF2EC\" stroke=\"url(#rose-piping)\" stroke-width=\"1.8\"/>\n  <path d=\"M195 58 L135 150 L135 170\" stroke=\"url(#rose-piping)\" stroke-width=\"1.8\"/>\n  \n  <!-- Obi Sash Belt with bow -->\n  <rect x=\"105\" y=\"145\" width=\"110\" height=\"20\" rx=\"3\" fill=\"#C48275\"/>\n  <rect x=\"105\" y=\"147\" width=\"110\" height=\"3\" fill=\"#E8B5AC\"/>\n  <ellipse cx=\"160\" cy=\"155\" rx=\"14\" ry=\"7\" fill=\"#AF6E61\"/>\n  <!-- Hanging Belt ribbons -->\n  <path d=\"M154 158 Q148 185 142 215 Q145 218 152 215 Q156 188 158 160 Z\" fill=\"#C48275\"/>\n  <path d=\"M166 158 Q172 185 178 215 Q175 218 168 215 Q164 188 162 160 Z\" fill=\"#AF6E61\"/>\n  \n  <!-- Contrast Wide Sleeve Cuffs -->\n  <path d=\"M60 120 L88 135\" stroke=\"url(#rose-piping)\" stroke-width=\"4\"/>\n  <path d=\"M260 120 L232 135\" stroke=\"url(#rose-piping)\" stroke-width=\"4\"/>\n  <!-- Monogram on chest crest -->\n  <circle cx=\"138\" cy=\"115\" r=\"9\" fill=\"rgba(196,130,117,0.15)\"/>\n  <text x=\"138\" y=\"118\" font-family=\"'Playfair Display', serif\" font-size=\"7\" font-weight=\"700\" fill=\"#AA7C11\" text-anchor=\"middle\">DC</text>\n  <!-- Fabric Sheen Highlight -->\n  <path d=\"M116 100 Q124 130 128 144\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-linecap=\"round\" opacity=\"0.8\"/>\n</svg>"};
+    window.DC_PRODUCTS = [{"id": "PROD-01", "name": "The Udoumana Storefront Rosette Gala Gown", "category": "Children's Wear", "subcategory": "Couture Gala & Ballgowns", "price": 35000, "originalPrice": 42000, "rating": 5.0, "reviewsCount": 48, "badge": "Atelier Signature", "isBespoke": true, "sizes": ["7-8 Years", "Custom Bespoke"], "stock": 5, "batch": "BATCH-ROSETTE-01", "colors": ["Radiant Hot Pink", "Crimson Red", "Blush Rose"], "fabric": "Six-Tier French Pleated Tulle with Handcrafted 3D Rosettes & Pure Cotton Lining", "leadTime": "3-5 days made-to-measure", "description": "Our atelier's showstopper, photographed proudly outside our Debbie's Collection boutique at 164 Udoumana Street, Uyo. Features cascading pleated rosette ruffles in radiant hot pink, adorned with delicate black contrast bows and breathable cotton inner lining.", "editorialQuote": "Pure fairytale grandeur crafted by master hands in the heart of Uyo.", "tags": ["couture", "gown", "rosette", "pink", "birthday", "kids"], "careInstructions": "Professional dry clean or steam clean only. Store in complimentary boutique garment bag.", "image": "images/couture-pink-rosette-gown-storefront.jpeg", "gallery": ["images/couture-pink-rosette-gown-storefront.jpeg", "images/couture-hotpink-ruffle-black-bows.jpeg", "images/couture-hotpink-tartan-ruffle-dress.jpeg"], "svgId": "svg-tulle-ballgown"}, {"id": "PROD-02", "name": "Princess Idara Tiered White Organza Ballgown", "category": "Children's Wear", "subcategory": "Couture Gala & Ballgowns", "price": 15000, "originalPrice": 20000, "rating": 5.0, "reviewsCount": 52, "badge": "Bestseller", "isBespoke": true, "sizes": ["3 Years", "Custom Bespoke"], "stock": 4, "batch": "BATCH-ORGANZA-02", "colors": ["Pearl White & Ruby Sash", "Pure White & Gold Sash"], "fabric": "Multi-Tiered Shimmer Organza, Sequin Bodice, Silk Duchess Sash", "leadTime": "4-6 days bespoke tailoring", "description": "Fit for royalty. Breathtaking tiered white ballgown with delicate floral tiara styling, sparkling sequined bodice, and bold ruby red satin bow at the waist. Handcrafted for flower girls, Thanksgiving services, and milestone birthdays.", "editorialQuote": "An heirloom gala gown made for once-in-a-lifetime childhood memories.", "tags": ["ballgown", "white", "organza", "flower-girl", "dedication", "ceremonial"], "careInstructions": "Dry clean only. Steam softly before the big celebration.", "image": "images/couture-white-tulle-ballgown-flowercrown.jpeg", "gallery": ["images/couture-white-tulle-ballgown-flowercrown.jpeg", "images/couture-white-tiered-organza-gown-boutique.jpeg"], "svgId": "svg-tulle-ballgown"}, {"id": "PROD-03", "name": "Ruby Minnie Polka-Dot Tulle Couture Ballgown", "category": "Children's Wear", "subcategory": "Couture Gala & Ballgowns", "price": 35000, "originalPrice": 42000, "rating": 4.9, "reviewsCount": 41, "badge": "Showstopper", "isBespoke": true, "sizes": ["3 Years", "4 Years", "6 Years", "Custom Bespoke"], "stock": 6, "batch": "BATCH-MINNIE-03", "colors": ["Scarlet Red & Polka Dots", "Ruby Crimson"], "fabric": "Multi-Layer Extra Fluffy Scarlet Tulle with Matching Bow Headband & Purse", "leadTime": "3-4 days custom tailoring", "description": "The ultimate party sensation. Vibrant scarlet red ultra-fluffy ballerina puff skirt paired with polka-dot embroidered bodice, matching statement oversized Minnie headband, and coordinating mini shoulder purse.", "editorialQuote": "Joyful, vibrant elegance guaranteed to steal hearts at every party.", "tags": ["red", "tutu", "polkadot", "birthday", "kids", "party"], "careInstructions": "Hand wash delicate in cool water or gentle steam clean.", "image": "images/couture-red-polkadot-tulle-dress.jpeg", "gallery": ["images/couture-red-polkadot-tulle-dress.jpeg", "images/couture-red-tutu-ballgown-minnie.jpeg", "images/couture-red-butterfly-tulle-dress.jpeg"], "svgId": "svg-linen-dress"}, {"id": "PROD-04", "name": "Lavender Rosette Fairy Tulle Gala Gown", "category": "Children's Wear", "subcategory": "Couture Gala & Ballgowns", "price": 35000, "originalPrice": 40000, "rating": 5.0, "reviewsCount": 33, "badge": "Made-to-Measure", "isBespoke": true, "sizes": ["9-10 Years", "Custom Bespoke"], "stock": 4, "batch": "BATCH-LAVENDER-04", "colors": ["Lilac Pastel", "Frosted Lavender"], "fabric": "Hand-Sculpted 3D Rose Petals, Multi-Tiered Lavender Tulle & Pure Silk Bodice", "leadTime": "4-5 days handcrafted tailoring", "description": "Straight from our studio mannequin at 164 Udoumana Street. Romantic lilac tiered tulle gown crowned with hand-stitched 3D floral rosettes along the neckline and skirt. Truly a fairytale piece for pageant and gala entries.", "editorialQuote": "Enchanting pastel wonder crafted for little princesses.", "tags": ["lilac", "lavender", "tulle", "rosettes", "pageant", "fairytale"], "careInstructions": "Specialist dry cleaning or steam only.", "image": "images/couture-lavender-rosette-tulle-gown.jpeg", "gallery": ["images/couture-lavender-rosette-tulle-gown.jpeg", "images/couture-lilac-puff-sleeve-lace-dress.jpeg"], "svgId": "svg-velvet-coat"}, {"id": "PROD-05", "name": "Little Lady Handkerchief Tartan Skirt & Tee Set", "category": "Children's Wear", "subcategory": "Everyday & Casual Sets", "price": 8000, "originalPrice": 12000, "rating": 4.9, "reviewsCount": 67, "badge": "Bestseller", "isBespoke": false, "sizes": ["Skirt Only (3-8Y)", "Complete Set (3-4Y)", "Complete Set (5-6Y)", "Complete Set (7-8Y)", "Custom Bespoke"], "stock": 12, "batch": "BATCH-HANDKERCHIEF-05", "colors": ["Royal Red Tartan & White Tee", "Monochrome Black Tartan & White Tee", "Red Plaid & Black Tee"], "fabric": "Handkerchief Hem Tartan Cut with 100% Breathable Combed Cotton Tee", "leadTime": "Ready to ship (24-48 hours)", "description": "Our most popular daywear ensemble! Flowy handkerchief-cut high-waist tartan skirt complete with oversized matching bow tie, paired with our bespoke graphic cotton tee or worn as skirt only. Designed with comfortable elastic waistband.", "editorialQuote": "Modern prep meets lively children's street chic.", "tags": ["tartan", "skirt", "handkerchief", "casual", "kids", "red"], "careInstructions": "Machine wash cold inside out with like colors. Warm iron.", "image": "images/tartan-white-tee-red-skirt.jpeg", "gallery": ["images/tartan-white-tee-red-skirt.jpeg", "images/tartan-matching-mannequin-duo.jpeg", "images/tartan-chase-goals-red-skirt.jpeg", "images/tartan-white-tee-black-skirt.jpeg"], "svgId": "svg-linen-dress"}, {"id": "PROD-06", "name": "Heirloom Tartan Pinafore Dress & Crossbody Bag", "category": "Children's Wear", "subcategory": "Dresses & Gowns", "price": 15000, "originalPrice": 20000, "rating": 4.9, "reviewsCount": 29, "badge": "Includes Handbag", "isBespoke": true, "sizes": ["4 Years", "5 Years", "6-7 Years", "Custom Bespoke"], "stock": 3, "batch": "BATCH-PINAFORE-06", "colors": ["Heritage Red & Black Tartan", "Vintage Monochrome Plaid", "Lilac Plaid Trench"], "fabric": "Rich Brushed Tartan Weave with Gold Button Fixtures & Quilted Pocket", "leadTime": "2-3 days tailoring", "description": "Timeless pinafore apron dress tailored with statement patch pocket, horn/gold buttons, and a matching handcrafted tartan pouch crossbody bag. 3 sets available in boutique inventory for ages 4, 5, and 6/7.", "editorialQuote": "Classic vintage charm reimagined with playful African tailoring.", "tags": ["pinafore", "tartan", "plaid", "bag", "dress"], "careInstructions": "Machine wash delicate or hand wash. Warm iron damp.", "image": "images/tartan-red-pinafore-matching-bag.jpeg", "gallery": ["images/tartan-red-pinafore-matching-bag.jpeg", "images/plaid-heirloom-pinafore-gold-buttons.jpeg", "images/tartan-lilac-hooded-belted-dress.jpeg"], "svgId": "svg-linen-dress"}, {"id": "PROD-07", "name": "Lilac Puff-Sleeve Heirloom Lace Dress", "category": "Children's Wear", "subcategory": "Dresses & Gowns", "price": 35000, "originalPrice": 42000, "rating": 4.9, "reviewsCount": 26, "badge": "Heirloom Edition", "isBespoke": true, "sizes": ["5 Years", "Custom Bespoke"], "stock": 4, "batch": "BATCH-LILAC-07", "colors": ["Lilac & White Lace", "Soft Lavender"], "fabric": "Pastel Lilac Cotton with Hand-Stitched French Lace Collar & Puff Sleeves", "leadTime": "3-4 days bespoke tailoring", "description": "Photographed on our wooden boutique mannequin in Uyo. Whimsical puff-sleeve heirloom dress featuring intricate white floral lace trim, Peter Pan neckline, and gathered flared hemline. Available in age 5.", "editorialQuote": "Gentle vintage nostalgia tailored for cherished childhood moments.", "tags": ["lilac", "dress", "lace", "puffsleeve", "sundaybest", "kids"], "careInstructions": "Hand wash delicate in cool water. Hang dry.", "image": "images/couture-lilac-puff-sleeve-lace-dress.jpeg", "gallery": ["images/couture-lilac-puff-sleeve-lace-dress.jpeg"], "svgId": "svg-linen-dress"}, {"id": "PROD-08", "name": "Hot Pink Ruffle Gala Dress with Bow Accents", "category": "Children's Wear", "subcategory": "Couture Gala & Ballgowns", "price": 10000, "originalPrice": 15000, "rating": 5.0, "reviewsCount": 34, "badge": "Atelier Statement", "isBespoke": true, "sizes": ["4 Years", "Custom Bespoke"], "stock": 5, "batch": "BATCH-HOTPINK-08", "colors": ["Radiant Magenta Pink", "Hot Pink & Black Bows"], "fabric": "Tiered Ruffle Flounce with Black Velvet Bows & 100% Cotton Lining", "leadTime": "3-5 days made-to-measure", "description": "Dramatic flounce tiered ruffles in striking hot pink, accentuated with jet black contrast ribbon bows and floral appliqués. Breathable inner lining ensures comfort. Tailored for age 4.", "editorialQuote": "A celebration of youthful vivacity and high-fashion glamour.", "tags": ["pink", "ruffle", "bows", "party", "birthday", "kids"], "careInstructions": "Professional dry clean or steam only.", "image": "images/couture-hotpink-ruffle-black-bows.jpeg", "gallery": ["images/couture-hotpink-ruffle-black-bows.jpeg", "images/couture-hotpink-tartan-ruffle-dress.jpeg"], "svgId": "svg-tulle-ballgown"}, {"id": "PROD-09", "name": "Bespoke Tartan Lounge Pants - Buffalo Red", "category": "Bespoke Lounge Wear", "subcategory": "Lounge Trousers & Sets", "price": 10000, "originalPrice": 15000, "rating": 5.0, "reviewsCount": 59, "badge": "Lounge Favorite", "isBespoke": true, "sizes": ["Regular Flannel (10k)", "Premium Flannel (15k)", "Custom Bespoke"], "stock": 15, "batch": "BATCH-BUFFALO-09", "colors": ["Red & Black Buffalo Plaid"], "fabric": "Brushed Cotton Flannel with Elastic Drawstring Waist & French Seams", "leadTime": "2-3 days tailored to your inseam", "description": "The quintessential Debbie's Collection loungewear staple. Flawlessly cut from brushed cotton flannel with deep slash pockets and cotton twill drawstring. Available in Regular (10k) and Premium (15k) across all sizes.", "editorialQuote": "Relaxed fireside luxury tailored for cozy tropical nights.", "tags": ["lounge", "plaid", "tartan", "pants", "bespoke", "red"], "careInstructions": "Machine wash cold, air dry or tumble dry low. Low iron if desired.", "image": "images/lounge-tartan-pants-red-buffalo.jpeg", "gallery": ["images/lounge-tartan-pants-red-buffalo.jpeg", "images/lounge-mannequin-polo-tartan-pants.jpeg", "images/lounge-tartan-pants-monochrome.jpeg"], "svgId": "svg-satin-pj"}, {"id": "PROD-10", "name": "Bespoke Tartan Lounge Pants - Monochrome Check", "category": "Bespoke Lounge Wear", "subcategory": "Lounge Trousers & Sets", "price": 10000, "originalPrice": 15000, "rating": 4.9, "reviewsCount": 47, "badge": "Editor's Pick", "isBespoke": true, "sizes": ["Regular Flannel (10k)", "Premium Flannel (15k)", "Custom Bespoke"], "stock": 10, "batch": "BATCH-MONO-10", "colors": ["Monochrome Black & White Tartan"], "fabric": "100% Breathable Cotton Tartan with Reinforced Pockets", "leadTime": "2-3 days custom tailoring", "description": "Striking architectural black and white plaid trousers. Versatile bridge between cozy home loungewear and effortless urban streetwear. Regular 10k, Premium 15k across all sizes.", "editorialQuote": "Minimalist monochrome attitude meets atelier lounging comfort.", "tags": ["monochrome", "plaid", "trousers", "streetwear", "lounge"], "careInstructions": "Machine wash cold with like colors. Hang dry.", "image": "images/lounge-tartan-pants-monochrome.jpeg", "gallery": ["images/lounge-tartan-pants-monochrome.jpeg", "images/lounge-mannequin-polo-tartan-pants.jpeg"], "svgId": "svg-waffle-robe"}, {"id": "PROD-11", "name": "Bespoke Tartan Lounge Pants - Royal Sapphire Blue", "category": "Bespoke Lounge Wear", "subcategory": "Lounge Trousers & Sets", "price": 10000, "originalPrice": 15000, "rating": 4.9, "reviewsCount": 36, "badge": "Atelier Exclusive", "isBespoke": true, "sizes": ["Regular Flannel (10k)", "Premium Flannel (15k)", "Custom Bespoke"], "stock": 8, "batch": "BATCH-ROYAL-11", "colors": ["Royal Blue & Midnight Black Tartan"], "fabric": "Premium Soft-Hand Turkish Tartan Cotton Blend", "leadTime": "2-3 days bespoke tailoring", "description": "Rich cobalt and midnight blue weave crafted at 164 Udoumana Street. Features generous side pockets, reinforced crotch gusset, and customizable leg length. Regular 10k, Premium 15k.", "editorialQuote": "Regal deep blue tones spun into everyday restorative loungewear.", "tags": ["blue", "tartan", "plaid", "pants", "lounge"], "careInstructions": "Machine wash delicate in cold water. Iron on medium.", "image": "images/lounge-tartan-pants-royal-blue.jpeg", "gallery": ["images/lounge-tartan-pants-royal-blue.jpeg"], "svgId": "svg-satin-pj"}, {"id": "PROD-12", "name": "Atelier Polo & Plaid Lounge Trousers Ensemble", "category": "Bespoke Lounge Wear", "subcategory": "Lounge Trousers & Sets", "price": 10000, "originalPrice": 14000, "rating": 5.0, "reviewsCount": 28, "badge": "Complete Set", "isBespoke": true, "sizes": ["Kiddies PJ Bottoms Only (5k)", "Complete Set with Polo (10k)", "Custom Bespoke"], "stock": 7, "batch": "BATCH-POLO-12", "colors": ["Black Pique Polo & B/W Plaid Trousers"], "fabric": "Heavyweight Pique Cotton & Matching Flannel Tartan Breast Pocket", "leadTime": "3-4 days custom tailoring", "description": "As styled in our Uyo boutique window display! A sharp jet-black polo shirt accented with authentic tartan breast pocket, accompanied by coordinated monochrome plaid trousers. Kiddies pj bottoms only: 5k; Complete set: 10k.", "editorialQuote": "Effortlessly poised whether hosting at home or relaxing on weekends.", "tags": ["polo", "set", "plaid", "loungewear", "matching"], "careInstructions": "Gentle wash cold. Warm iron.", "image": "images/lounge-mannequin-polo-tartan-pants.jpeg", "gallery": ["images/lounge-mannequin-polo-tartan-pants.jpeg", "images/lounge-tartan-pants-monochrome.jpeg"], "svgId": "svg-silk-kimono"}, {"id": "PROD-13", "name": "Bespoke Ochre Yellow Cargo Lounge Trousers", "category": "Bespoke Lounge Wear", "subcategory": "Lounge Trousers & Sets", "price": 10000, "originalPrice": 15000, "rating": 5.0, "reviewsCount": 31, "badge": "Street Luxury", "isBespoke": true, "sizes": ["Cargo Plaid (10k)", "Premium Flannel (15k)", "Custom Bespoke"], "stock": 9, "batch": "BATCH-CARGO-13", "colors": ["Ochre Yellow & Navy Check"], "fabric": "Structured Tartan Twill with Twin Utility Flap Cargo Pockets", "leadTime": "3-4 days bespoke crafting", "description": "A vibrant boutique signature! Photographed live right on Udoumana Street, Uyo. Bold mustard ochre plaid cargo lounge pants with spacious side utility pockets. Cargo plaid: 10k; Premium: 15k.", "editorialQuote": "Vibrant Uyo streetwear energy harmonized with atelier bespoke craftsmanship.", "tags": ["cargo", "yellow", "plaid", "streetwear", "lounge"], "careInstructions": "Hand wash or gentle machine wash. Hang dry.", "image": "images/lounge-yellow-tartan-cargo-lifestyle.jpeg", "gallery": ["images/lounge-yellow-tartan-cargo-lifestyle.jpeg"], "svgId": "svg-waffle-robe"}, {"id": "PROD-14", "name": "Vintage Plaid Apron Pinafore with Gold Buttons", "category": "Children's Wear", "subcategory": "Dresses & Gowns", "price": 15000, "originalPrice": 20000, "rating": 5.0, "reviewsCount": 43, "badge": "Vintage Classic", "isBespoke": true, "sizes": ["3 Years", "Custom Bespoke"], "stock": 3, "batch": "BATCH-VINTAGE-14", "colors": ["Black & White Tartan", "Heritage Plaid"], "fabric": "Structured Brushed Flannel with Embossed Gold Crest Buttons", "leadTime": "3-4 days bespoke tailoring", "description": "Timeless silhouette tailored with long fitted sleeves, pointed collar, gathered skirt, and ornate embossed gold buttons down front bodice. Available for age 3.", "editorialQuote": "Understated aristocracy and sweet traditional styling.", "tags": ["plaid", "vintage", "goldbuttons", "dress", "sundaybest"], "careInstructions": "Machine wash delicate or dry clean. Low iron.", "image": "images/plaid-heirloom-pinafore-gold-buttons.jpeg", "gallery": ["images/plaid-heirloom-pinafore-gold-buttons.jpeg"], "svgId": "svg-linen-dress"}, {"id": "PROD-15", "name": "Sweetheart Holiday Party Dress", "category": "Children's Wear", "subcategory": "Dresses & Gowns", "price": 35000, "originalPrice": 42000, "rating": 4.9, "reviewsCount": 37, "badge": "Holiday Special", "isBespoke": true, "sizes": ["3-4 Years", "6 Years", "7 Years", "Custom Bespoke"], "stock": 6, "batch": "BATCH-SWEET-15", "colors": ["Ivory & Ruby Hearts", "Pure White"], "fabric": "Embroidered Heart Tulle Overlay, Silk Waist Ribbon & Cotton Underlining", "leadTime": "3-4 days bespoke tailoring", "description": "Pure sweetness and delight. Flared silhouette adorned with playful red embroidered hearts, puff sleeves, and a ruby satin tie belt. Available in ages 3-4, 6, and 7 years.", "editorialQuote": "A joyful burst of childhood sweetness tailored with tender care.", "tags": ["hearts", "dress", "tulle", "party", "holiday"], "careInstructions": "Hand wash gently in cool water. Air dry.", "image": "images/couture-heart-tulle-party-dress.jpeg", "gallery": ["images/couture-heart-tulle-party-dress.jpeg"], "svgId": "svg-linen-dress"}];
+    window.DC_SVGS = {"svg-tulle-ballgown": "<svg viewBox=\"0 0 320 320\" width=\"100%\" height=\"100%\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"tulle-blush\" x1=\"120\" y1=\"60\" x2=\"200\" y2=\"280\" gradientUnits=\"userSpaceOnUse\">\n      <stop offset=\"0%\" stop-color=\"#FFF5F2\"/>\n      <stop offset=\"50%\" stop-color=\"#F9DED8\"/>\n      <stop offset=\"100%\" stop-color=\"#EBBAB1\"/>\n    </linearGradient>\n    <linearGradient id=\"gold-shimmer\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\n      <stop offset=\"0%\" stop-color=\"#FFF0C2\"/>\n      <stop offset=\"100%\" stop-color=\"#D4AF37\"/>\n    </linearGradient>\n  </defs>\n  <ellipse cx=\"160\" cy=\"295\" rx=\"95\" ry=\"12\" fill=\"rgba(33,24,21,0.06)\"/>\n\n  <!-- Satin Duchess Bodice -->\n  <path d=\"M130 75 Q160 82 190 75 L196 130 Q160 136 124 130 Z\" fill=\"url(#tulle-blush)\" stroke=\"#DBADA4\" stroke-width=\"1.5\"/>\n\n  <!-- Hand-sewn 3D Floral Appliqués on Bodice -->\n  <circle cx=\"145\" cy=\"95\" r=\"5\" fill=\"#FFFFFF\" stroke=\"#C48275\" stroke-width=\"1\"/>\n  <circle cx=\"145\" cy=\"95\" r=\"2\" fill=\"url(#gold-shimmer)\"/>\n  <circle cx=\"160\" cy=\"90\" r=\"6\" fill=\"#FFFFFF\" stroke=\"#C48275\" stroke-width=\"1\"/>\n  <circle cx=\"160\" cy=\"90\" r=\"2.5\" fill=\"url(#gold-shimmer)\"/>\n  <circle cx=\"175\" cy=\"96\" r=\"5\" fill=\"#FFFFFF\" stroke=\"#C48275\" stroke-width=\"1\"/>\n  <circle cx=\"175\" cy=\"96\" r=\"2\" fill=\"url(#gold-shimmer)\"/>\n\n  <!-- Sweetheart Illusion Neckline with Pearls -->\n  <path d=\"M136 78 Q160 92 184 78\" stroke=\"url(#gold-shimmer)\" stroke-width=\"1.5\" stroke-dasharray=\"2 3\"/>\n\n  <!-- Waist Satin Sash -->\n  <rect x=\"122\" y=\"127\" width=\"76\" height=\"8\" rx=\"2\" fill=\"#C48275\"/>\n\n  <!-- Tier 1 Tulle Skirt -->\n  <path d=\"M122 133 Q160 140 198 133 L216 180 Q160 195 104 180 Z\" fill=\"rgba(249, 222, 216, 0.7)\" stroke=\"#E8BDB4\" stroke-width=\"1.2\"/>\n  <!-- Tier 2 Tulle Skirt -->\n  <path d=\"M108 175 Q160 192 212 175 L234 230 Q160 248 86 230 Z\" fill=\"rgba(242, 196, 187, 0.75)\" stroke=\"#DEABA0\" stroke-width=\"1.2\"/>\n  <!-- Tier 3 Tulle Skirt (Bottom Grand Flare) -->\n  <path d=\"M88 225 Q160 245 232 225 L258 285 Q160 305 62 285 Z\" fill=\"rgba(235, 186, 177, 0.85)\" stroke=\"#D4998E\" stroke-width=\"1.5\"/>\n\n  <!-- Sparkle Stars on Tulle -->\n  <path d=\"M110 245 L113 250 L118 251 L114 255 L115 260 L110 257 L105 260 L106 255 L102 251 L107 250 Z\" fill=\"#FFFFFF\"/>\n  <path d=\"M210 255 L212 259 L216 260 L213 263 L214 267 L210 265 L206 267 L207 263 L204 260 L208 259 Z\" fill=\"#FFFFFF\"/>\n  <path d=\"M160 270 L162 274 L166 275 L163 278 L164 282 L160 280 L156 282 L157 278 L154 275 L158 274 Z\" fill=\"url(#gold-shimmer)\"/>\n</svg>", "svg-linen-dress": "<svg viewBox=\"0 0 320 320\" width=\"100%\" height=\"100%\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"dress-rose\" x1=\"100\" y1=\"60\" x2=\"220\" y2=\"280\" gradientUnits=\"userSpaceOnUse\">\n      <stop offset=\"0%\" stop-color=\"#FCEEEB\"/>\n      <stop offset=\"50%\" stop-color=\"#F2D7D1\"/>\n      <stop offset=\"100%\" stop-color=\"#E2B7AE\"/>\n    </linearGradient>\n    <linearGradient id=\"smock-gold\" x1=\"130\" y1=\"100\" x2=\"190\" y2=\"135\" gradientUnits=\"userSpaceOnUse\">\n      <stop offset=\"0%\" stop-color=\"#D4AF37\"/>\n      <stop offset=\"100%\" stop-color=\"#AA7C11\"/>\n    </linearGradient>\n  </defs>\n  <ellipse cx=\"160\" cy=\"290\" rx=\"85\" ry=\"12\" fill=\"rgba(33,24,21,0.06)\"/>\n  \n  <!-- Puffed Cap Sleeves -->\n  <ellipse cx=\"106\" cy=\"100\" rx=\"20\" ry=\"15\" transform=\"rotate(-20 106 100)\" fill=\"#F5DAD4\" stroke=\"#D9AFA6\" stroke-width=\"1.5\"/>\n  <ellipse cx=\"214\" cy=\"100\" rx=\"20\" ry=\"15\" transform=\"rotate(20 214 100)\" fill=\"#F5DAD4\" stroke=\"#D9AFA6\" stroke-width=\"1.5\"/>\n  <path d=\"M88 108 Q96 114 104 110\" stroke=\"#FFFFFF\" stroke-width=\"2\"/>\n  <path d=\"M216 110 Q224 114 232 108\" stroke=\"#FFFFFF\" stroke-width=\"2\"/>\n\n  <!-- Bodice -->\n  <path d=\"M125 78 Q160 84 195 78 L202 135 Q160 142 118 135 Z\" fill=\"url(#dress-rose)\" stroke=\"#D9AFA6\" stroke-width=\"1.5\"/>\n  \n  <!-- Hand-Smocked Geometric Embroidery Details -->\n  <path d=\"M128 98 Q160 102 192 98\" stroke=\"#AA7C11\" stroke-width=\"1.5\" stroke-dasharray=\"3 2\"/>\n  <path d=\"M126 107 Q160 112 194 107\" stroke=\"#C48275\" stroke-width=\"1.5\" stroke-dasharray=\"4 2\"/>\n  <path d=\"M124 116 Q160 122 196 116\" stroke=\"#AA7C11\" stroke-width=\"1.5\" stroke-dasharray=\"3 2\"/>\n  <path d=\"M122 125 Q160 131 198 125\" stroke=\"#C48275\" stroke-width=\"1.5\" stroke-dasharray=\"4 2\"/>\n  <!-- Tiny embroidered rosebuds -->\n  <circle cx=\"145\" cy=\"107\" r=\"2.5\" fill=\"#C48275\"/>\n  <circle cx=\"160\" cy=\"107\" r=\"2.5\" fill=\"#AA7C11\"/>\n  <circle cx=\"175\" cy=\"107\" r=\"2.5\" fill=\"#C48275\"/>\n\n  <!-- Scalloped Peter Pan Collar -->\n  <path d=\"M160 85 C146 85 130 76 128 66 C144 64 158 75 160 85 Z\" fill=\"#FFFFFF\" stroke=\"#D9AFA6\" stroke-width=\"1.2\"/>\n  <path d=\"M160 85 C174 85 190 76 192 66 C176 64 162 75 160 85 Z\" fill=\"#FFFFFF\" stroke=\"#D9AFA6\" stroke-width=\"1.2\"/>\n  <circle cx=\"160\" cy=\"85\" r=\"3\" fill=\"#C48275\"/>\n\n  <!-- Gathered Flared A-Line Skirt -->\n  <path d=\"M118 135 Q160 142 202 135 L242 265 Q160 282 78 265 Z\" fill=\"url(#dress-rose)\" stroke=\"#D9AFA6\" stroke-width=\"1.5\"/>\n  \n  <!-- Skirt Folds -->\n  <path d=\"M135 140 Q130 200 120 268\" stroke=\"rgba(196,130,117,0.3)\" stroke-width=\"1.5\"/>\n  <path d=\"M160 142 Q160 200 160 272\" stroke=\"rgba(196,130,117,0.4)\" stroke-width=\"1.8\"/>\n  <path d=\"M185 140 Q190 200 200 268\" stroke=\"rgba(196,130,117,0.3)\" stroke-width=\"1.5\"/>\n\n  <!-- Scalloped French Lace Hem -->\n  <path d=\"M78 265 Q94 274 110 266 Q126 276 142 268 Q160 278 178 268 Q194 276 210 266 Q226 274 242 265 L242 272 Q226 281 210 273 Q194 283 178 275 Q160 285 142 275 Q126 283 110 273 Q94 281 78 272 Z\" fill=\"#FFFFFF\" stroke=\"#D9C0B9\" stroke-width=\"1\"/>\n  <!-- Velvet Sash & Back Bow Ribbon Tails -->\n  <path d=\"M120 135 L200 135 L202 140 L118 140 Z\" fill=\"#C48275\"/>\n  <path d=\"M198 140 Q215 165 224 195 Q218 196 210 175 Q205 155 198 140 Z\" fill=\"#AF6E61\"/>\n</svg>", "svg-velvet-coat": "<svg viewBox=\"0 0 320 320\" width=\"100%\" height=\"100%\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"plum-velvet\" x1=\"100\" y1=\"40\" x2=\"220\" y2=\"280\" gradientUnits=\"userSpaceOnUse\">\n      <stop offset=\"0%\" stop-color=\"#5E1F3B\"/>\n      <stop offset=\"50%\" stop-color=\"#46132A\"/>\n      <stop offset=\"100%\" stop-color=\"#2D0A1A\"/>\n    </linearGradient>\n    <linearGradient id=\"gold-filigree\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\n      <stop offset=\"0%\" stop-color=\"#FFEBB0\"/>\n      <stop offset=\"100%\" stop-color=\"#C29B38\"/>\n    </linearGradient>\n  </defs>\n  <ellipse cx=\"160\" cy=\"295\" rx=\"88\" ry=\"12\" fill=\"rgba(33,24,21,0.06)\"/>\n\n  <!-- Velvet Flared Coat Silhouette -->\n  <path d=\"M125 65 L80 135 L106 148 L114 110 L102 275 Q160 286 218 275 L206 110 L214 148 L240 135 L195 65 Q160 55 125 65 Z\" fill=\"url(#plum-velvet)\" stroke=\"#220613\" stroke-width=\"1.8\"/>\n\n  <!-- Quilted Satin Hem Border -->\n  <path d=\"M102 265 Q160 276 218 265 L218 275 Q160 286 102 275 Z\" fill=\"url(#gold-filigree)\"/>\n\n  <!-- Mandarin Collar with Gold Trim -->\n  <path d=\"M136 60 Q160 66 184 60 L188 74 Q160 78 132 74 Z\" fill=\"#380F22\" stroke=\"url(#gold-filigree)\" stroke-width=\"1.5\"/>\n\n  <!-- Ornate Frogged Gold Filigree Braiding Closures -->\n  <g transform=\"translate(160, 95)\">\n    <circle cx=\"0\" cy=\"0\" r=\"4\" fill=\"url(#gold-filigree)\"/>\n    <path d=\"M-24 -4 Q-12 -12 0 0 Q12 -12 24 -4 Q12 8 0 0 Q-12 8 -24 -4 Z\" stroke=\"url(#gold-filigree)\" stroke-width=\"1.5\" fill=\"none\"/>\n  </g>\n  <g transform=\"translate(160, 125)\">\n    <circle cx=\"0\" cy=\"0\" r=\"4\" fill=\"url(#gold-filigree)\"/>\n    <path d=\"M-24 -4 Q-12 -12 0 0 Q12 -12 24 -4 Q12 8 0 0 Q-12 8 -24 -4 Z\" stroke=\"url(#gold-filigree)\" stroke-width=\"1.5\" fill=\"none\"/>\n  </g>\n  <g transform=\"translate(160, 155)\">\n    <circle cx=\"0\" cy=\"0\" r=\"4\" fill=\"url(#gold-filigree)\"/>\n    <path d=\"M-24 -4 Q-12 -12 0 0 Q12 -12 24 -4 Q12 8 0 0 Q-12 8 -24 -4 Z\" stroke=\"url(#gold-filigree)\" stroke-width=\"1.5\" fill=\"none\"/>\n  </g>\n</svg>", "svg-satin-pj": "<svg viewBox=\"0 0 320 320\" width=\"100%\" height=\"100%\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"pj-rose\" x1=\"80\" y1=\"50\" x2=\"240\" y2=\"280\" gradientUnits=\"userSpaceOnUse\">\n      <stop offset=\"0%\" stop-color=\"#F2D5CE\"/>\n      <stop offset=\"45%\" stop-color=\"#E2B8AF\"/>\n      <stop offset=\"100%\" stop-color=\"#C59388\"/>\n    </linearGradient>\n    <linearGradient id=\"gold-pipe\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\n      <stop offset=\"0%\" stop-color=\"#FCEAB8\"/>\n      <stop offset=\"100%\" stop-color=\"#C29B38\"/>\n    </linearGradient>\n  </defs>\n  <ellipse cx=\"160\" cy=\"295\" rx=\"88\" ry=\"12\" fill=\"rgba(33,24,21,0.06)\"/>\n\n  <!-- Trousers -->\n  <path d=\"M112 175 L106 285 Q106 288 112 288 L148 288 L156 210 L164 288 L200 288 Q206 288 206 285 L200 175 Z\" fill=\"url(#pj-rose)\" stroke=\"#B78277\" stroke-width=\"1.5\"/>\n  <path d=\"M106 284 L148 284\" stroke=\"url(#gold-pipe)\" stroke-width=\"2.5\"/>\n  <path d=\"M164 284 L206 284\" stroke=\"url(#gold-pipe)\" stroke-width=\"2.5\"/>\n\n  <!-- PJ Top Body -->\n  <path d=\"M100 68 L64 125 L90 135 L108 98 L108 190 Q160 196 212 190 L212 98 L230 135 L256 125 L220 68 Q160 55 100 68 Z\" fill=\"url(#pj-rose)\" stroke=\"#B78277\" stroke-width=\"1.5\"/>\n\n  <!-- Notch Lapel Collar with Gold Piping -->\n  <path d=\"M130 62 L112 96 L134 104 L122 135 L160 162 L198 135 L186 104 L208 96 L190 62 Q160 58 130 62 Z\" fill=\"#F8E5E1\" stroke=\"url(#gold-pipe)\" stroke-width=\"1.8\"/>\n\n  <!-- Center Placket & Mother of Pearl Buttons -->\n  <line x1=\"160\" y1=\"162\" x2=\"160\" y2=\"192\" stroke=\"url(#gold-pipe)\" stroke-width=\"1.5\"/>\n  <circle cx=\"160\" cy=\"145\" r=\"3\" fill=\"#FFFFFF\" stroke=\"#C29B38\" stroke-width=\"0.8\"/>\n  <circle cx=\"160\" cy=\"162\" r=\"3\" fill=\"#FFFFFF\" stroke=\"#C29B38\" stroke-width=\"0.8\"/>\n  <circle cx=\"160\" cy=\"178\" r=\"3\" fill=\"#FFFFFF\" stroke=\"#C29B38\" stroke-width=\"0.8\"/>\n\n  <!-- Chest Pocket with Gold DC crest -->\n  <rect x=\"120\" y=\"115\" width=\"24\" height=\"24\" rx=\"2\" fill=\"#E8BDB4\" stroke=\"url(#gold-pipe)\" stroke-width=\"1.2\"/>\n  <line x1=\"120\" y1=\"118\" x2=\"144\" y2=\"118\" stroke=\"url(#gold-pipe)\" stroke-width=\"1.5\"/>\n  <text x=\"132\" y=\"132\" font-family=\"'Playfair Display', serif\" font-size=\"8\" font-weight=\"700\" fill=\"#AA7C11\" text-anchor=\"middle\">DC</text>\n\n  <!-- Sleeve Cuffs -->\n  <path d=\"M64 125 L90 135\" stroke=\"url(#gold-pipe)\" stroke-width=\"3\"/>\n  <path d=\"M256 125 L230 135\" stroke=\"url(#gold-pipe)\" stroke-width=\"3\"/>\n\n  <!-- Silk Sheen Highlights -->\n  <path d=\"M180 110 Q192 140 196 175\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-linecap=\"round\" opacity=\"0.6\"/>\n</svg>", "svg-waffle-robe": "<svg viewBox=\"0 0 320 320\" width=\"100%\" height=\"100%\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"waffle-grad\" x1=\"100\" y1=\"50\" x2=\"220\" y2=\"280\" gradientUnits=\"userSpaceOnUse\">\n      <stop offset=\"0%\" stop-color=\"#F2EDE6\"/>\n      <stop offset=\"50%\" stop-color=\"#E2D7CC\"/>\n      <stop offset=\"100%\" stop-color=\"#C9BCB0\"/>\n    </linearGradient>\n    <pattern id=\"waffle-pattern\" width=\"6\" height=\"6\" patternUnits=\"userSpaceOnUse\">\n      <rect width=\"6\" height=\"6\" fill=\"transparent\"/>\n      <rect x=\"0.5\" y=\"0.5\" width=\"5\" height=\"5\" stroke=\"rgba(33,24,21,0.08)\" stroke-width=\"0.8\" fill=\"rgba(255,255,255,0.4)\"/>\n    </pattern>\n  </defs>\n  <ellipse cx=\"160\" cy=\"295\" rx=\"85\" ry=\"12\" fill=\"rgba(33,24,21,0.06)\"/>\n\n  <!-- Lounge Joggers -->\n  <path d=\"M112 175 L106 285 Q106 288 112 288 L148 288 L156 215 L164 288 L200 288 Q206 288 206 285 L200 175 Z\" fill=\"url(#waffle-grad)\" stroke=\"#B5A597\" stroke-width=\"1.5\"/>\n  <rect x=\"106\" y=\"278\" width=\"42\" height=\"10\" rx=\"3\" fill=\"#D3C5B7\"/>\n  <rect x=\"164\" y=\"278\" width=\"42\" height=\"10\" rx=\"3\" fill=\"#D3C5B7\"/>\n\n  <!-- Wrap Cardigan Robe -->\n  <path d=\"M96 68 L60 120 L86 132 L106 95 L104 210 Q160 218 214 210 L212 95 L232 132 L258 120 L222 68 Q160 55 96 68 Z\" fill=\"url(#waffle-grad)\" stroke=\"#B5A597\" stroke-width=\"1.5\"/>\n  \n  <!-- Overlay Waffle Texture Pattern -->\n  <path d=\"M104 95 L104 210 Q160 218 214 210 L212 95 Z\" fill=\"url(#waffle-pattern)\"/>\n\n  <!-- Cozy Shawl Collar with Espresso Piping -->\n  <path d=\"M130 62 Q145 105 178 155 L160 155 Q135 105 120 62 Z\" fill=\"#D8CCC0\" stroke=\"#8E7D73\" stroke-width=\"1.2\"/>\n  <path d=\"M190 62 Q175 105 142 155 L160 155 Q185 105 200 62 Z\" fill=\"#E4D9CE\" stroke=\"#8E7D73\" stroke-width=\"1.2\"/>\n\n  <!-- Waist Tie Belt -->\n  <rect x=\"100\" y=\"148\" width=\"120\" height=\"14\" rx=\"3\" fill=\"#A89688\"/>\n  <path d=\"M152 158 L146 220 L156 220 L160 160 Z\" fill=\"#938173\"/>\n\n  <!-- Slouchy Deep Pockets -->\n  <rect x=\"110\" y=\"172\" width=\"28\" height=\"26\" rx=\"4\" fill=\"#DDD1C4\" stroke=\"#B5A597\" stroke-width=\"1.2\"/>\n  <rect x=\"180\" y=\"172\" width=\"28\" height=\"26\" rx=\"4\" fill=\"#DDD1C4\" stroke=\"#B5A597\" stroke-width=\"1.2\"/>\n</svg>", "svg-silk-kimono": "<svg viewBox=\"0 0 320 320\" width=\"100%\" height=\"100%\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"silk-grad-1\" x1=\"60\" y1=\"40\" x2=\"260\" y2=\"300\" gradientUnits=\"userSpaceOnUse\">\n      <stop offset=\"0%\" stop-color=\"#FFFDF9\"/>\n      <stop offset=\"40%\" stop-color=\"#F5ECE4\"/>\n      <stop offset=\"100%\" stop-color=\"#E5D3C5\"/>\n    </linearGradient>\n    <linearGradient id=\"silk-shadow\" x1=\"160\" y1=\"40\" x2=\"160\" y2=\"300\" gradientUnits=\"userSpaceOnUse\">\n      <stop offset=\"0%\" stop-color=\"rgba(196,130,117,0.1)\"/>\n      <stop offset=\"100%\" stop-color=\"rgba(33,24,21,0.18)\"/>\n    </linearGradient>\n    <linearGradient id=\"rose-piping\" x1=\"100\" y1=\"50\" x2=\"220\" y2=\"280\" gradientUnits=\"userSpaceOnUse\">\n      <stop offset=\"0%\" stop-color=\"#C48275\"/>\n      <stop offset=\"100%\" stop-color=\"#A5675B\"/>\n    </linearGradient>\n  </defs>\n  <!-- Background gentle shadow -->\n  <ellipse cx=\"160\" cy=\"295\" rx=\"90\" ry=\"14\" fill=\"rgba(33,24,21,0.06)\"/>\n  \n  <!-- Kimono Trousers -->\n  <path d=\"M110 180 L100 285 Q100 288 105 288 L146 288 Q150 288 152 284 L160 215 L168 284 Q170 288 174 288 L215 288 Q220 288 220 285 L210 180 Z\" fill=\"url(#silk-grad-1)\" stroke=\"#D8C3B3\" stroke-width=\"1.5\"/>\n  <path d=\"M160 215 L160 286\" stroke=\"#C8B3A3\" stroke-width=\"1.2\" stroke-dasharray=\"3 3\"/>\n  <path d=\"M102 283 L144 283\" stroke=\"url(#rose-piping)\" stroke-width=\"2\"/>\n  <path d=\"M176 283 L218 283\" stroke=\"url(#rose-piping)\" stroke-width=\"2\"/>\n  \n  <!-- Kimono Robe Body -->\n  <path d=\"M90 70 L60 120 L88 135 L108 96 L108 200 Q160 210 212 200 L212 96 L232 135 L260 120 L230 70 Q160 54 90 70 Z\" fill=\"url(#silk-grad-1)\" stroke=\"#D8C3B3\" stroke-width=\"1.5\"/>\n  <!-- Kimono Collar / Lapel Wrap -->\n  <path d=\"M125 58 L185 150 L185 202 L165 202 L115 60 Z\" fill=\"#FAF2EC\" stroke=\"url(#rose-piping)\" stroke-width=\"1.8\"/>\n  <path d=\"M195 58 L135 150 L135 170\" stroke=\"url(#rose-piping)\" stroke-width=\"1.8\"/>\n  \n  <!-- Obi Sash Belt with bow -->\n  <rect x=\"105\" y=\"145\" width=\"110\" height=\"20\" rx=\"3\" fill=\"#C48275\"/>\n  <rect x=\"105\" y=\"147\" width=\"110\" height=\"3\" fill=\"#E8B5AC\"/>\n  <ellipse cx=\"160\" cy=\"155\" rx=\"14\" ry=\"7\" fill=\"#AF6E61\"/>\n  <!-- Hanging Belt ribbons -->\n  <path d=\"M154 158 Q148 185 142 215 Q145 218 152 215 Q156 188 158 160 Z\" fill=\"#C48275\"/>\n  <path d=\"M166 158 Q172 185 178 215 Q175 218 168 215 Q164 188 162 160 Z\" fill=\"#AF6E61\"/>\n  \n  <!-- Contrast Wide Sleeve Cuffs -->\n  <path d=\"M60 120 L88 135\" stroke=\"url(#rose-piping)\" stroke-width=\"4\"/>\n  <path d=\"M260 120 L232 135\" stroke=\"url(#rose-piping)\" stroke-width=\"4\"/>\n  <!-- Atelier crest embroidery -->\n  <circle cx=\"138\" cy=\"115\" r=\"9\" fill=\"rgba(196,130,117,0.15)\"/>\n  <text x=\"138\" y=\"118\" font-family=\"'Playfair Display', serif\" font-size=\"7\" font-weight=\"700\" fill=\"#AA7C11\" text-anchor=\"middle\">DC</text>\n  <!-- Fabric Sheen Highlight -->\n  <path d=\"M116 100 Q124 130 128 144\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-linecap=\"round\" opacity=\"0.8\"/>\n</svg>"};
   </script>
 </head>
 <body>
@@ -2720,6 +3010,10 @@ ul {
     </nav>
 
     <div class="header-right">
+      <button class="admin-badge-btn" onclick="window.DC_APP.openAdminPortal()" title="Atelier Admin & Inventory Suite" aria-label="Admin Portal">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span>Admin Suite</span>
+      </button>
       <button class="header-action-btn" onclick="window.DC_APP.focusSearch()" title="Search catalog" aria-label="Search">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       </button>
@@ -2983,7 +3277,7 @@ ul {
         <div class="feature-icon-box">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         </div>
-        <h3 class="feature-title">Akwa Ibom Sartorial Heritage</h3>
+        <h3 class="feature-title">Akwa Ibom Tailoring Heritage</h3>
         <p class="feature-text">Integrating traditional Akwete and Aso-Oke handweaving with contemporary British and French tailoring silhouettes for weddings, dedications, and pageants.</p>
       </div>
 
@@ -3328,7 +3622,7 @@ ul {
         </div>
         <span class="brand-name" style="color:var(--text-light); font-size:1.25rem;">Debbie's Collection</span>
         <p style="font-size:0.86rem; color:var(--text-light-muted); line-height:1.6; max-width:320px;">
-          Luxury children's wear and bespoke loungewear crafted with pure natural fibres and heirloom sartorial devotion at 164 Udoumana Street, Uyo, Akwa Ibom State.
+          Luxury children's wear and bespoke loungewear crafted with pure natural fibres and heirloom artisanal devotion at 164 Udoumana Street, Uyo, Akwa Ibom State.
         </p>
         <div style="display:flex; align-items:center; gap:8px; color:var(--accent-gold-light); font-size:0.82rem; font-weight:600;">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -3357,6 +3651,7 @@ ul {
           <li><a href="#faq">Shipping across Nigeria</a></li>
           <li><a href="#faq">Silk & Linen Care Guide</a></li>
           <li><a href="javascript:void(0)" onclick="window.DC_APP.openAccountModal('wishlist')">Saved Wishlist</a></li>
+          <li><a href="javascript:void(0)" onclick="window.DC_APP.openAdminPortal()" style="color:var(--accent-gold-light); font-weight:700;">✦ Atelier Admin & Inventory Suite</a></li>
         </ul>
       </div>
 
@@ -3980,6 +4275,84 @@ ul {
   </div>
 </div>
 
+<!-- Admin Passcode Verification Modal -->
+<div class="modal-overlay" id="admin-pin-modal" style="z-index:350;">
+  <div class="modal-card-box" style="max-width:380px; text-align:center; padding:28px;">
+    <div style="width:48px; height:48px; margin:0 auto 14px; background:rgba(170,124,17,0.1); color:var(--accent-gold); border-radius:var(--radius-full); display:flex; align-items:center; justify-content:center;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    </div>
+    <h3 style="font-family:var(--font-serif); font-size:1.35rem; margin-bottom:4px;">Debbie's Atelier Admin</h3>
+    <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:18px;">
+      Enter master boutique passcode to manage catalog, batches, orders, and sales.
+    </p>
+    <form onsubmit="window.DC_APP.verifyAdminPin(event)">
+      <div class="form-group">
+        <input type="password" id="admin-pin-input" class="form-input" style="text-align:center; font-size:1.5rem; letter-spacing:0.35em; font-weight:700;" placeholder="••••" maxlength="6" autofocus required>
+        <span style="font-size:0.74rem; color:var(--text-muted); display:block; margin-top:6px;">Default Master Passcode: <strong>1640</strong></span>
+      </div>
+      <div style="display:flex; gap:10px; margin-top:16px;">
+        <button type="button" class="btn-secondary" style="flex:1;" onclick="window.DC_APP.closeAdminPinModal()">Cancel</button>
+        <button type="submit" class="btn-primary" style="flex:1;">Unlock Portal</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Admin Management Suite Modal -->
+<div class="modal-overlay" id="admin-modal" style="z-index:340;">
+  <div class="modal-card-box admin-modal-card">
+    <!-- Header -->
+    <div class="admin-header-bar">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div class="brand-crest-box" style="width:36px; height:36px; background:#fff;">
+          <img src="images/brand-logo.jpeg" alt="Debbie's Collection" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div>
+          <h3 style="font-family:var(--font-serif); font-size:1.2rem; color:#FFFFFF; margin:0;">Debbie's Atelier Manager</h3>
+          <span style="font-size:0.72rem; color:var(--accent-gold-light);">164 Udoumana Street, Uyo • Live Inventory & Sales Suite</span>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <button class="btn-secondary" style="padding:6px 12px; font-size:0.74rem; color:#FFFFFF; border-color:rgba(255,255,255,0.25);" onclick="window.DC_APP.closeAdminModal()">
+          <span>View Live Boutique</span>
+        </button>
+        <button class="drawer-close-btn" style="color:#FFFFFF;" onclick="window.DC_APP.closeAdminModal()" aria-label="Close Admin">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Tabs Nav -->
+    <div class="admin-tabs-nav">
+      <button class="admin-tab-btn active" id="adm-tab-overview" onclick="window.DC_APP.switchAdminTab('overview')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <span>Overview & Sales</span>
+      </button>
+      <button class="admin-tab-btn" id="adm-tab-products" onclick="window.DC_APP.switchAdminTab('products')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span>Products & Prices</span>
+      </button>
+      <button class="admin-tab-btn" id="adm-tab-inventory" onclick="window.DC_APP.switchAdminTab('inventory')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        <span>Inventory & Batches</span>
+      </button>
+      <button class="admin-tab-btn" id="adm-tab-orders" onclick="window.DC_APP.switchAdminTab('orders')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <span>Orders & Customers</span>
+      </button>
+      <button class="admin-tab-btn" id="adm-tab-discounts" onclick="window.DC_APP.switchAdminTab('discounts')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+        <span>Discounts & Promos</span>
+      </button>
+    </div>
+
+    <!-- Tab Dynamic Content -->
+    <div class="admin-tab-content-area" id="admin-tab-body">
+      <!-- Injected by DC_APP.renderAdminTab() -->
+    </div>
+  </div>
+</div>
+
 <!-- Toast Container -->
 <div class="toast-container" id="toast-container" aria-live="polite"></div>
 
@@ -3990,7 +4363,7 @@ ul {
   'use strict';
 
   // --- Constants & Database Setup ---
-  const STORAGE_KEY = 'debbie_collection_store_v4';
+  const STORAGE_KEY = 'debbie_collection_store_v5';
   const EXCHANGE_RATES = {
     NGN: 1,
     USD: 1 / 1550,
@@ -4005,8 +4378,8 @@ ul {
         cartId: 'item-init-1',
         productId: 'PROD-09',
         name: 'Bespoke Tartan Lounge Pants - Buffalo Red',
-        price: 32000,
-        size: 'Custom Bespoke',
+        price: 10000,
+        size: 'Regular Flannel (All Sizes)',
         color: 'Red & Black Buffalo Plaid',
         quantity: 1,
         image: 'images/lounge-tartan-pants-red-buffalo.jpeg',
@@ -4052,27 +4425,29 @@ ul {
         orderId: 'DC-2026-7814',
         date: 'October 24, 2026',
         items: [
-          { name: 'The Udoumana Storefront Rosette Gala Gown', size: '3-4Y', price: 58000, qty: 1 }
+          { name: 'The Udoumana Storefront Rosette Gala Gown', size: '7-8 Years', price: 35000, qty: 1 }
         ],
-        subtotal: 58000,
+        subtotal: 35000,
         shipping: 0,
-        total: 58000,
+        total: 35000,
         deliveryMethod: 'Uyo Same-Day Bike Delivery',
         status: 'Delivered',
-        customer: 'Dr. Idara Akpan • Ewet Housing Estate, Uyo'
+        customer: 'Dr. Idara Akpan • Ewet Housing Estate, Uyo',
+        phone: '+234 803 456 7890'
       },
       {
         orderId: 'DC-2026-8941',
         date: 'November 6, 2026',
         items: [
-          { name: 'Bespoke Tartan Lounge Pants - Buffalo Red', size: 'Custom Bespoke', price: 32000, qty: 1 }
+          { name: 'Bespoke Tartan Lounge Pants - Buffalo Red', size: 'Regular Flannel (All Sizes)', price: 10000, qty: 1 }
         ],
-        subtotal: 32000,
+        subtotal: 10000,
         shipping: 1500,
-        total: 33500,
+        total: 11500,
         deliveryMethod: 'Uyo Same-Day Bike Delivery',
-        status: 'In Tailoring (164 Udoumana Atelier)',
-        customer: 'Dr. Idara Akpan • Ewet Housing Estate, Uyo'
+        status: 'Tailoring in Atelier (Uyo)',
+        customer: 'Lady Blessing Okon • Osongama, Uyo',
+        phone: '+234 802 987 6543'
       }
     ]
   };
@@ -4099,6 +4474,10 @@ ul {
   }
 
   let DB = getDb();
+  if (!DB.products || !Array.isArray(DB.products) || DB.products.length === 0) {
+    DB.products = JSON.parse(JSON.stringify(window.DC_PRODUCTS || []));
+    saveDb(DB);
+  }
 
   // --- Active Filter State ---
   let filterState = {
@@ -4482,7 +4861,7 @@ ul {
     const activeFiltersBar = document.getElementById('active-filters-bar');
     if (!grid) return;
 
-    const allProducts = window.DC_PRODUCTS || [];
+    const allProducts = DB.products || window.DC_PRODUCTS || [];
 
     // Filter logic
     let filtered = allProducts.filter(p => {
@@ -4496,11 +4875,17 @@ ul {
       }
       // Age filter
       if (filterState.age !== 'All') {
-        const hasAge = p.sizes.some(s => s.toLowerCase().includes(filterState.age.toLowerCase()));
-        if (!hasAge && filterState.age === 'Adult' && !p.sizes.some(s => ['XS','S','M','L','XL','XXL'].includes(s))) {
-          return false;
-        }
-        if (!hasAge && filterState.age !== 'Adult') {
+        const target = filterState.age.toLowerCase();
+        const hasAge = (p.sizes || []).some(s => {
+          const str = s.toLowerCase();
+          if (target === '0-12m') return str.includes('0-12') || str.includes('baby') || str.includes('infant');
+          if (target === '1-4y') return str.includes('1') || str.includes('2') || str.includes('3') || str.includes('4') || str.includes('3/4');
+          if (target === '5-8y') return str.includes('5') || str.includes('6') || str.includes('7') || str.includes('8') || str.includes('6-7') || str.includes('7-8');
+          if (target === '9-14y') return str.includes('9') || str.includes('10') || str.includes('11') || str.includes('12') || str.includes('14') || str.includes('9/10');
+          if (target === 'adult') return str.includes('adult') || str.includes('flannel') || str.includes('all sizes') || str.includes('pants') || str.includes('polo') || str.includes('cargo') || ['xs','s','m','l','xl','xxl'].includes(str);
+          return str.includes(target);
+        });
+        if (!hasAge) {
           return false;
         }
       }
@@ -4670,7 +5055,7 @@ ul {
 
   // --- Quick View Modal ---
   function openQuickView(productId) {
-    const product = (window.DC_PRODUCTS || []).find(p => p.id === productId);
+    const product = (DB.products || window.DC_PRODUCTS || []).find(p => p.id === productId);
     if (!product) return;
 
     const modal = document.getElementById('quick-view-modal');
@@ -4779,7 +5164,7 @@ ul {
   }
 
   function submitQuickView(productId) {
-    const product = (window.DC_PRODUCTS || []).find(p => p.id === productId);
+    const product = (DB.products || window.DC_PRODUCTS || []).find(p => p.id === productId);
     if (!product) return;
 
     const sizeSelect = document.getElementById('qv-size-select');
@@ -5153,7 +5538,7 @@ ul {
         `;
       }
     } else if (tab === 'wishlist') {
-      const allProducts = window.DC_PRODUCTS || [];
+      const allProducts = DB.products || window.DC_PRODUCTS || [];
       const wishProducts = allProducts.filter(p => DB.wishlist.includes(p.id));
 
       if (wishProducts.length === 0) {
@@ -5335,6 +5720,877 @@ ul {
     updateHeaderBadges();
     renderCartDrawer();
     renderProducts();
+
+    if (window.location.hash === '#admin') {
+      setTimeout(openAdminPortal, 300);
+    }
+  }
+
+  window.addEventListener('hashchange', () => {
+    if (window.location.hash === '#admin') {
+      openAdminPortal();
+    }
+  });
+
+  // --- Admin Dashboard & Inventory Suite Engine ---
+  const ADMIN_PASSCODE = '1640';
+  let adminActiveTab = 'overview';
+  let adminEditingProductId = null;
+  let adminShowNewProductForm = false;
+  let adminShowWalkInSaleForm = false;
+
+  function openAdminPortal() {
+    if (sessionStorage.getItem('debbie_admin_auth') === 'true') {
+      openAdminModal();
+    } else {
+      openAdminPinModal();
+    }
+  }
+
+  function openAdminPinModal() {
+    const modal = document.getElementById('admin-pin-modal');
+    if (modal) {
+      modal.classList.add('open');
+      const input = document.getElementById('admin-pin-input');
+      if (input) { input.value = ''; input.focus(); }
+    }
+  }
+
+  function closeAdminPinModal() {
+    const modal = document.getElementById('admin-pin-modal');
+    if (modal) modal.classList.remove('open');
+  }
+
+  function verifyAdminPin(e) {
+    if (e) e.preventDefault();
+    const pin = document.getElementById('admin-pin-input')?.value.trim();
+    if (pin === ADMIN_PASSCODE || pin === '164' || pin === 'admin') {
+      sessionStorage.setItem('debbie_admin_auth', 'true');
+      closeAdminPinModal();
+      showToast('✦ Welcome, Debbie! Atelier Admin unlocked.');
+      openAdminModal();
+    } else {
+      showToast('Incorrect passcode. Hint: 1640');
+    }
+  }
+
+  function openAdminModal() {
+    const modal = document.getElementById('admin-modal');
+    if (modal) {
+      modal.classList.add('open');
+      switchAdminTab(adminActiveTab);
+    }
+  }
+
+  function closeAdminModal() {
+    const modal = document.getElementById('admin-modal');
+    if (modal) modal.classList.remove('open');
+  }
+
+  function switchAdminTab(tabName) {
+    adminActiveTab = tabName;
+    document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
+    const btn = document.getElementById(`adm-tab-${tabName}`);
+    if (btn) btn.classList.add('active');
+    renderAdminTab(tabName);
+  }
+
+  function renderAdminTab(tabName) {
+    const container = document.getElementById('admin-tab-body');
+    if (!container) return;
+
+    if (tabName === 'overview') {
+      renderAdminOverview(container);
+    } else if (tabName === 'products') {
+      renderAdminProducts(container);
+    } else if (tabName === 'inventory') {
+      renderAdminInventory(container);
+    } else if (tabName === 'orders') {
+      renderAdminOrders(container);
+    } else if (tabName === 'discounts') {
+      renderAdminDiscounts(container);
+    }
+  }
+
+  function renderAdminOverview(container) {
+    const products = DB.products || [];
+    const orders = DB.orders || [];
+    const totalRev = orders.reduce((sum, o) => sum + (o.total || 0), 0);
+    const totalUnits = products.reduce((sum, p) => sum + (p.stock || 0), 0);
+    const lowStockItems = products.filter(p => (p.stock || 0) <= 4);
+
+    container.innerHTML = `
+      <!-- 4 Top KPI Cards -->
+      <div class="admin-kpi-grid">
+        <div class="admin-kpi-card">
+          <span class="admin-kpi-label">Gross Revenue</span>
+          <span class="admin-kpi-value">${formatMoney(totalRev)}</span>
+          <span class="admin-kpi-sub">From ${orders.length} orders</span>
+        </div>
+        <div class="admin-kpi-card">
+          <span class="admin-kpi-label">Active Catalog</span>
+          <span class="admin-kpi-value">${products.length} Items</span>
+          <span class="admin-kpi-sub">${products.filter(p => p.category === "Children's Wear").length} Kids • ${products.filter(p => p.category === "Bespoke Lounge Wear").length} Lounge</span>
+        </div>
+        <div class="admin-kpi-card">
+          <span class="admin-kpi-label">Inventory On Hand</span>
+          <span class="admin-kpi-value">${totalUnits} Units</span>
+          <span class="admin-kpi-sub">Across ${products.filter(p => p.batch).length} batches</span>
+        </div>
+        <div class="admin-kpi-card">
+          <span class="admin-kpi-label">Low Stock Alerts</span>
+          <span class="admin-kpi-value" style="color:${lowStockItems.length > 0 ? 'var(--accent-rose)' : '#2E7D32'};">${lowStockItems.length} Items</span>
+          <span class="admin-kpi-sub">${lowStockItems.length > 0 ? 'Restock recommended' : 'Stock healthy'}</span>
+        </div>
+      </div>
+
+      <!-- Low Stock Alert Banner -->
+      ${lowStockItems.length > 0 ? `
+        <div class="admin-card" style="border-left:4px solid var(--accent-rose); background:#FFF5F3;">
+          <div class="admin-card-header">
+            <div>
+              <strong style="color:var(--text-primary); font-size:0.95rem;">⚠️ Low Stock / Restock Needed</strong>
+              <span style="display:block; font-size:0.76rem; color:var(--text-muted);">The following boutique garments have 4 or fewer pieces remaining:</span>
+            </div>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:10px;">
+            ${lowStockItems.map(p => `
+              <div style="background:#FFFFFF; border:1px solid var(--border-light); border-radius:var(--radius-sm); padding:8px 12px; display:flex; align-items:center; gap:10px; font-size:0.8rem;">
+                <img src="${p.image}" class="admin-thumb" style="width:32px; height:32px;">
+                <div>
+                  <strong>${p.name}</strong>
+                  <span style="display:block; font-size:0.72rem; color:var(--text-muted);">${p.stock || 0} left • Batch: ${p.batch || 'A1'}</span>
+                </div>
+                <button class="admin-btn-action btn-success" onclick="window.DC_APP.adjustStock('${p.id}', 5)">+5 Restock</button>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      ` : ''}
+
+      <!-- Recent Orders Section -->
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <h4 class="admin-card-title">Recent Boutique Sales & Tailoring Orders</h4>
+          <button class="admin-btn-action" onclick="window.DC_APP.switchAdminTab('orders')">View All Orders →</button>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Order #</th>
+                <th>Customer</th>
+                <th>Garment Ordered</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${orders.slice(0, 5).map(o => `
+                <tr>
+                  <td><strong>#${o.orderId}</strong><br><span style="font-size:0.7rem; color:var(--text-muted);">${o.date}</span></td>
+                  <td>${o.customer || 'Client'}</td>
+                  <td>${(o.items || []).map(i => `${i.name} (${i.size || 'Std'})`).join(', ')}</td>
+                  <td><strong>${formatMoney(o.total)}</strong></td>
+                  <td><span class="status-badge ${getStatusBadgeClass(o.status)}">${o.status}</span></td>
+                  <td>
+                    <button class="admin-btn-action" onclick="window.DC_APP.whatsappCustomerOrder('${o.orderId}')" title="Message via WhatsApp">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                      <span>WhatsApp</span>
+                    </button>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Quick Database Management -->
+      <div class="admin-card" style="background:#FAF8F5;">
+        <div class="admin-card-header">
+          <div>
+            <h4 class="admin-card-title">Store Data & Backup Management</h4>
+            <span style="font-size:0.75rem; color:var(--text-muted);">Export or restore your boutique products, batches, and sales history.</span>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button class="admin-btn-action" onclick="window.DC_APP.exportStoreData()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Export Store JSON</span>
+            </button>
+            <button class="admin-btn-action btn-danger" onclick="window.DC_APP.resetStoreData()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+              <span>Reset to Seed Defaults</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function getStatusBadgeClass(status) {
+    if (!status) return 'in-stock';
+    const s = status.toLowerCase();
+    if (s.includes('deliver') || s.includes('complete')) return 'delivered';
+    if (s.includes('tailor')) return 'tailoring';
+    if (s.includes('pickup')) return 'pickup';
+    if (s.includes('dispatch') || s.includes('courier')) return 'dispatched';
+    return 'low-stock';
+  }
+
+  function renderAdminProducts(container) {
+    const products = DB.products || [];
+    const editItem = adminEditingProductId ? products.find(p => p.id === adminEditingProductId) : null;
+    const showForm = adminShowNewProductForm || !!editItem;
+
+    container.innerHTML = `
+      <div class="admin-card-header">
+        <div>
+          <h4 class="admin-card-title">Manage Products, Prices & Available Ages</h4>
+          <span style="font-size:0.75rem; color:var(--text-muted);">Adjust garment prices and ages inline, or upload new atelier creations.</span>
+        </div>
+        <button class="btn-primary" style="padding:8px 16px; font-size:0.78rem;" onclick="window.DC_APP.toggleProductForm()">
+          ${showForm ? 'Close Form' : '+ Upload New Garment'}
+        </button>
+      </div>
+
+      <!-- Upload / Edit Form -->
+      ${showForm ? `
+        <div class="admin-card" style="background:#FFFFFF; border:1px solid var(--accent-rose); margin-bottom:20px;">
+          <h4 style="font-family:var(--font-serif); font-size:1.1rem; color:var(--text-primary); margin-bottom:14px;">
+            ${editItem ? `Edit Garment: ${editItem.name}` : 'Upload New Product to Boutique'}
+          </h4>
+          <form onsubmit="window.DC_APP.saveAdminProduct(event)">
+            <input type="hidden" id="adm-prod-id" value="${editItem ? editItem.id : ''}">
+            
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Garment Name *</label>
+                <input type="text" id="adm-prod-name" class="form-input" required value="${editItem ? editItem.name : ''}" placeholder="e.g. Royal Emerald Tulle Ballgown">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Category *</label>
+                <select id="adm-prod-cat" class="form-select">
+                  <option value="Children's Wear" ${editItem && editItem.category === "Children's Wear" ? 'selected' : ''}>Children's Wear</option>
+                  <option value="Bespoke Lounge Wear" ${editItem && editItem.category === "Bespoke Lounge Wear" ? 'selected' : ''}>Bespoke Lounge Wear</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Selling Price (₦) *</label>
+                <input type="number" id="adm-prod-price" class="form-input" required value="${editItem ? editItem.price : 10000}" placeholder="35000">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Original / Compare Price (₦)</label>
+                <input type="number" id="adm-prod-orig-price" class="form-input" value="${editItem && editItem.originalPrice ? editItem.originalPrice : ''}" placeholder="42000">
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Available Ages & Sizes (comma-separated) *</label>
+                <input type="text" id="adm-prod-sizes" class="form-input" required value="${editItem ? (editItem.sizes || []).join(', ') : '3 Years, 4 Years, 6 Years, Custom Bespoke'}" placeholder="3 Years, 4 Years, 6 Years, Custom Bespoke">
+                <span style="font-size:0.7rem; color:var(--text-muted);">e.g. 3 Years, 4 Years, 7-8 Years, Regular Flannel (All Sizes)</span>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Batch Code & Initial Stock *</label>
+                <div style="display:flex; gap:8px;">
+                  <input type="text" id="adm-prod-batch" class="form-input" value="${editItem ? (editItem.batch || 'BATCH-2026-A1') : 'BATCH-2026-A1'}" placeholder="Batch #" style="flex:1;">
+                  <input type="number" id="adm-prod-stock" class="form-input" value="${editItem ? (editItem.stock || 5) : 5}" placeholder="Units" style="width:80px;">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Lead Time</label>
+                <input type="text" id="adm-prod-lead" class="form-input" value="${editItem ? (editItem.leadTime || '2-3 days tailoring') : '2-3 days tailoring'}" placeholder="2-3 days tailoring">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Boutique Badge / Tag</label>
+                <input type="text" id="adm-prod-badge" class="form-input" value="${editItem ? (editItem.badge || '') : 'New Arrival'}" placeholder="e.g. Bestseller, Heirloom Edition">
+              </div>
+            </div>
+
+            <!-- Image Uploader -->
+            <div class="form-group">
+              <label class="form-label">Product Image (Upload File or Enter Image Path) *</label>
+              <div style="display:flex; gap:10px; align-items:center;">
+                <input type="file" id="adm-file-input" class="form-input" accept="image/*" onchange="window.DC_APP.handleProductImageUpload(this)" style="padding:6px; flex:1;">
+                <input type="text" id="adm-prod-image" class="form-input" value="${editItem ? editItem.image : 'images/couture-pink-rosette-gown-storefront.jpeg'}" placeholder="images/..." style="flex:1;">
+              </div>
+              <div style="margin-top:8px;">
+                <img id="adm-img-preview" src="${editItem ? editItem.image : ''}" style="width:60px; height:60px; object-fit:cover; border-radius:var(--radius-sm); border:1px solid var(--border-light); display:${editItem ? 'block' : 'none'};">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Garment Description</label>
+              <textarea id="adm-prod-desc" class="form-textarea" rows="2" placeholder="Fabric details, handcrafted features, styling advice...">${editItem ? editItem.description : ''}</textarea>
+            </div>
+
+            <div style="display:flex; gap:10px; margin-top:14px;">
+              <button type="submit" class="btn-primary" style="flex:1;">${editItem ? 'Save Updates' : 'Add to Catalog'}</button>
+              <button type="button" class="btn-secondary" style="flex:1;" onclick="window.DC_APP.cancelProductEdit()">Cancel</button>
+            </div>
+          </form>
+        </div>
+      ` : ''}
+
+      <!-- Products Catalog Table -->
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Garment</th>
+              <th>Category</th>
+              <th>Price (₦) [Quick Edit]</th>
+              <th>Available Ages / Sizes [Quick Edit]</th>
+              <th>Batch / Stock</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${products.map(p => `
+              <tr>
+                <td>
+                  <div style="display:flex; align-items:center; gap:10px;">
+                    <img src="${p.image}" class="admin-thumb" onerror="this.src='images/brand-logo.jpeg'">
+                    <div>
+                      <strong style="display:block; font-size:0.86rem;">${p.name}</strong>
+                      <span style="font-size:0.72rem; color:var(--text-muted);">${p.id} • ${p.badge || 'Standard'}</span>
+                    </div>
+                  </div>
+                </td>
+                <td><span style="font-size:0.78rem;">${p.category}</span></td>
+                <td>
+                  <div style="display:flex; align-items:center; gap:4px;">
+                    <span style="font-weight:700;">₦</span>
+                    <input type="number" class="admin-inline-input" value="${p.price}" onchange="window.DC_APP.updateProductPriceInline('${p.id}', this.value)" style="width:85px;">
+                  </div>
+                </td>
+                <td>
+                  <input type="text" class="admin-inline-input" value="${(p.sizes || []).join(', ')}" onchange="window.DC_APP.updateProductSizesInline('${p.id}', this.value)" style="width:200px; font-size:0.74rem;">
+                </td>
+                <td>
+                  <span style="font-size:0.75rem; font-weight:700;">${p.batch || 'A1'}</span><br>
+                  <span class="status-badge ${(p.stock || 0) <= 0 ? 'out-of-stock' : ((p.stock || 0) <= 4 ? 'low-stock' : 'in-stock')}">${p.stock || 0} units</span>
+                </td>
+                <td>
+                  <div style="display:flex; gap:6px;">
+                    <button class="admin-btn-action" onclick="window.DC_APP.editProductFull('${p.id}')" title="Edit Full Details">Edit</button>
+                    <button class="admin-btn-action btn-danger" onclick="window.DC_APP.deleteAdminProduct('${p.id}')" title="Delete Product">Delete</button>
+                  </div>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  }
+
+  function handleProductImageUpload(input) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const pathInput = document.getElementById('adm-prod-image');
+        if (pathInput) pathInput.value = e.target.result;
+        const preview = document.getElementById('adm-img-preview');
+        if (preview) {
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+        }
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  function toggleProductForm() {
+    adminShowNewProductForm = !adminShowNewProductForm;
+    adminEditingProductId = null;
+    renderAdminTab('products');
+  }
+
+  function editProductFull(id) {
+    adminEditingProductId = id;
+    adminShowNewProductForm = true;
+    renderAdminTab('products');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function cancelProductEdit() {
+    adminEditingProductId = null;
+    adminShowNewProductForm = false;
+    renderAdminTab('products');
+  }
+
+  function saveAdminProduct(e) {
+    if (e) e.preventDefault();
+    const id = document.getElementById('adm-prod-id')?.value || ('PROD-' + Date.now().toString().slice(-4));
+    const name = document.getElementById('adm-prod-name')?.value.trim();
+    const category = document.getElementById('adm-prod-cat')?.value || "Children's Wear";
+    const price = parseInt(document.getElementById('adm-prod-price')?.value, 10) || 10000;
+    const origPrice = parseInt(document.getElementById('adm-prod-orig-price')?.value, 10) || (price + 5000);
+    const sizesStr = document.getElementById('adm-prod-sizes')?.value || '3-4 Years, Custom Bespoke';
+    const sizes = sizesStr.split(',').map(s => s.trim()).filter(Boolean);
+    const batch = document.getElementById('adm-prod-batch')?.value.trim() || 'BATCH-2026-A1';
+    const stock = parseInt(document.getElementById('adm-prod-stock')?.value, 10) || 5;
+    const leadTime = document.getElementById('adm-prod-lead')?.value.trim() || '2-3 days tailoring';
+    const badge = document.getElementById('adm-prod-badge')?.value.trim() || 'Atelier Piece';
+    const image = document.getElementById('adm-prod-image')?.value.trim() || 'images/couture-pink-rosette-gown-storefront.jpeg';
+    const desc = document.getElementById('adm-prod-desc')?.value.trim() || '';
+
+    const existingIdx = DB.products.findIndex(p => p.id === id);
+    const prodObj = {
+      id,
+      name,
+      category,
+      subcategory: category === "Children's Wear" ? "Dresses & Gowns" : "Lounge Trousers & Sets",
+      price,
+      originalPrice: origPrice,
+      rating: 5.0,
+      reviewsCount: 1,
+      badge,
+      isBespoke: true,
+      sizes,
+      stock,
+      batch,
+      colors: ["Bespoke Palette"],
+      fabric: desc ? desc.slice(0, 60) : "Handcrafted Natural Fabric",
+      leadTime,
+      description: desc || name,
+      editorialQuote: "Handcrafted luxury tailored in our 164 Udoumana Street atelier.",
+      tags: [category.toLowerCase().includes('kids') ? 'kids' : 'lounge', 'bespoke'],
+      careInstructions: "Machine wash delicate or dry clean.",
+      image,
+      gallery: [image],
+      svgId: category === "Children's Wear" ? "svg-linen-dress" : "svg-satin-pj"
+    };
+
+    if (existingIdx > -1) {
+      DB.products[existingIdx] = Object.assign({}, DB.products[existingIdx], prodObj);
+      showToast(`Updated product: ${name}`);
+    } else {
+      DB.products.unshift(prodObj);
+      showToast(`Added new product: ${name}`);
+    }
+
+    saveDb(DB);
+    adminEditingProductId = null;
+    adminShowNewProductForm = false;
+    renderProducts();
+    renderAdminTab('products');
+  }
+
+  function updateProductPriceInline(id, newPrice) {
+    const p = DB.products.find(item => item.id === id);
+    if (p) {
+      p.price = parseInt(newPrice, 10) || p.price;
+      saveDb(DB);
+      renderProducts();
+      showToast(`Updated price for ${p.name}: ₦${p.price.toLocaleString()}`);
+    }
+  }
+
+  function updateProductSizesInline(id, newSizesStr) {
+    const p = DB.products.find(item => item.id === id);
+    if (p) {
+      p.sizes = newSizesStr.split(',').map(s => s.trim()).filter(Boolean);
+      saveDb(DB);
+      renderProducts();
+      showToast(`Updated available ages for ${p.name}`);
+    }
+  }
+
+  function deleteAdminProduct(id) {
+    if (!confirm('Are you sure you want to delete this garment from the boutique catalog?')) return;
+    DB.products = DB.products.filter(p => p.id !== id);
+    saveDb(DB);
+    renderProducts();
+    renderAdminTab('products');
+    showToast('Garment deleted from catalog');
+  }
+
+  function renderAdminInventory(container) {
+    const products = DB.products || [];
+
+    container.innerHTML = `
+      <div class="admin-card-header">
+        <div>
+          <h4 class="admin-card-title">Inventory & Batch Management</h4>
+          <span style="font-size:0.75rem; color:var(--text-muted);">Monitor atelier stock counts, track fabric batch numbers, and restock units in 1-click.</span>
+        </div>
+      </div>
+
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Garment & SKU</th>
+              <th>Batch ID [Edit]</th>
+              <th>Units On Hand</th>
+              <th>Status</th>
+              <th>Quick Stock Adjustment</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${products.map(p => `
+              <tr>
+                <td>
+                  <div style="display:flex; align-items:center; gap:10px;">
+                    <img src="${p.image}" class="admin-thumb" onerror="this.src='images/brand-logo.jpeg'">
+                    <div>
+                      <strong>${p.name}</strong>
+                      <span style="display:block; font-size:0.72rem; color:var(--text-muted);">${p.id}</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <input type="text" class="admin-inline-input" value="${p.batch || 'BATCH-2026-A1'}" onchange="window.DC_APP.updateProductBatchInline('${p.id}', this.value)" style="width:140px;">
+                </td>
+                <td>
+                  <span style="font-size:1.1rem; font-weight:700;">${p.stock || 0}</span>
+                </td>
+                <td>
+                  <span class="status-badge ${(p.stock || 0) <= 0 ? 'out-of-stock' : ((p.stock || 0) <= 4 ? 'low-stock' : 'in-stock')}">
+                    ${(p.stock || 0) <= 0 ? 'Out of Stock' : ((p.stock || 0) <= 4 ? 'Low Stock' : 'In Stock')}
+                  </span>
+                </td>
+                <td>
+                  <div style="display:flex; gap:4px; align-items:center;">
+                    <button class="admin-btn-action" onclick="window.DC_APP.adjustStock('${p.id}', -1)" title="Minus 1">-1</button>
+                    <button class="admin-btn-action btn-success" onclick="window.DC_APP.adjustStock('${p.id}', 1)" title="Add 1">+1</button>
+                    <button class="admin-btn-action btn-success" onclick="window.DC_APP.adjustStock('${p.id}', 5)" title="Add 5">+5 Restock</button>
+                  </div>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  }
+
+  function adjustStock(id, delta) {
+    const p = DB.products.find(item => item.id === id);
+    if (p) {
+      p.stock = Math.max(0, (p.stock || 0) + delta);
+      saveDb(DB);
+      renderAdminTab(adminActiveTab);
+      showToast(`${p.name} stock updated: ${p.stock} units`);
+    }
+  }
+
+  function updateProductBatchInline(id, newBatch) {
+    const p = DB.products.find(item => item.id === id);
+    if (p) {
+      p.batch = newBatch.trim();
+      saveDb(DB);
+      showToast(`Batch updated to: ${p.batch}`);
+    }
+  }
+
+  function renderAdminOrders(container) {
+    const orders = DB.orders || [];
+
+    container.innerHTML = `
+      <div class="admin-card-header">
+        <div>
+          <h4 class="admin-card-title">Customer Orders & Sales Dispatch</h4>
+          <span style="font-size:0.75rem; color:var(--text-muted);">Manage tailoring workflow, update statuses, notify clients via WhatsApp, or record walk-in boutique sales.</span>
+        </div>
+        <button class="btn-primary" style="padding:8px 16px; font-size:0.78rem;" onclick="window.DC_APP.toggleWalkInSaleForm()">
+          ${adminShowWalkInSaleForm ? 'Close Form' : '+ Record Boutique Walk-in Sale'}
+        </button>
+      </div>
+
+      <!-- Walk-in Sale Form -->
+      ${adminShowWalkInSaleForm ? `
+        <div class="admin-card" style="background:#FFFFFF; border:1px solid var(--accent-gold); margin-bottom:20px;">
+          <h4 style="font-family:var(--font-serif); font-size:1.1rem; color:var(--text-primary); margin-bottom:12px;">
+            Record Walk-In Boutique Sale (164 Udoumana Street)
+          </h4>
+          <form onsubmit="window.DC_APP.recordWalkInSale(event)">
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Client Name *</label>
+                <input type="text" id="walkin-cust" class="form-input" required placeholder="e.g. Mrs. Aniekeme Bassey">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Client Phone (WhatsApp)</label>
+                <input type="tel" id="walkin-phone" class="form-input" placeholder="+234 803 ...">
+              </div>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Select Garment *</label>
+                <select id="walkin-prod" class="form-select">
+                  ${(DB.products || []).map(p => `
+                    <option value="${p.id}">${p.name} - ₦${p.price.toLocaleString()}</option>
+                  `).join('')}
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Size / Age Selected</label>
+                <input type="text" id="walkin-size" class="form-input" placeholder="e.g. 4 Years or Adult M" value="Standard">
+              </div>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Quantity</label>
+                <input type="number" id="walkin-qty" class="form-input" value="1" min="1">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Payment Method</label>
+                <select id="walkin-pay" class="form-select">
+                  <option>Cash at Boutique</option>
+                  <option>POS Card Swipe at Boutique</option>
+                  <option>Direct UBA Bank Transfer (2127888264)</option>
+                </select>
+              </div>
+            </div>
+            <div style="display:flex; gap:10px; margin-top:10px;">
+              <button type="submit" class="btn-primary" style="flex:1;">Confirm & Record Sale</button>
+              <button type="button" class="btn-secondary" style="flex:1;" onclick="window.DC_APP.toggleWalkInSaleForm()">Cancel</button>
+            </div>
+          </form>
+        </div>
+      ` : ''}
+
+      <!-- Orders List -->
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer & Contact</th>
+              <th>Items & Sizing</th>
+              <th>Total</th>
+              <th>Tailoring / Delivery Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${orders.map(o => `
+              <tr>
+                <td>
+                  <strong>#${o.orderId}</strong><br>
+                  <span style="font-size:0.7rem; color:var(--text-muted);">${o.date}</span>
+                </td>
+                <td>
+                  <strong>${o.customer || 'Customer'}</strong><br>
+                  <span style="font-size:0.72rem; color:var(--text-muted);">${o.phone || '+234 708 522 2212'}</span><br>
+                  <span style="font-size:0.7rem; color:var(--text-muted);">${o.deliveryMethod || 'Doorstep Delivery'}</span>
+                </td>
+                <td>
+                  ${(o.items || []).map(i => `
+                    <div style="font-size:0.78rem;">• ${i.name} [${i.size || 'Standard'}] x${i.quantity || 1}</div>
+                  `).join('')}
+                </td>
+                <td><strong>${formatMoney(o.total)}</strong></td>
+                <td>
+                  <select class="form-select" style="padding:4px 8px; font-size:0.74rem;" onchange="window.DC_APP.updateOrderStatus('${o.orderId}', this.value)">
+                    <option value="Pending Review" ${o.status === 'Pending Review' ? 'selected' : ''}>Pending Review</option>
+                    <option value="Tailoring in Atelier (Uyo)" ${o.status === 'Tailoring in Atelier (Uyo)' || o.status.includes('Tailoring') ? 'selected' : ''}>Tailoring in Atelier (Uyo)</option>
+                    <option value="Ready for Pickup (164 Udoumana)" ${o.status.includes('Pickup') ? 'selected' : ''}>Ready for Pickup (164 Udoumana)</option>
+                    <option value="Dispatched with Courier" ${o.status.includes('Dispatch') ? 'selected' : ''}>Dispatched with Courier</option>
+                    <option value="Delivered" ${o.status === 'Delivered' ? 'selected' : ''}>Delivered & Completed</option>
+                  </select>
+                </td>
+                <td>
+                  <button class="admin-btn-action" onclick="window.DC_APP.whatsappCustomerOrder('${o.orderId}')" title="Message Client via WhatsApp">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                    <span>Notify Client</span>
+                  </button>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  }
+
+  function toggleWalkInSaleForm() {
+    adminShowWalkInSaleForm = !adminShowWalkInSaleForm;
+    renderAdminTab('orders');
+  }
+
+  function updateOrderStatus(orderId, newStatus) {
+    const ord = DB.orders.find(o => o.orderId === orderId);
+    if (ord) {
+      ord.status = newStatus;
+      saveDb(DB);
+      showToast(`Order #${orderId} marked as: ${newStatus}`);
+    }
+  }
+
+  function whatsappCustomerOrder(orderId) {
+    const ord = DB.orders.find(o => o.orderId === orderId);
+    if (!ord) return;
+    const phone = ord.phone ? ord.phone.replace(/[^0-9]/g, '') : '2347085222212';
+    const itemsList = (ord.items || []).map(i => i.name).join(', ');
+    const msg = `Hello ${ord.customer || 'Valued Client'}! 👑%0AUpdate from Debbie's Collection (164 Udoumana Street, Uyo):%0AYour order *#${ord.orderId}* (${itemsList}) status is now: *${ord.status}*.%0AOrder Total: ₦${(ord.total || 0).toLocaleString()}.%0AThank you for shopping at Debbie's Collection!`;
+    window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
+  }
+
+  function recordWalkInSale(e) {
+    if (e) e.preventDefault();
+    const custName = document.getElementById('walkin-cust')?.value || 'Walk-in Boutique Client';
+    const custPhone = document.getElementById('walkin-phone')?.value || '+234 708 522 2212';
+    const prodId = document.getElementById('walkin-prod')?.value;
+    const qty = parseInt(document.getElementById('walkin-qty')?.value, 10) || 1;
+    const size = document.getElementById('walkin-size')?.value || 'Standard';
+    const payMethod = document.getElementById('walkin-pay')?.value || 'Cash at Boutique';
+    const prod = DB.products.find(p => p.id === prodId) || DB.products[0];
+    const total = prod.price * qty;
+
+    const newOrder = {
+      orderId: 'DC-UYO-' + Math.floor(1000 + Math.random() * 9000),
+      date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+      items: [{ name: prod.name, size, price: prod.price, quantity: qty }],
+      subtotal: total,
+      shipping: 0,
+      total: total,
+      deliveryMethod: payMethod + ' (164 Udoumana Boutique)',
+      status: 'Delivered',
+      customer: custName,
+      phone: custPhone
+    };
+
+    DB.orders.unshift(newOrder);
+    if (prod.stock) prod.stock = Math.max(0, prod.stock - qty);
+    saveDb(DB);
+    adminShowWalkInSaleForm = false;
+    showToast(`Recorded walk-in sale: ₦${total.toLocaleString()}`);
+    renderAdminTab('orders');
+  }
+
+  function renderAdminDiscounts(container) {
+    const promos = DB.promoCodes || {};
+    const promoKeys = Object.keys(promos);
+
+    container.innerHTML = `
+      <div class="admin-card-header">
+        <div>
+          <h4 class="admin-card-title">Promotions & Discount Codes</h4>
+          <span style="font-size:0.75rem; color:var(--text-muted);">Create boutique promo codes (% off, flat ₦ discount, or free delivery) to boost festive sales.</span>
+        </div>
+      </div>
+
+      <!-- Add Promo Code Form -->
+      <div class="admin-card" style="background:#FFFFFF; border:1px solid var(--border-light); margin-bottom:20px;">
+        <h4 style="font-family:var(--font-serif); font-size:1.1rem; color:var(--text-primary); margin-bottom:12px;">
+          Create New Promo Code
+        </h4>
+        <form onsubmit="window.DC_APP.createPromoCode(event)">
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Promo Code *</label>
+              <input type="text" id="new-promo-code" class="form-input" required placeholder="e.g. UYO2026" style="text-transform:uppercase;">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Discount Type *</label>
+              <select id="new-promo-type" class="form-select">
+                <option value="percent">Percentage (%) Off</option>
+                <option value="flat">Flat Amount (₦) Off</option>
+                <option value="shipping">Free Shipping</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Discount Value (e.g. 15 for 15% or 5000 for ₦5,000) *</label>
+              <input type="number" id="new-promo-val" class="form-input" required placeholder="15">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Description for Customer</label>
+              <input type="text" id="new-promo-desc" class="form-input" placeholder="e.g. 15% Weekend Special">
+            </div>
+          </div>
+          <button type="submit" class="btn-primary" style="margin-top:8px;">Activate Promo Code</button>
+        </form>
+      </div>
+
+      <!-- Active Promo Codes Table -->
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Code Name</th>
+              <th>Discount Type</th>
+              <th>Value</th>
+              <th>Description</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${promoKeys.map(k => {
+              const p = promos[k];
+              return `
+                <tr>
+                  <td><strong style="color:var(--accent-rose); letter-spacing:0.05em;">${k}</strong></td>
+                  <td>${p.type === 'percent' ? 'Percentage' : (p.type === 'flat' ? 'Flat Naira' : 'Free Shipping')}</td>
+                  <td><strong>${p.type === 'percent' ? p.value + '%' : (p.type === 'flat' ? '₦' + p.value.toLocaleString() : '100% Free')}</strong></td>
+                  <td>${p.desc || 'Special Promotion'}</td>
+                  <td><span class="status-badge in-stock">Active</span></td>
+                  <td>
+                    <button class="admin-btn-action btn-danger" onclick="window.DC_APP.deletePromoCode('${k}')">Remove</button>
+                  </td>
+                </tr>
+              `;
+            }).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  }
+
+  function createPromoCode(e) {
+    if (e) e.preventDefault();
+    const code = document.getElementById('new-promo-code')?.value.trim().toUpperCase();
+    const type = document.getElementById('new-promo-type')?.value || 'percent';
+    const val = parseInt(document.getElementById('new-promo-val')?.value, 10) || 10;
+    const desc = document.getElementById('new-promo-desc')?.value.trim() || `${val}% Off Special`;
+
+    if (!code) return;
+    DB.promoCodes[code] = { type, value: val, desc, active: true };
+    saveDb(DB);
+    showToast(`Promo code ${code} activated!`);
+    renderAdminTab('discounts');
+  }
+
+  function deletePromoCode(code) {
+    if (!confirm(`Delete promo code ${code}?`)) return;
+    delete DB.promoCodes[code];
+    saveDb(DB);
+    showToast(`Deleted promo code: ${code}`);
+    renderAdminTab('discounts');
+  }
+
+  function exportStoreData() {
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(DB, null, 2));
+    const dlAnchor = document.createElement('a');
+    dlAnchor.setAttribute("href", dataStr);
+    dlAnchor.setAttribute("download", `debbies_collection_backup_${Date.now()}.json`);
+    dlAnchor.click();
+    showToast('Store data downloaded as JSON backup');
+  }
+
+  function resetStoreData() {
+    if (!confirm('Reset entire store catalog, batches, and orders to default factory seeds?')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    DB = JSON.parse(JSON.stringify(DEFAULT_DB));
+    DB.products = JSON.parse(JSON.stringify(window.DC_PRODUCTS || []));
+    saveDb(DB);
+    renderProducts();
+    renderAdminTab('overview');
+    showToast('Store reset to factory seed defaults');
   }
 
   // --- Expose Public API on window.DC_APP ---
@@ -5385,7 +6641,33 @@ ul {
     closeReviewModal,
     submitReview,
     toggleFaq,
-    showToast
+    showToast,
+    // Admin Suite API
+    openAdminPortal,
+    openAdminPinModal,
+    closeAdminPinModal,
+    verifyAdminPin,
+    openAdminModal,
+    closeAdminModal,
+    switchAdminTab,
+    toggleProductForm,
+    editProductFull,
+    cancelProductEdit,
+    saveAdminProduct,
+    handleProductImageUpload,
+    updateProductPriceInline,
+    updateProductSizesInline,
+    updateProductBatchInline,
+    adjustStock,
+    deleteAdminProduct,
+    toggleWalkInSaleForm,
+    updateOrderStatus,
+    whatsappCustomerOrder,
+    recordWalkInSale,
+    createPromoCode,
+    deletePromoCode,
+    exportStoreData,
+    resetStoreData
   };
 
   // Run on DOM Ready

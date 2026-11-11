@@ -11,7 +11,7 @@ def get_app_js():
   'use strict';
 
   // --- Constants & Database Setup ---
-  const STORAGE_KEY = 'debbie_collection_store_v4';
+  const STORAGE_KEY = 'debbie_collection_store_v5';
   const EXCHANGE_RATES = {
     NGN: 1,
     USD: 1 / 1550,
@@ -26,8 +26,8 @@ def get_app_js():
         cartId: 'item-init-1',
         productId: 'PROD-09',
         name: 'Bespoke Tartan Lounge Pants - Buffalo Red',
-        price: 32000,
-        size: 'Custom Bespoke',
+        price: 10000,
+        size: 'Regular Flannel (All Sizes)',
         color: 'Red & Black Buffalo Plaid',
         quantity: 1,
         image: 'images/lounge-tartan-pants-red-buffalo.jpeg',
@@ -73,27 +73,29 @@ def get_app_js():
         orderId: 'DC-2026-7814',
         date: 'October 24, 2026',
         items: [
-          { name: 'The Udoumana Storefront Rosette Gala Gown', size: '3-4Y', price: 58000, qty: 1 }
+          { name: 'The Udoumana Storefront Rosette Gala Gown', size: '7-8 Years', price: 35000, qty: 1 }
         ],
-        subtotal: 58000,
+        subtotal: 35000,
         shipping: 0,
-        total: 58000,
+        total: 35000,
         deliveryMethod: 'Uyo Same-Day Bike Delivery',
         status: 'Delivered',
-        customer: 'Dr. Idara Akpan • Ewet Housing Estate, Uyo'
+        customer: 'Dr. Idara Akpan • Ewet Housing Estate, Uyo',
+        phone: '+234 803 456 7890'
       },
       {
         orderId: 'DC-2026-8941',
         date: 'November 6, 2026',
         items: [
-          { name: 'Bespoke Tartan Lounge Pants - Buffalo Red', size: 'Custom Bespoke', price: 32000, qty: 1 }
+          { name: 'Bespoke Tartan Lounge Pants - Buffalo Red', size: 'Regular Flannel (All Sizes)', price: 10000, qty: 1 }
         ],
-        subtotal: 32000,
+        subtotal: 10000,
         shipping: 1500,
-        total: 33500,
+        total: 11500,
         deliveryMethod: 'Uyo Same-Day Bike Delivery',
-        status: 'In Tailoring (164 Udoumana Atelier)',
-        customer: 'Dr. Idara Akpan • Ewet Housing Estate, Uyo'
+        status: 'Tailoring in Atelier (Uyo)',
+        customer: 'Lady Blessing Okon • Osongama, Uyo',
+        phone: '+234 802 987 6543'
       }
     ]
   };
@@ -120,6 +122,10 @@ def get_app_js():
   }
 
   let DB = getDb();
+  if (!DB.products || !Array.isArray(DB.products) || DB.products.length === 0) {
+    DB.products = JSON.parse(JSON.stringify(window.DC_PRODUCTS || []));
+    saveDb(DB);
+  }
 
   // --- Active Filter State ---
   let filterState = {
@@ -503,7 +509,7 @@ def get_app_js():
     const activeFiltersBar = document.getElementById('active-filters-bar');
     if (!grid) return;
 
-    const allProducts = window.DC_PRODUCTS || [];
+    const allProducts = DB.products || window.DC_PRODUCTS || [];
 
     // Filter logic
     let filtered = allProducts.filter(p => {
@@ -517,11 +523,17 @@ def get_app_js():
       }
       // Age filter
       if (filterState.age !== 'All') {
-        const hasAge = p.sizes.some(s => s.toLowerCase().includes(filterState.age.toLowerCase()));
-        if (!hasAge && filterState.age === 'Adult' && !p.sizes.some(s => ['XS','S','M','L','XL','XXL'].includes(s))) {
-          return false;
-        }
-        if (!hasAge && filterState.age !== 'Adult') {
+        const target = filterState.age.toLowerCase();
+        const hasAge = (p.sizes || []).some(s => {
+          const str = s.toLowerCase();
+          if (target === '0-12m') return str.includes('0-12') || str.includes('baby') || str.includes('infant');
+          if (target === '1-4y') return str.includes('1') || str.includes('2') || str.includes('3') || str.includes('4') || str.includes('3/4');
+          if (target === '5-8y') return str.includes('5') || str.includes('6') || str.includes('7') || str.includes('8') || str.includes('6-7') || str.includes('7-8');
+          if (target === '9-14y') return str.includes('9') || str.includes('10') || str.includes('11') || str.includes('12') || str.includes('14') || str.includes('9/10');
+          if (target === 'adult') return str.includes('adult') || str.includes('flannel') || str.includes('all sizes') || str.includes('pants') || str.includes('polo') || str.includes('cargo') || ['xs','s','m','l','xl','xxl'].includes(str);
+          return str.includes(target);
+        });
+        if (!hasAge) {
           return false;
         }
       }
@@ -691,7 +703,7 @@ def get_app_js():
 
   // --- Quick View Modal ---
   function openQuickView(productId) {
-    const product = (window.DC_PRODUCTS || []).find(p => p.id === productId);
+    const product = (DB.products || window.DC_PRODUCTS || []).find(p => p.id === productId);
     if (!product) return;
 
     const modal = document.getElementById('quick-view-modal');
@@ -800,7 +812,7 @@ def get_app_js():
   }
 
   function submitQuickView(productId) {
-    const product = (window.DC_PRODUCTS || []).find(p => p.id === productId);
+    const product = (DB.products || window.DC_PRODUCTS || []).find(p => p.id === productId);
     if (!product) return;
 
     const sizeSelect = document.getElementById('qv-size-select');
@@ -1174,7 +1186,7 @@ def get_app_js():
         `;
       }
     } else if (tab === 'wishlist') {
-      const allProducts = window.DC_PRODUCTS || [];
+      const allProducts = DB.products || window.DC_PRODUCTS || [];
       const wishProducts = allProducts.filter(p => DB.wishlist.includes(p.id));
 
       if (wishProducts.length === 0) {
@@ -1356,6 +1368,877 @@ def get_app_js():
     updateHeaderBadges();
     renderCartDrawer();
     renderProducts();
+
+    if (window.location.hash === '#admin') {
+      setTimeout(openAdminPortal, 300);
+    }
+  }
+
+  window.addEventListener('hashchange', () => {
+    if (window.location.hash === '#admin') {
+      openAdminPortal();
+    }
+  });
+
+  // --- Admin Dashboard & Inventory Suite Engine ---
+  const ADMIN_PASSCODE = '1640';
+  let adminActiveTab = 'overview';
+  let adminEditingProductId = null;
+  let adminShowNewProductForm = false;
+  let adminShowWalkInSaleForm = false;
+
+  function openAdminPortal() {
+    if (sessionStorage.getItem('debbie_admin_auth') === 'true') {
+      openAdminModal();
+    } else {
+      openAdminPinModal();
+    }
+  }
+
+  function openAdminPinModal() {
+    const modal = document.getElementById('admin-pin-modal');
+    if (modal) {
+      modal.classList.add('open');
+      const input = document.getElementById('admin-pin-input');
+      if (input) { input.value = ''; input.focus(); }
+    }
+  }
+
+  function closeAdminPinModal() {
+    const modal = document.getElementById('admin-pin-modal');
+    if (modal) modal.classList.remove('open');
+  }
+
+  function verifyAdminPin(e) {
+    if (e) e.preventDefault();
+    const pin = document.getElementById('admin-pin-input')?.value.trim();
+    if (pin === ADMIN_PASSCODE || pin === '164' || pin === 'admin') {
+      sessionStorage.setItem('debbie_admin_auth', 'true');
+      closeAdminPinModal();
+      showToast('✦ Welcome, Debbie! Atelier Admin unlocked.');
+      openAdminModal();
+    } else {
+      showToast('Incorrect passcode. Hint: 1640');
+    }
+  }
+
+  function openAdminModal() {
+    const modal = document.getElementById('admin-modal');
+    if (modal) {
+      modal.classList.add('open');
+      switchAdminTab(adminActiveTab);
+    }
+  }
+
+  function closeAdminModal() {
+    const modal = document.getElementById('admin-modal');
+    if (modal) modal.classList.remove('open');
+  }
+
+  function switchAdminTab(tabName) {
+    adminActiveTab = tabName;
+    document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
+    const btn = document.getElementById(`adm-tab-${tabName}`);
+    if (btn) btn.classList.add('active');
+    renderAdminTab(tabName);
+  }
+
+  function renderAdminTab(tabName) {
+    const container = document.getElementById('admin-tab-body');
+    if (!container) return;
+
+    if (tabName === 'overview') {
+      renderAdminOverview(container);
+    } else if (tabName === 'products') {
+      renderAdminProducts(container);
+    } else if (tabName === 'inventory') {
+      renderAdminInventory(container);
+    } else if (tabName === 'orders') {
+      renderAdminOrders(container);
+    } else if (tabName === 'discounts') {
+      renderAdminDiscounts(container);
+    }
+  }
+
+  function renderAdminOverview(container) {
+    const products = DB.products || [];
+    const orders = DB.orders || [];
+    const totalRev = orders.reduce((sum, o) => sum + (o.total || 0), 0);
+    const totalUnits = products.reduce((sum, p) => sum + (p.stock || 0), 0);
+    const lowStockItems = products.filter(p => (p.stock || 0) <= 4);
+
+    container.innerHTML = `
+      <!-- 4 Top KPI Cards -->
+      <div class="admin-kpi-grid">
+        <div class="admin-kpi-card">
+          <span class="admin-kpi-label">Gross Revenue</span>
+          <span class="admin-kpi-value">${formatMoney(totalRev)}</span>
+          <span class="admin-kpi-sub">From ${orders.length} orders</span>
+        </div>
+        <div class="admin-kpi-card">
+          <span class="admin-kpi-label">Active Catalog</span>
+          <span class="admin-kpi-value">${products.length} Items</span>
+          <span class="admin-kpi-sub">${products.filter(p => p.category === "Children's Wear").length} Kids • ${products.filter(p => p.category === "Bespoke Lounge Wear").length} Lounge</span>
+        </div>
+        <div class="admin-kpi-card">
+          <span class="admin-kpi-label">Inventory On Hand</span>
+          <span class="admin-kpi-value">${totalUnits} Units</span>
+          <span class="admin-kpi-sub">Across ${products.filter(p => p.batch).length} batches</span>
+        </div>
+        <div class="admin-kpi-card">
+          <span class="admin-kpi-label">Low Stock Alerts</span>
+          <span class="admin-kpi-value" style="color:${lowStockItems.length > 0 ? 'var(--accent-rose)' : '#2E7D32'};">${lowStockItems.length} Items</span>
+          <span class="admin-kpi-sub">${lowStockItems.length > 0 ? 'Restock recommended' : 'Stock healthy'}</span>
+        </div>
+      </div>
+
+      <!-- Low Stock Alert Banner -->
+      ${lowStockItems.length > 0 ? `
+        <div class="admin-card" style="border-left:4px solid var(--accent-rose); background:#FFF5F3;">
+          <div class="admin-card-header">
+            <div>
+              <strong style="color:var(--text-primary); font-size:0.95rem;">⚠️ Low Stock / Restock Needed</strong>
+              <span style="display:block; font-size:0.76rem; color:var(--text-muted);">The following boutique garments have 4 or fewer pieces remaining:</span>
+            </div>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:10px;">
+            ${lowStockItems.map(p => `
+              <div style="background:#FFFFFF; border:1px solid var(--border-light); border-radius:var(--radius-sm); padding:8px 12px; display:flex; align-items:center; gap:10px; font-size:0.8rem;">
+                <img src="${p.image}" class="admin-thumb" style="width:32px; height:32px;">
+                <div>
+                  <strong>${p.name}</strong>
+                  <span style="display:block; font-size:0.72rem; color:var(--text-muted);">${p.stock || 0} left • Batch: ${p.batch || 'A1'}</span>
+                </div>
+                <button class="admin-btn-action btn-success" onclick="window.DC_APP.adjustStock('${p.id}', 5)">+5 Restock</button>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      ` : ''}
+
+      <!-- Recent Orders Section -->
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <h4 class="admin-card-title">Recent Boutique Sales & Tailoring Orders</h4>
+          <button class="admin-btn-action" onclick="window.DC_APP.switchAdminTab('orders')">View All Orders →</button>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Order #</th>
+                <th>Customer</th>
+                <th>Garment Ordered</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${orders.slice(0, 5).map(o => `
+                <tr>
+                  <td><strong>#${o.orderId}</strong><br><span style="font-size:0.7rem; color:var(--text-muted);">${o.date}</span></td>
+                  <td>${o.customer || 'Client'}</td>
+                  <td>${(o.items || []).map(i => `${i.name} (${i.size || 'Std'})`).join(', ')}</td>
+                  <td><strong>${formatMoney(o.total)}</strong></td>
+                  <td><span class="status-badge ${getStatusBadgeClass(o.status)}">${o.status}</span></td>
+                  <td>
+                    <button class="admin-btn-action" onclick="window.DC_APP.whatsappCustomerOrder('${o.orderId}')" title="Message via WhatsApp">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                      <span>WhatsApp</span>
+                    </button>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Quick Database Management -->
+      <div class="admin-card" style="background:#FAF8F5;">
+        <div class="admin-card-header">
+          <div>
+            <h4 class="admin-card-title">Store Data & Backup Management</h4>
+            <span style="font-size:0.75rem; color:var(--text-muted);">Export or restore your boutique products, batches, and sales history.</span>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button class="admin-btn-action" onclick="window.DC_APP.exportStoreData()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Export Store JSON</span>
+            </button>
+            <button class="admin-btn-action btn-danger" onclick="window.DC_APP.resetStoreData()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+              <span>Reset to Seed Defaults</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function getStatusBadgeClass(status) {
+    if (!status) return 'in-stock';
+    const s = status.toLowerCase();
+    if (s.includes('deliver') || s.includes('complete')) return 'delivered';
+    if (s.includes('tailor')) return 'tailoring';
+    if (s.includes('pickup')) return 'pickup';
+    if (s.includes('dispatch') || s.includes('courier')) return 'dispatched';
+    return 'low-stock';
+  }
+
+  function renderAdminProducts(container) {
+    const products = DB.products || [];
+    const editItem = adminEditingProductId ? products.find(p => p.id === adminEditingProductId) : null;
+    const showForm = adminShowNewProductForm || !!editItem;
+
+    container.innerHTML = `
+      <div class="admin-card-header">
+        <div>
+          <h4 class="admin-card-title">Manage Products, Prices & Available Ages</h4>
+          <span style="font-size:0.75rem; color:var(--text-muted);">Adjust garment prices and ages inline, or upload new atelier creations.</span>
+        </div>
+        <button class="btn-primary" style="padding:8px 16px; font-size:0.78rem;" onclick="window.DC_APP.toggleProductForm()">
+          ${showForm ? 'Close Form' : '+ Upload New Garment'}
+        </button>
+      </div>
+
+      <!-- Upload / Edit Form -->
+      ${showForm ? `
+        <div class="admin-card" style="background:#FFFFFF; border:1px solid var(--accent-rose); margin-bottom:20px;">
+          <h4 style="font-family:var(--font-serif); font-size:1.1rem; color:var(--text-primary); margin-bottom:14px;">
+            ${editItem ? `Edit Garment: ${editItem.name}` : 'Upload New Product to Boutique'}
+          </h4>
+          <form onsubmit="window.DC_APP.saveAdminProduct(event)">
+            <input type="hidden" id="adm-prod-id" value="${editItem ? editItem.id : ''}">
+            
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Garment Name *</label>
+                <input type="text" id="adm-prod-name" class="form-input" required value="${editItem ? editItem.name : ''}" placeholder="e.g. Royal Emerald Tulle Ballgown">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Category *</label>
+                <select id="adm-prod-cat" class="form-select">
+                  <option value="Children's Wear" ${editItem && editItem.category === "Children's Wear" ? 'selected' : ''}>Children's Wear</option>
+                  <option value="Bespoke Lounge Wear" ${editItem && editItem.category === "Bespoke Lounge Wear" ? 'selected' : ''}>Bespoke Lounge Wear</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Selling Price (₦) *</label>
+                <input type="number" id="adm-prod-price" class="form-input" required value="${editItem ? editItem.price : 10000}" placeholder="35000">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Original / Compare Price (₦)</label>
+                <input type="number" id="adm-prod-orig-price" class="form-input" value="${editItem && editItem.originalPrice ? editItem.originalPrice : ''}" placeholder="42000">
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Available Ages & Sizes (comma-separated) *</label>
+                <input type="text" id="adm-prod-sizes" class="form-input" required value="${editItem ? (editItem.sizes || []).join(', ') : '3 Years, 4 Years, 6 Years, Custom Bespoke'}" placeholder="3 Years, 4 Years, 6 Years, Custom Bespoke">
+                <span style="font-size:0.7rem; color:var(--text-muted);">e.g. 3 Years, 4 Years, 7-8 Years, Regular Flannel (All Sizes)</span>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Batch Code & Initial Stock *</label>
+                <div style="display:flex; gap:8px;">
+                  <input type="text" id="adm-prod-batch" class="form-input" value="${editItem ? (editItem.batch || 'BATCH-2026-A1') : 'BATCH-2026-A1'}" placeholder="Batch #" style="flex:1;">
+                  <input type="number" id="adm-prod-stock" class="form-input" value="${editItem ? (editItem.stock || 5) : 5}" placeholder="Units" style="width:80px;">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Lead Time</label>
+                <input type="text" id="adm-prod-lead" class="form-input" value="${editItem ? (editItem.leadTime || '2-3 days tailoring') : '2-3 days tailoring'}" placeholder="2-3 days tailoring">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Boutique Badge / Tag</label>
+                <input type="text" id="adm-prod-badge" class="form-input" value="${editItem ? (editItem.badge || '') : 'New Arrival'}" placeholder="e.g. Bestseller, Heirloom Edition">
+              </div>
+            </div>
+
+            <!-- Image Uploader -->
+            <div class="form-group">
+              <label class="form-label">Product Image (Upload File or Enter Image Path) *</label>
+              <div style="display:flex; gap:10px; align-items:center;">
+                <input type="file" id="adm-file-input" class="form-input" accept="image/*" onchange="window.DC_APP.handleProductImageUpload(this)" style="padding:6px; flex:1;">
+                <input type="text" id="adm-prod-image" class="form-input" value="${editItem ? editItem.image : 'images/couture-pink-rosette-gown-storefront.jpeg'}" placeholder="images/..." style="flex:1;">
+              </div>
+              <div style="margin-top:8px;">
+                <img id="adm-img-preview" src="${editItem ? editItem.image : ''}" style="width:60px; height:60px; object-fit:cover; border-radius:var(--radius-sm); border:1px solid var(--border-light); display:${editItem ? 'block' : 'none'};">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Garment Description</label>
+              <textarea id="adm-prod-desc" class="form-textarea" rows="2" placeholder="Fabric details, handcrafted features, styling advice...">${editItem ? editItem.description : ''}</textarea>
+            </div>
+
+            <div style="display:flex; gap:10px; margin-top:14px;">
+              <button type="submit" class="btn-primary" style="flex:1;">${editItem ? 'Save Updates' : 'Add to Catalog'}</button>
+              <button type="button" class="btn-secondary" style="flex:1;" onclick="window.DC_APP.cancelProductEdit()">Cancel</button>
+            </div>
+          </form>
+        </div>
+      ` : ''}
+
+      <!-- Products Catalog Table -->
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Garment</th>
+              <th>Category</th>
+              <th>Price (₦) [Quick Edit]</th>
+              <th>Available Ages / Sizes [Quick Edit]</th>
+              <th>Batch / Stock</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${products.map(p => `
+              <tr>
+                <td>
+                  <div style="display:flex; align-items:center; gap:10px;">
+                    <img src="${p.image}" class="admin-thumb" onerror="this.src='images/brand-logo.jpeg'">
+                    <div>
+                      <strong style="display:block; font-size:0.86rem;">${p.name}</strong>
+                      <span style="font-size:0.72rem; color:var(--text-muted);">${p.id} • ${p.badge || 'Standard'}</span>
+                    </div>
+                  </div>
+                </td>
+                <td><span style="font-size:0.78rem;">${p.category}</span></td>
+                <td>
+                  <div style="display:flex; align-items:center; gap:4px;">
+                    <span style="font-weight:700;">₦</span>
+                    <input type="number" class="admin-inline-input" value="${p.price}" onchange="window.DC_APP.updateProductPriceInline('${p.id}', this.value)" style="width:85px;">
+                  </div>
+                </td>
+                <td>
+                  <input type="text" class="admin-inline-input" value="${(p.sizes || []).join(', ')}" onchange="window.DC_APP.updateProductSizesInline('${p.id}', this.value)" style="width:200px; font-size:0.74rem;">
+                </td>
+                <td>
+                  <span style="font-size:0.75rem; font-weight:700;">${p.batch || 'A1'}</span><br>
+                  <span class="status-badge ${(p.stock || 0) <= 0 ? 'out-of-stock' : ((p.stock || 0) <= 4 ? 'low-stock' : 'in-stock')}">${p.stock || 0} units</span>
+                </td>
+                <td>
+                  <div style="display:flex; gap:6px;">
+                    <button class="admin-btn-action" onclick="window.DC_APP.editProductFull('${p.id}')" title="Edit Full Details">Edit</button>
+                    <button class="admin-btn-action btn-danger" onclick="window.DC_APP.deleteAdminProduct('${p.id}')" title="Delete Product">Delete</button>
+                  </div>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  }
+
+  function handleProductImageUpload(input) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const pathInput = document.getElementById('adm-prod-image');
+        if (pathInput) pathInput.value = e.target.result;
+        const preview = document.getElementById('adm-img-preview');
+        if (preview) {
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+        }
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  function toggleProductForm() {
+    adminShowNewProductForm = !adminShowNewProductForm;
+    adminEditingProductId = null;
+    renderAdminTab('products');
+  }
+
+  function editProductFull(id) {
+    adminEditingProductId = id;
+    adminShowNewProductForm = true;
+    renderAdminTab('products');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function cancelProductEdit() {
+    adminEditingProductId = null;
+    adminShowNewProductForm = false;
+    renderAdminTab('products');
+  }
+
+  function saveAdminProduct(e) {
+    if (e) e.preventDefault();
+    const id = document.getElementById('adm-prod-id')?.value || ('PROD-' + Date.now().toString().slice(-4));
+    const name = document.getElementById('adm-prod-name')?.value.trim();
+    const category = document.getElementById('adm-prod-cat')?.value || "Children's Wear";
+    const price = parseInt(document.getElementById('adm-prod-price')?.value, 10) || 10000;
+    const origPrice = parseInt(document.getElementById('adm-prod-orig-price')?.value, 10) || (price + 5000);
+    const sizesStr = document.getElementById('adm-prod-sizes')?.value || '3-4 Years, Custom Bespoke';
+    const sizes = sizesStr.split(',').map(s => s.trim()).filter(Boolean);
+    const batch = document.getElementById('adm-prod-batch')?.value.trim() || 'BATCH-2026-A1';
+    const stock = parseInt(document.getElementById('adm-prod-stock')?.value, 10) || 5;
+    const leadTime = document.getElementById('adm-prod-lead')?.value.trim() || '2-3 days tailoring';
+    const badge = document.getElementById('adm-prod-badge')?.value.trim() || 'Atelier Piece';
+    const image = document.getElementById('adm-prod-image')?.value.trim() || 'images/couture-pink-rosette-gown-storefront.jpeg';
+    const desc = document.getElementById('adm-prod-desc')?.value.trim() || '';
+
+    const existingIdx = DB.products.findIndex(p => p.id === id);
+    const prodObj = {
+      id,
+      name,
+      category,
+      subcategory: category === "Children's Wear" ? "Dresses & Gowns" : "Lounge Trousers & Sets",
+      price,
+      originalPrice: origPrice,
+      rating: 5.0,
+      reviewsCount: 1,
+      badge,
+      isBespoke: true,
+      sizes,
+      stock,
+      batch,
+      colors: ["Bespoke Palette"],
+      fabric: desc ? desc.slice(0, 60) : "Handcrafted Natural Fabric",
+      leadTime,
+      description: desc || name,
+      editorialQuote: "Handcrafted luxury tailored in our 164 Udoumana Street atelier.",
+      tags: [category.toLowerCase().includes('kids') ? 'kids' : 'lounge', 'bespoke'],
+      careInstructions: "Machine wash delicate or dry clean.",
+      image,
+      gallery: [image],
+      svgId: category === "Children's Wear" ? "svg-linen-dress" : "svg-satin-pj"
+    };
+
+    if (existingIdx > -1) {
+      DB.products[existingIdx] = Object.assign({}, DB.products[existingIdx], prodObj);
+      showToast(`Updated product: ${name}`);
+    } else {
+      DB.products.unshift(prodObj);
+      showToast(`Added new product: ${name}`);
+    }
+
+    saveDb(DB);
+    adminEditingProductId = null;
+    adminShowNewProductForm = false;
+    renderProducts();
+    renderAdminTab('products');
+  }
+
+  function updateProductPriceInline(id, newPrice) {
+    const p = DB.products.find(item => item.id === id);
+    if (p) {
+      p.price = parseInt(newPrice, 10) || p.price;
+      saveDb(DB);
+      renderProducts();
+      showToast(`Updated price for ${p.name}: ₦${p.price.toLocaleString()}`);
+    }
+  }
+
+  function updateProductSizesInline(id, newSizesStr) {
+    const p = DB.products.find(item => item.id === id);
+    if (p) {
+      p.sizes = newSizesStr.split(',').map(s => s.trim()).filter(Boolean);
+      saveDb(DB);
+      renderProducts();
+      showToast(`Updated available ages for ${p.name}`);
+    }
+  }
+
+  function deleteAdminProduct(id) {
+    if (!confirm('Are you sure you want to delete this garment from the boutique catalog?')) return;
+    DB.products = DB.products.filter(p => p.id !== id);
+    saveDb(DB);
+    renderProducts();
+    renderAdminTab('products');
+    showToast('Garment deleted from catalog');
+  }
+
+  function renderAdminInventory(container) {
+    const products = DB.products || [];
+
+    container.innerHTML = `
+      <div class="admin-card-header">
+        <div>
+          <h4 class="admin-card-title">Inventory & Batch Management</h4>
+          <span style="font-size:0.75rem; color:var(--text-muted);">Monitor atelier stock counts, track fabric batch numbers, and restock units in 1-click.</span>
+        </div>
+      </div>
+
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Garment & SKU</th>
+              <th>Batch ID [Edit]</th>
+              <th>Units On Hand</th>
+              <th>Status</th>
+              <th>Quick Stock Adjustment</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${products.map(p => `
+              <tr>
+                <td>
+                  <div style="display:flex; align-items:center; gap:10px;">
+                    <img src="${p.image}" class="admin-thumb" onerror="this.src='images/brand-logo.jpeg'">
+                    <div>
+                      <strong>${p.name}</strong>
+                      <span style="display:block; font-size:0.72rem; color:var(--text-muted);">${p.id}</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <input type="text" class="admin-inline-input" value="${p.batch || 'BATCH-2026-A1'}" onchange="window.DC_APP.updateProductBatchInline('${p.id}', this.value)" style="width:140px;">
+                </td>
+                <td>
+                  <span style="font-size:1.1rem; font-weight:700;">${p.stock || 0}</span>
+                </td>
+                <td>
+                  <span class="status-badge ${(p.stock || 0) <= 0 ? 'out-of-stock' : ((p.stock || 0) <= 4 ? 'low-stock' : 'in-stock')}">
+                    ${(p.stock || 0) <= 0 ? 'Out of Stock' : ((p.stock || 0) <= 4 ? 'Low Stock' : 'In Stock')}
+                  </span>
+                </td>
+                <td>
+                  <div style="display:flex; gap:4px; align-items:center;">
+                    <button class="admin-btn-action" onclick="window.DC_APP.adjustStock('${p.id}', -1)" title="Minus 1">-1</button>
+                    <button class="admin-btn-action btn-success" onclick="window.DC_APP.adjustStock('${p.id}', 1)" title="Add 1">+1</button>
+                    <button class="admin-btn-action btn-success" onclick="window.DC_APP.adjustStock('${p.id}', 5)" title="Add 5">+5 Restock</button>
+                  </div>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  }
+
+  function adjustStock(id, delta) {
+    const p = DB.products.find(item => item.id === id);
+    if (p) {
+      p.stock = Math.max(0, (p.stock || 0) + delta);
+      saveDb(DB);
+      renderAdminTab(adminActiveTab);
+      showToast(`${p.name} stock updated: ${p.stock} units`);
+    }
+  }
+
+  function updateProductBatchInline(id, newBatch) {
+    const p = DB.products.find(item => item.id === id);
+    if (p) {
+      p.batch = newBatch.trim();
+      saveDb(DB);
+      showToast(`Batch updated to: ${p.batch}`);
+    }
+  }
+
+  function renderAdminOrders(container) {
+    const orders = DB.orders || [];
+
+    container.innerHTML = `
+      <div class="admin-card-header">
+        <div>
+          <h4 class="admin-card-title">Customer Orders & Sales Dispatch</h4>
+          <span style="font-size:0.75rem; color:var(--text-muted);">Manage tailoring workflow, update statuses, notify clients via WhatsApp, or record walk-in boutique sales.</span>
+        </div>
+        <button class="btn-primary" style="padding:8px 16px; font-size:0.78rem;" onclick="window.DC_APP.toggleWalkInSaleForm()">
+          ${adminShowWalkInSaleForm ? 'Close Form' : '+ Record Boutique Walk-in Sale'}
+        </button>
+      </div>
+
+      <!-- Walk-in Sale Form -->
+      ${adminShowWalkInSaleForm ? `
+        <div class="admin-card" style="background:#FFFFFF; border:1px solid var(--accent-gold); margin-bottom:20px;">
+          <h4 style="font-family:var(--font-serif); font-size:1.1rem; color:var(--text-primary); margin-bottom:12px;">
+            Record Walk-In Boutique Sale (164 Udoumana Street)
+          </h4>
+          <form onsubmit="window.DC_APP.recordWalkInSale(event)">
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Client Name *</label>
+                <input type="text" id="walkin-cust" class="form-input" required placeholder="e.g. Mrs. Aniekeme Bassey">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Client Phone (WhatsApp)</label>
+                <input type="tel" id="walkin-phone" class="form-input" placeholder="+234 803 ...">
+              </div>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Select Garment *</label>
+                <select id="walkin-prod" class="form-select">
+                  ${(DB.products || []).map(p => `
+                    <option value="${p.id}">${p.name} - ₦${p.price.toLocaleString()}</option>
+                  `).join('')}
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Size / Age Selected</label>
+                <input type="text" id="walkin-size" class="form-input" placeholder="e.g. 4 Years or Adult M" value="Standard">
+              </div>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Quantity</label>
+                <input type="number" id="walkin-qty" class="form-input" value="1" min="1">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Payment Method</label>
+                <select id="walkin-pay" class="form-select">
+                  <option>Cash at Boutique</option>
+                  <option>POS Card Swipe at Boutique</option>
+                  <option>Direct UBA Bank Transfer (2127888264)</option>
+                </select>
+              </div>
+            </div>
+            <div style="display:flex; gap:10px; margin-top:10px;">
+              <button type="submit" class="btn-primary" style="flex:1;">Confirm & Record Sale</button>
+              <button type="button" class="btn-secondary" style="flex:1;" onclick="window.DC_APP.toggleWalkInSaleForm()">Cancel</button>
+            </div>
+          </form>
+        </div>
+      ` : ''}
+
+      <!-- Orders List -->
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer & Contact</th>
+              <th>Items & Sizing</th>
+              <th>Total</th>
+              <th>Tailoring / Delivery Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${orders.map(o => `
+              <tr>
+                <td>
+                  <strong>#${o.orderId}</strong><br>
+                  <span style="font-size:0.7rem; color:var(--text-muted);">${o.date}</span>
+                </td>
+                <td>
+                  <strong>${o.customer || 'Customer'}</strong><br>
+                  <span style="font-size:0.72rem; color:var(--text-muted);">${o.phone || '+234 708 522 2212'}</span><br>
+                  <span style="font-size:0.7rem; color:var(--text-muted);">${o.deliveryMethod || 'Doorstep Delivery'}</span>
+                </td>
+                <td>
+                  ${(o.items || []).map(i => `
+                    <div style="font-size:0.78rem;">• ${i.name} [${i.size || 'Standard'}] x${i.quantity || 1}</div>
+                  `).join('')}
+                </td>
+                <td><strong>${formatMoney(o.total)}</strong></td>
+                <td>
+                  <select class="form-select" style="padding:4px 8px; font-size:0.74rem;" onchange="window.DC_APP.updateOrderStatus('${o.orderId}', this.value)">
+                    <option value="Pending Review" ${o.status === 'Pending Review' ? 'selected' : ''}>Pending Review</option>
+                    <option value="Tailoring in Atelier (Uyo)" ${o.status === 'Tailoring in Atelier (Uyo)' || o.status.includes('Tailoring') ? 'selected' : ''}>Tailoring in Atelier (Uyo)</option>
+                    <option value="Ready for Pickup (164 Udoumana)" ${o.status.includes('Pickup') ? 'selected' : ''}>Ready for Pickup (164 Udoumana)</option>
+                    <option value="Dispatched with Courier" ${o.status.includes('Dispatch') ? 'selected' : ''}>Dispatched with Courier</option>
+                    <option value="Delivered" ${o.status === 'Delivered' ? 'selected' : ''}>Delivered & Completed</option>
+                  </select>
+                </td>
+                <td>
+                  <button class="admin-btn-action" onclick="window.DC_APP.whatsappCustomerOrder('${o.orderId}')" title="Message Client via WhatsApp">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                    <span>Notify Client</span>
+                  </button>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  }
+
+  function toggleWalkInSaleForm() {
+    adminShowWalkInSaleForm = !adminShowWalkInSaleForm;
+    renderAdminTab('orders');
+  }
+
+  function updateOrderStatus(orderId, newStatus) {
+    const ord = DB.orders.find(o => o.orderId === orderId);
+    if (ord) {
+      ord.status = newStatus;
+      saveDb(DB);
+      showToast(`Order #${orderId} marked as: ${newStatus}`);
+    }
+  }
+
+  function whatsappCustomerOrder(orderId) {
+    const ord = DB.orders.find(o => o.orderId === orderId);
+    if (!ord) return;
+    const phone = ord.phone ? ord.phone.replace(/[^0-9]/g, '') : '2347085222212';
+    const itemsList = (ord.items || []).map(i => i.name).join(', ');
+    const msg = `Hello ${ord.customer || 'Valued Client'}! 👑%0AUpdate from Debbie's Collection (164 Udoumana Street, Uyo):%0AYour order *#${ord.orderId}* (${itemsList}) status is now: *${ord.status}*.%0AOrder Total: ₦${(ord.total || 0).toLocaleString()}.%0AThank you for shopping at Debbie's Collection!`;
+    window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
+  }
+
+  function recordWalkInSale(e) {
+    if (e) e.preventDefault();
+    const custName = document.getElementById('walkin-cust')?.value || 'Walk-in Boutique Client';
+    const custPhone = document.getElementById('walkin-phone')?.value || '+234 708 522 2212';
+    const prodId = document.getElementById('walkin-prod')?.value;
+    const qty = parseInt(document.getElementById('walkin-qty')?.value, 10) || 1;
+    const size = document.getElementById('walkin-size')?.value || 'Standard';
+    const payMethod = document.getElementById('walkin-pay')?.value || 'Cash at Boutique';
+    const prod = DB.products.find(p => p.id === prodId) || DB.products[0];
+    const total = prod.price * qty;
+
+    const newOrder = {
+      orderId: 'DC-UYO-' + Math.floor(1000 + Math.random() * 9000),
+      date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+      items: [{ name: prod.name, size, price: prod.price, quantity: qty }],
+      subtotal: total,
+      shipping: 0,
+      total: total,
+      deliveryMethod: payMethod + ' (164 Udoumana Boutique)',
+      status: 'Delivered',
+      customer: custName,
+      phone: custPhone
+    };
+
+    DB.orders.unshift(newOrder);
+    if (prod.stock) prod.stock = Math.max(0, prod.stock - qty);
+    saveDb(DB);
+    adminShowWalkInSaleForm = false;
+    showToast(`Recorded walk-in sale: ₦${total.toLocaleString()}`);
+    renderAdminTab('orders');
+  }
+
+  function renderAdminDiscounts(container) {
+    const promos = DB.promoCodes || {};
+    const promoKeys = Object.keys(promos);
+
+    container.innerHTML = `
+      <div class="admin-card-header">
+        <div>
+          <h4 class="admin-card-title">Promotions & Discount Codes</h4>
+          <span style="font-size:0.75rem; color:var(--text-muted);">Create boutique promo codes (% off, flat ₦ discount, or free delivery) to boost festive sales.</span>
+        </div>
+      </div>
+
+      <!-- Add Promo Code Form -->
+      <div class="admin-card" style="background:#FFFFFF; border:1px solid var(--border-light); margin-bottom:20px;">
+        <h4 style="font-family:var(--font-serif); font-size:1.1rem; color:var(--text-primary); margin-bottom:12px;">
+          Create New Promo Code
+        </h4>
+        <form onsubmit="window.DC_APP.createPromoCode(event)">
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Promo Code *</label>
+              <input type="text" id="new-promo-code" class="form-input" required placeholder="e.g. UYO2026" style="text-transform:uppercase;">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Discount Type *</label>
+              <select id="new-promo-type" class="form-select">
+                <option value="percent">Percentage (%) Off</option>
+                <option value="flat">Flat Amount (₦) Off</option>
+                <option value="shipping">Free Shipping</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Discount Value (e.g. 15 for 15% or 5000 for ₦5,000) *</label>
+              <input type="number" id="new-promo-val" class="form-input" required placeholder="15">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Description for Customer</label>
+              <input type="text" id="new-promo-desc" class="form-input" placeholder="e.g. 15% Weekend Special">
+            </div>
+          </div>
+          <button type="submit" class="btn-primary" style="margin-top:8px;">Activate Promo Code</button>
+        </form>
+      </div>
+
+      <!-- Active Promo Codes Table -->
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Code Name</th>
+              <th>Discount Type</th>
+              <th>Value</th>
+              <th>Description</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${promoKeys.map(k => {
+              const p = promos[k];
+              return `
+                <tr>
+                  <td><strong style="color:var(--accent-rose); letter-spacing:0.05em;">${k}</strong></td>
+                  <td>${p.type === 'percent' ? 'Percentage' : (p.type === 'flat' ? 'Flat Naira' : 'Free Shipping')}</td>
+                  <td><strong>${p.type === 'percent' ? p.value + '%' : (p.type === 'flat' ? '₦' + p.value.toLocaleString() : '100% Free')}</strong></td>
+                  <td>${p.desc || 'Special Promotion'}</td>
+                  <td><span class="status-badge in-stock">Active</span></td>
+                  <td>
+                    <button class="admin-btn-action btn-danger" onclick="window.DC_APP.deletePromoCode('${k}')">Remove</button>
+                  </td>
+                </tr>
+              `;
+            }).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  }
+
+  function createPromoCode(e) {
+    if (e) e.preventDefault();
+    const code = document.getElementById('new-promo-code')?.value.trim().toUpperCase();
+    const type = document.getElementById('new-promo-type')?.value || 'percent';
+    const val = parseInt(document.getElementById('new-promo-val')?.value, 10) || 10;
+    const desc = document.getElementById('new-promo-desc')?.value.trim() || `${val}% Off Special`;
+
+    if (!code) return;
+    DB.promoCodes[code] = { type, value: val, desc, active: true };
+    saveDb(DB);
+    showToast(`Promo code ${code} activated!`);
+    renderAdminTab('discounts');
+  }
+
+  function deletePromoCode(code) {
+    if (!confirm(`Delete promo code ${code}?`)) return;
+    delete DB.promoCodes[code];
+    saveDb(DB);
+    showToast(`Deleted promo code: ${code}`);
+    renderAdminTab('discounts');
+  }
+
+  function exportStoreData() {
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(DB, null, 2));
+    const dlAnchor = document.createElement('a');
+    dlAnchor.setAttribute("href", dataStr);
+    dlAnchor.setAttribute("download", `debbies_collection_backup_${Date.now()}.json`);
+    dlAnchor.click();
+    showToast('Store data downloaded as JSON backup');
+  }
+
+  function resetStoreData() {
+    if (!confirm('Reset entire store catalog, batches, and orders to default factory seeds?')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    DB = JSON.parse(JSON.stringify(DEFAULT_DB));
+    DB.products = JSON.parse(JSON.stringify(window.DC_PRODUCTS || []));
+    saveDb(DB);
+    renderProducts();
+    renderAdminTab('overview');
+    showToast('Store reset to factory seed defaults');
   }
 
   // --- Expose Public API on window.DC_APP ---
@@ -1406,7 +2289,33 @@ def get_app_js():
     closeReviewModal,
     submitReview,
     toggleFaq,
-    showToast
+    showToast,
+    // Admin Suite API
+    openAdminPortal,
+    openAdminPinModal,
+    closeAdminPinModal,
+    verifyAdminPin,
+    openAdminModal,
+    closeAdminModal,
+    switchAdminTab,
+    toggleProductForm,
+    editProductFull,
+    cancelProductEdit,
+    saveAdminProduct,
+    handleProductImageUpload,
+    updateProductPriceInline,
+    updateProductSizesInline,
+    updateProductBatchInline,
+    adjustStock,
+    deleteAdminProduct,
+    toggleWalkInSaleForm,
+    updateOrderStatus,
+    whatsappCustomerOrder,
+    recordWalkInSale,
+    createPromoCode,
+    deletePromoCode,
+    exportStoreData,
+    resetStoreData
   };
 
   // Run on DOM Ready

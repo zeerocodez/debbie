@@ -62,6 +62,10 @@ def get_header_html():
     </nav>
 
     <div class="header-right">
+      <button class="admin-badge-btn" onclick="window.DC_APP.openAdminPortal()" title="Atelier Admin & Inventory Suite" aria-label="Admin Portal">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span>Admin Suite</span>
+      </button>
       <button class="header-action-btn" onclick="window.DC_APP.focusSearch()" title="Search catalog" aria-label="Search">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       </button>
@@ -337,7 +341,7 @@ def get_atelier_html():
         <div class="feature-icon-box">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         </div>
-        <h3 class="feature-title">Akwa Ibom Sartorial Heritage</h3>
+        <h3 class="feature-title">Akwa Ibom Tailoring Heritage</h3>
         <p class="feature-text">Integrating traditional Akwete and Aso-Oke handweaving with contemporary British and French tailoring silhouettes for weddings, dedications, and pageants.</p>
       </div>
 
@@ -576,7 +580,7 @@ def get_footer_html():
         </div>
         <span class="brand-name" style="color:var(--text-light); font-size:1.25rem;">Debbie's Collection</span>
         <p style="font-size:0.86rem; color:var(--text-light-muted); line-height:1.6; max-width:320px;">
-          Luxury children's wear and bespoke loungewear crafted with pure natural fibres and heirloom sartorial devotion at 164 Udoumana Street, Uyo, Akwa Ibom State.
+          Luxury children's wear and bespoke loungewear crafted with pure natural fibres and heirloom artisanal devotion at 164 Udoumana Street, Uyo, Akwa Ibom State.
         </p>
         <div style="display:flex; align-items:center; gap:8px; color:var(--accent-gold-light); font-size:0.82rem; font-weight:600;">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -605,6 +609,7 @@ def get_footer_html():
           <li><a href="#faq">Shipping across Nigeria</a></li>
           <li><a href="#faq">Silk & Linen Care Guide</a></li>
           <li><a href="javascript:void(0)" onclick="window.DC_APP.openAccountModal('wishlist')">Saved Wishlist</a></li>
+          <li><a href="javascript:void(0)" onclick="window.DC_APP.openAdminPortal()" style="color:var(--accent-gold-light); font-weight:700;">✦ Atelier Admin & Inventory Suite</a></li>
         </ul>
       </div>
 
@@ -1229,6 +1234,84 @@ def get_modals_html():
         <span>Publish Verified Review</span>
       </button>
     </form>
+  </div>
+</div>
+
+<!-- Admin Passcode Verification Modal -->
+<div class="modal-overlay" id="admin-pin-modal" style="z-index:350;">
+  <div class="modal-card-box" style="max-width:380px; text-align:center; padding:28px;">
+    <div style="width:48px; height:48px; margin:0 auto 14px; background:rgba(170,124,17,0.1); color:var(--accent-gold); border-radius:var(--radius-full); display:flex; align-items:center; justify-content:center;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    </div>
+    <h3 style="font-family:var(--font-serif); font-size:1.35rem; margin-bottom:4px;">Debbie's Atelier Admin</h3>
+    <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:18px;">
+      Enter master boutique passcode to manage catalog, batches, orders, and sales.
+    </p>
+    <form onsubmit="window.DC_APP.verifyAdminPin(event)">
+      <div class="form-group">
+        <input type="password" id="admin-pin-input" class="form-input" style="text-align:center; font-size:1.5rem; letter-spacing:0.35em; font-weight:700;" placeholder="••••" maxlength="6" autofocus required>
+        <span style="font-size:0.74rem; color:var(--text-muted); display:block; margin-top:6px;">Default Master Passcode: <strong>1640</strong></span>
+      </div>
+      <div style="display:flex; gap:10px; margin-top:16px;">
+        <button type="button" class="btn-secondary" style="flex:1;" onclick="window.DC_APP.closeAdminPinModal()">Cancel</button>
+        <button type="submit" class="btn-primary" style="flex:1;">Unlock Portal</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Admin Management Suite Modal -->
+<div class="modal-overlay" id="admin-modal" style="z-index:340;">
+  <div class="modal-card-box admin-modal-card">
+    <!-- Header -->
+    <div class="admin-header-bar">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div class="brand-crest-box" style="width:36px; height:36px; background:#fff;">
+          <img src="images/brand-logo.jpeg" alt="Debbie's Collection" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div>
+          <h3 style="font-family:var(--font-serif); font-size:1.2rem; color:#FFFFFF; margin:0;">Debbie's Atelier Manager</h3>
+          <span style="font-size:0.72rem; color:var(--accent-gold-light);">164 Udoumana Street, Uyo • Live Inventory & Sales Suite</span>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <button class="btn-secondary" style="padding:6px 12px; font-size:0.74rem; color:#FFFFFF; border-color:rgba(255,255,255,0.25);" onclick="window.DC_APP.closeAdminModal()">
+          <span>View Live Boutique</span>
+        </button>
+        <button class="drawer-close-btn" style="color:#FFFFFF;" onclick="window.DC_APP.closeAdminModal()" aria-label="Close Admin">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Tabs Nav -->
+    <div class="admin-tabs-nav">
+      <button class="admin-tab-btn active" id="adm-tab-overview" onclick="window.DC_APP.switchAdminTab('overview')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <span>Overview & Sales</span>
+      </button>
+      <button class="admin-tab-btn" id="adm-tab-products" onclick="window.DC_APP.switchAdminTab('products')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span>Products & Prices</span>
+      </button>
+      <button class="admin-tab-btn" id="adm-tab-inventory" onclick="window.DC_APP.switchAdminTab('inventory')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        <span>Inventory & Batches</span>
+      </button>
+      <button class="admin-tab-btn" id="adm-tab-orders" onclick="window.DC_APP.switchAdminTab('orders')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <span>Orders & Customers</span>
+      </button>
+      <button class="admin-tab-btn" id="adm-tab-discounts" onclick="window.DC_APP.switchAdminTab('discounts')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+        <span>Discounts & Promos</span>
+      </button>
+    </div>
+
+    <!-- Tab Dynamic Content -->
+    <div class="admin-tab-content-area" id="admin-tab-body">
+      <!-- Injected by DC_APP.renderAdminTab() -->
+    </div>
   </div>
 </div>
 

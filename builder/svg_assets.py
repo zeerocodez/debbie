@@ -2,7 +2,7 @@
 """
 SVG Graphics & Fashion Art Asset Library for Debbie's Collection.
 Self-contained, resolution-independent vector illustrations for products,
-monogram visualizer, map, brand crest, and UI iconography.
+map, brand crest, and UI iconography.
 """
 
 def get_product_svg(svg_id, width="100%", height="100%"):
@@ -50,7 +50,7 @@ def get_product_svg(svg_id, width="100%", height="100%"):
   <!-- Contrast Wide Sleeve Cuffs -->
   <path d="M60 120 L88 135" stroke="url(#rose-piping)" stroke-width="4"/>
   <path d="M260 120 L232 135" stroke="url(#rose-piping)" stroke-width="4"/>
-  <!-- Monogram on chest crest -->
+  <!-- Atelier crest embroidery -->
   <circle cx="138" cy="115" r="9" fill="rgba(196,130,117,0.15)"/>
   <text x="138" y="118" font-family="'Playfair Display', serif" font-size="7" font-weight="700" fill="#AA7C11" text-anchor="middle">DC</text>
   <!-- Fabric Sheen Highlight -->
@@ -159,7 +159,7 @@ def get_product_svg(svg_id, width="100%", height="100%"):
   <rect x="182" y="174" width="30" height="8" rx="2" fill="#1A253A" stroke="#121A28" stroke-width="1"/>
 </svg>''',
 
-        # 4. Monogrammed Royal Satin Pyjama Set
+        # 4. Royal Satin Pyjama Set
         "svg-satin-pj": f'''<svg viewBox="0 0 320 320" width="{width}" height="{height}" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="pj-rose" x1="80" y1="50" x2="240" y2="280" gradientUnits="userSpaceOnUse">
@@ -191,7 +191,7 @@ def get_product_svg(svg_id, width="100%", height="100%"):
   <circle cx="160" cy="162" r="3" fill="#FFFFFF" stroke="#C29B38" stroke-width="0.8"/>
   <circle cx="160" cy="178" r="3" fill="#FFFFFF" stroke="#C29B38" stroke-width="0.8"/>
 
-  <!-- Chest Pocket with Gold Monogram DC -->
+  <!-- Chest Pocket with Gold DC crest -->
   <rect x="120" y="115" width="24" height="24" rx="2" fill="#E8BDB4" stroke="url(#gold-pipe)" stroke-width="1.2"/>
   <line x1="120" y1="118" x2="144" y2="118" stroke="url(#gold-pipe)" stroke-width="1.5"/>
   <text x="132" y="132" font-family="'Playfair Display', serif" font-size="8" font-weight="700" fill="#AA7C11" text-anchor="middle">DC</text>
@@ -487,7 +487,7 @@ def get_product_svg(svg_id, width="100%", height="100%"):
 </svg>''',
 
         # 13. Heritage Cashmere & Silk Personalized Swaddle Blanket
-        "svg-blanket-monogram": f'''<svg viewBox="0 0 320 320" width="{width}" height="{height}" fill="none" xmlns="http://www.w3.org/2000/svg">
+        "svg-blanket-crest": f'''<svg viewBox="0 0 320 320" width="{width}" height="{height}" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="swaddle-ivory" x1="80" y1="60" x2="240" y2="260" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#FFFDF9"/>
@@ -509,7 +509,7 @@ def get_product_svg(svg_id, width="100%", height="100%"):
   <!-- Scalloped Satin Edging Along Diamond -->
   <path d="M160 65 L260 145 L160 225 L60 145 Z" stroke="url(#wreath-gold)" stroke-width="2.5" stroke-dasharray="6 4"/>
 
-  <!-- Ornate Heraldic Laurel Wreath & Center Monogram -->
+  <!-- Ornate Heraldic Laurel Wreath & Center Crest -->
   <circle cx="160" cy="145" r="32" stroke="url(#wreath-gold)" stroke-width="1.5" stroke-dasharray="4 2" fill="rgba(255,255,255,0.7)"/>
   <!-- Laurel leaves -->
   <path d="M136 145 Q136 122 160 120 Q156 135 142 145" fill="url(#wreath-gold)"/>
@@ -550,57 +550,6 @@ def get_product_svg(svg_id, width="100%", height="100%"):
 </svg>'''
     }
     return svgs.get(svg_id, svgs["svg-silk-kimono"])
-
-
-def get_studio_garment_svg(garment="pj", color="#F2D5CE", monogram="DC", thread="#C29B38", font_style="Playfair Display", placement="pocket"):
-    """
-    Dynamically renders the interactive Bespoke Studio garment vector
-    with exact color, thread sheen, custom monogram initials, and selected typography.
-    """
-    font_family_css = f"'{font_style}', serif" if font_style != "Outfit" else "'Plus Jakarta Sans', sans-serif"
-    return f'''<svg id="studio-live-svg" viewBox="0 0 340 340" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <radialGradient id="garment-light" cx="50%" cy="35%" r="60%">
-      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.35"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0.25"/>
-    </radialGradient>
-    <filter id="thread-glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="1" stdDeviation="0.8" flood-color="rgba(0,0,0,0.3)"/>
-    </filter>
-  </defs>
-
-  <ellipse cx="170" cy="310" rx="95" ry="12" fill="rgba(33,24,21,0.08)"/>
-
-  <!-- Tailored Garment Base -->
-  <path d="M106 72 L66 130 L94 142 L114 102 L112 210 Q170 218 228 210 L226 102 L246 142 L274 130 L234 72 Q170 58 106 72 Z" fill="{color}" stroke="rgba(0,0,0,0.18)" stroke-width="1.8"/>
-  <!-- Highlight Shading -->
-  <path d="M106 72 L66 130 L94 142 L114 102 L112 210 Q170 218 228 210 L226 102 L246 142 L274 130 L234 72 Q170 58 106 72 Z" fill="url(#garment-light)"/>
-
-  <!-- Trousers / Bottom Hem (if set) -->
-  <path d="M118 195 L112 300 Q112 304 118 304 L156 304 L165 230 L174 304 L212 304 Q218 304 218 300 L212 195 Z" fill="{color}" stroke="rgba(0,0,0,0.18)" stroke-width="1.8"/>
-  <path d="M118 195 L112 300 Q112 304 118 304 L156 304 L165 230 L174 304 L212 304 Q218 304 218 300 L212 195 Z" fill="url(#garment-light)"/>
-  <line x1="114" y1="298" x2="156" y2="298" stroke="{thread}" stroke-width="2.5"/>
-  <line x1="174" y1="298" x2="216" y2="298" stroke="{thread}" stroke-width="2.5"/>
-
-  <!-- Notch Lapel Collar with Embroidery Thread Piping -->
-  <path d="M138 65 L118 102 L142 110 L128 145 L170 175 L212 145 L198 110 L222 102 L202 65 Q170 60 138 65 Z" fill="#FFFFFF" fill-opacity="0.15" stroke="{thread}" stroke-width="2"/>
-
-  <!-- Placket and Buttons -->
-  <line x1="170" y1="175" x2="170" y2="212" stroke="{thread}" stroke-width="1.5"/>
-  <circle cx="170" cy="155" r="3.5" fill="#FFFFFF" stroke="{thread}" stroke-width="1"/>
-  <circle cx="170" cy="175" r="3.5" fill="#FFFFFF" stroke="{thread}" stroke-width="1"/>
-  <circle cx="170" cy="195" r="3.5" fill="#FFFFFF" stroke="{thread}" stroke-width="1"/>
-
-  <!-- Pocket with Custom Monogram Embroidery -->
-  <g id="monogram-pocket-group" transform="translate(126, 122)">
-    <rect x="0" y="0" width="34" height="34" rx="3" fill="#FFFFFF" fill-opacity="0.2" stroke="{thread}" stroke-width="1.5"/>
-    <line x1="0" y1="6" x2="34" y2="6" stroke="{thread}" stroke-width="1.5"/>
-    <!-- Thread Stitch Dashes -->
-    <rect x="2" y="2" width="30" height="30" rx="2" fill="none" stroke="{thread}" stroke-width="0.8" stroke-dasharray="2 2" opacity="0.7"/>
-    <!-- Dynamic Monogram Text -->
-    <text x="17" y="23" font-family="{font_family_css}" font-size="11" font-weight="700" letter-spacing="1" fill="{thread}" text-anchor="middle" filter="url(#thread-glow)">{monogram}</text>
-  </g>
-</svg>'''
 
 
 def get_uyo_map_svg():
